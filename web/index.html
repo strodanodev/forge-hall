@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FORGE Hall · Rapture cards on LitVM Liteforge (testnet)</title>
+<meta name="description" content="A demo hall for Rapture trading cards on the LitVM Liteforge test network: open packs, inspect cards and their 3D avatars. See About for exactly what the app asks your wallet to do." />
+<meta name="theme-color" content="#0b0a09" />
+<link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="FORGE Hall · Rapture cards on LitVM Liteforge (testnet)" />
+<meta property="og:description" content="A demo hall for Rapture trading cards on the LitVM Liteforge test network." />
+<meta property="og:image" content="https://forge-hall.vercel.app/assets/rapture/art/vaelmyra.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700&family=Cinzel:wght@700;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./title.css" />
+<link rel="preload" href="./assets/title/caduceus.json" as="fetch" crossorigin />
+<style>
+  :root { --ink: #f3e6cf; --dim: #b9a88c; --panel: rgba(12, 10, 8, 0.72); }
+  html, body { margin: 0; height: 100%; background: #07080c; overflow: hidden; }
+  canvas { display: block; }
+  #hud { position: fixed; left: 12px; top: 12px; padding: 8px 10px; border-radius: 8px; background: var(--panel);
+         color: var(--ink); font: 12px/1.45 ui-monospace, Consolas, monospace; pointer-events: none; white-space: pre; }
+  #load { position: fixed; inset: 0; display: grid; place-items: center; color: var(--dim);
+          font: 14px ui-sans-serif, system-ui, sans-serif; letter-spacing: .08em; transition: opacity .6s; }
+  #pack-ui { position: fixed; left: 50%; bottom: max(28px, env(safe-area-inset-bottom)); transform: translateX(-50%);
+             display: flex; gap: 12px; z-index: 5; }
+  .forge-btn { font: 900 17px "Cinzel", Georgia, serif; letter-spacing: .14em; text-transform: uppercase; color: #2a1606;
+               padding: 14px 30px; border: 1px solid #ffe3a3; border-radius: 999px; cursor: pointer;
+               background: linear-gradient(180deg, #ffe7a8, #f0b14a 55%, #c9791f);
+               box-shadow: 0 0 0 3px rgba(40, 20, 6, .55), 0 0 28px rgba(255, 170, 60, .55), inset 0 1px 0 #fff6d8;
+               transition: transform .15s, box-shadow .15s, filter .15s; }
+  .forge-btn:hover:not(:disabled) { transform: translateY(-2px) scale(1.03);
+               box-shadow: 0 0 0 3px rgba(40, 20, 6, .55), 0 0 44px rgba(255, 190, 90, .85), inset 0 1px 0 #fff6d8; }
+  .forge-btn:active:not(:disabled) { transform: translateY(1px) scale(.98); }
+  .forge-btn:disabled { filter: grayscale(.7) brightness(.7); cursor: wait; }
+  .forge-btn.ghost { background: rgba(20, 14, 8, .72); color: var(--ink); border-color: rgba(255, 220, 160, .45);
+                     box-shadow: 0 0 18px rgba(0, 0, 0, .4); font-size: 14px; padding: 11px 22px; }
+  .forge-btn[hidden] { display: none; }
+  #skip-pack { position: fixed; right: 16px; bottom: max(20px, env(safe-area-inset-bottom)); }
+  #open-pack { animation: beckon 2.4s ease-in-out infinite; }
+  @keyframes beckon { 50% { box-shadow: 0 0 0 3px rgba(40, 20, 6, .55), 0 0 52px rgba(255, 180, 70, .9), inset 0 1px 0 #fff6d8; } }
+  #flash, #vignette { position: fixed; inset: 0; pointer-events: none; opacity: 0; z-index: 4; }
+  #flash { background: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, .95), rgba(170, 215, 255, .55) 45%, rgba(90, 150, 255, .15)); }
+  #vignette { background: radial-gradient(ellipse at 50% 48%, rgba(0, 0, 0, 0) 38%, rgba(4, 3, 8, .82) 100%); }
+  /* phones: the live shop's buttons ("Connect & Open · 0.001 zkLTC" + "Free Preview") are wider than the screen in a row, so wrap */
+  @media (max-width: 520px) { .forge-btn { font-size: 13px; padding: 12px 16px; letter-spacing: .1em; white-space: nowrap; }
+    #pack-ui { gap: 8px; flex-wrap: wrap; justify-content: center; width: calc(100vw - 24px); }
+    body.live-shop #npc .npc-box, body.live-shop #npc[data-mode="comms"] .npc-box { bottom: 142px; } }
+
+  /* ---- AERIS, NPC host (npc.js). Above the vignette/flash, below the pack buttons. */
+  #npc { position: fixed; inset: 0; pointer-events: none; z-index: 4; --npc-h: min(66vh, 640px); --em: #ffd37a; }
+  .npc-stage { position: absolute; left: -1.5vh; bottom: 0; height: var(--npc-h); aspect-ratio: 1016 / 1100;
+               transform-origin: 20% 100%; will-change: transform, opacity;
+               transition: transform .8s cubic-bezier(.2, .8, .2, 1), opacity .6s ease; }
+  #npc[data-mode="off"] .npc-stage { transform: translateX(-38%); opacity: 0; }
+  #npc[data-mode="comms"] .npc-stage { transform: translate(-3%, 4%) scale(.46); }
+  .npc-glow { position: absolute; inset: 6% -8% 0 -8%;
+              background: radial-gradient(ellipse 46% 42% at 52% 42%, rgba(255, 146, 52, .34), rgba(255, 110, 30, .1) 58%, transparent 74%),
+                          radial-gradient(ellipse 26% 34% at 28% 46%, rgba(90, 225, 255, .16), transparent 72%); }
+  .npc-breathe { position: absolute; inset: 0; transform-origin: 50% 100%; animation: npc-breathe 4.2s ease-in-out infinite; }
+  @keyframes npc-breathe { 50% { transform: translateY(-.5%) scale(1.006); } }
+  .npc-figure { position: absolute; inset: 0; transform-origin: 50% 92%; pointer-events: auto; cursor: pointer;
+                -webkit-mask-image: linear-gradient(to top, transparent 0, #000 17%); mask-image: linear-gradient(to top, transparent 0, #000 17%); }
+  #npc[data-mode="comms"] .npc-figure { pointer-events: none; }
+  .npc-pose { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; user-select: none; }
+  .npc-pose.on { opacity: 1; z-index: 2; }
+  .npc-pose.on.fade { animation: npc-fade .2s linear; }
+  .npc-pose.was { opacity: 1; z-index: 1; }
+  @keyframes npc-fade { from { opacity: 0; } }
+
+  .npc-box { position: absolute; left: calc(var(--npc-h) * .64); bottom: 118px; width: min(540px, calc(100vw - var(--npc-h) * .64 - 32px));
+             box-sizing: border-box; padding: 20px 24px 18px; border-radius: 14px; pointer-events: auto; cursor: pointer;
+             color: var(--ink); font: 500 18px/1.5 "Alegreya", Georgia, serif;
+             background: linear-gradient(180deg, rgba(30, 22, 14, .9), rgba(11, 9, 8, .93));
+             border: 1px solid rgba(255, 214, 140, .5);
+             box-shadow: 0 0 0 3px rgba(40, 20, 6, .55), 0 14px 44px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 236, 190, .14);
+             transform-origin: 0 100%; transition: opacity .3s ease, transform .4s cubic-bezier(.2, .9, .25, 1.25); }
+  .npc-box::before { content: ""; position: absolute; left: -9px; bottom: 30px; width: 16px; height: 16px; transform: rotate(45deg);
+                     background: rgba(24, 18, 12, .93); border-left: 1px solid rgba(255, 214, 140, .5); border-bottom: 1px solid rgba(255, 214, 140, .5); }
+  .npc-box.hide { opacity: 0; transform: translateY(10px) scale(.96); pointer-events: none; }
+  .npc-plate { position: absolute; top: -14px; left: 20px; padding: 3px 14px 2px; border-radius: 999px; white-space: nowrap;
+               background: linear-gradient(180deg, #ffe7a8, #f0b14a 55%, #c9791f); color: #2a1606;
+               font: 900 13px/1.4 "Cinzel", Georgia, serif; letter-spacing: .18em;
+               box-shadow: 0 0 0 2px rgba(40, 20, 6, .6), 0 0 16px rgba(255, 170, 60, .45); }
+  .npc-plate span { margin-left: 10px; font-weight: 700; font-size: 10px; letter-spacing: .14em; opacity: .72; text-transform: uppercase; }
+  .npc-text { margin: 4px 0 0; min-height: 3em; text-wrap: pretty; }
+  .npc-text .c { opacity: 0; transition: opacity .12s linear; }
+  .npc-text .c.on { opacity: 1; }
+  .npc-text .em { color: var(--em); font-weight: 700; text-shadow: 0 0 14px color-mix(in srgb, var(--em) 50%, transparent); }
+  .npc-next { position: absolute; right: 16px; bottom: 9px; border: 7px solid transparent; border-top: 9px solid #f0b14a; border-bottom: 0; opacity: 0; }
+  .npc-box.wait .npc-next { opacity: 1; animation: npc-next 1s ease-in-out infinite; }
+  @keyframes npc-next { 50% { transform: translateY(4px); } }
+  #npc[data-mode="comms"] .npc-box { left: calc(var(--npc-h) * .46); bottom: calc(var(--npc-h) * .2); width: min(380px, calc(100vw - var(--npc-h) * .46 - 32px));
+                                      font-size: 16px; padding: 16px 18px 12px; cursor: default; }
+  #npc[data-mode="comms"] .npc-box::before { bottom: 22px; }
+  #npc[data-mode="comms"] .npc-plate span { display: none; }
+  @media (max-width: 700px) {
+    #npc { --npc-h: min(46vh, 400px); }
+    .npc-box, #npc[data-mode="comms"] .npc-box { left: 12px; right: 12px; width: auto; bottom: 92px; font-size: 16px; padding: 18px 16px 12px; }
+    .npc-box::before { display: none; }
+    #npc[data-mode="comms"] .npc-stage { opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .npc-breathe { animation: none; } .npc-stage { transition: opacity .4s; } }
+
+
+  /* ---- wallet (walletui.js): connect / sign in / network, top right (under the Library button on phones) */
+  #wallet { position: fixed; right: 12px; top: 52px; z-index: 7; font: 12px ui-sans-serif, system-ui, sans-serif; color: var(--ink); text-align: right; }
+  #wallet[hidden] { display: none; }
+  .w-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; cursor: pointer; border: 1px solid rgba(255, 220, 160, .3);
+            background: var(--panel); color: var(--ink); font: inherit; letter-spacing: .02em; }
+  .w-pill:hover { border-color: rgba(255, 220, 160, .6); }
+  .w-dot { width: 8px; height: 8px; border-radius: 50%; background: #7fe0a0; box-shadow: 0 0 8px #7fe0a0; }
+  .w-dot.bad { background: #ff9a5a; box-shadow: 0 0 8px #ff9a5a; }
+  .w-dot.off { background: #8d7f68; box-shadow: none; }
+  .w-bal { color: var(--dim); }
+  .w-menu { margin-top: 6px; min-width: 230px; padding: 8px; border-radius: 12px; text-align: left; background: rgba(14, 11, 8, .94);
+            border: 1px solid rgba(255, 220, 160, .3); box-shadow: 0 12px 34px rgba(0, 0, 0, .55); }
+  .w-menu[hidden] { display: none; }
+  .w-menu button, .w-menu a { display: block; width: 100%; box-sizing: border-box; padding: 8px 10px; border: 0; border-radius: 8px; background: none;
+                              color: var(--ink); font: inherit; text-align: left; text-decoration: none; cursor: pointer; }
+  .w-menu button:hover, .w-menu a:hover { background: rgba(255, 200, 120, .12); }
+  .w-menu .w-row { padding: 6px 10px; color: var(--dim); overflow-wrap: anywhere; }
+  .w-menu .w-row b { color: var(--ink); font-weight: 600; }
+  .w-menu hr { border: 0; border-top: 1px solid rgba(255, 220, 160, .15); margin: 6px 0; }
+  #chain-status { position: fixed; left: 50%; bottom: calc(max(28px, env(safe-area-inset-bottom)) + 74px); transform: translateX(-50%); z-index: 5;
+                  max-width: min(560px, calc(100vw - 32px)); padding: 9px 16px; border-radius: 12px; text-align: center; pointer-events: none;
+                  color: var(--ink); font: 500 15px/1.4 "Alegreya", Georgia, serif; background: var(--panel); border: 1px solid rgba(255, 220, 160, .3);
+                  box-shadow: 0 8px 26px rgba(0, 0, 0, .5); }
+  #chain-status[hidden] { display: none; }
+  #chain-status.error { color: #ffd9c2; border-color: rgba(255, 140, 90, .6); background: rgba(40, 16, 8, .82); pointer-events: auto; }
+  #about-link { position: fixed; right: 12px; bottom: 5px; z-index: 3; font: 11px/1 ui-sans-serif, system-ui, sans-serif; color: rgba(243, 230, 207, .55);
+                text-decoration: none; letter-spacing: .02em; }
+  #about-link:hover { color: #fff; text-decoration: underline; }
+  .cp-net.own { color: #9fffc0; border-color: rgba(120, 230, 160, .5); background: rgba(60, 200, 110, .12); }
+  @media (max-width: 520px) { #wallet { top: 48px; } .w-bal { display: none; } #chain-status { bottom: calc(max(20px, env(safe-area-inset-bottom)) + 108px); font-size: 14px; } }
+
+  /* ---- inspect panel (cardpanel.js): Rapture card traits, stats, lore, provenance */
+  #card-panel { position: fixed; right: 20px; top: 64px; bottom: 104px; width: min(400px, 34vw); z-index: 6; box-sizing: border-box;
+                overflow-y: auto; overscroll-behavior: contain; padding: 22px 24px 20px; border-radius: 16px; color: var(--ink);
+                font: 500 15.5px/1.5 "Alegreya", Georgia, serif; --el: #ffd37a; --tier: #ffbf3f;
+                background: linear-gradient(180deg, rgba(24, 19, 14, .93), rgba(10, 9, 8, .95));
+                border: 1px solid color-mix(in srgb, var(--tier) 55%, transparent);
+                box-shadow: 0 0 0 3px rgba(40, 20, 6, .5), 0 18px 50px rgba(0, 0, 0, .6), 0 0 40px color-mix(in srgb, var(--tier) 16%, transparent);
+                opacity: 0; transform: translateX(24px); transition: opacity .3s ease, transform .4s cubic-bezier(.2, .8, .2, 1);
+                scrollbar-width: thin; scrollbar-color: rgba(255, 214, 140, .35) transparent; }
+  #card-panel.on { opacity: 1; transform: none; }
+  #card-panel[hidden] { display: none; }
+  .cp-close { position: absolute; right: 12px; top: 12px; width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+              border: 1px solid rgba(255, 220, 160, .35); background: rgba(0, 0, 0, .35); color: var(--ink); font-size: 14px; }
+  .cp-close:hover { background: rgba(255, 200, 120, .15); }
+  .cp-top { display: flex; gap: 8px; align-items: center; margin-right: 40px; }
+  .cp-kind { font: 900 12px "Cinzel", Georgia, serif; letter-spacing: .16em; text-transform: uppercase; color: var(--tier); }
+  .cp-net { margin-left: auto; font: 700 10px ui-sans-serif, system-ui, sans-serif; letter-spacing: .12em; color: #ffcf8a;
+            padding: 3px 8px; border-radius: 999px; border: 1px solid rgba(255, 190, 110, .45); background: rgba(255, 150, 40, .1); }
+  #card-panel h2 { margin: 10px 0 0; font: 900 30px/1.1 "Cinzel", Georgia, serif; letter-spacing: .04em; color: #f7e7c4; }
+  .cp-epithet { margin-top: 4px; font-style: italic; color: var(--dim); font-size: 16px; }
+  .cp-traits { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 4px; }
+  .cp-traits span { padding: 3px 10px; border-radius: 999px; font-size: 13px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .1); }
+  .cp-el { border-color: color-mix(in srgb, var(--el) 60%, transparent) !important; }
+  .cp-el i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: var(--el); box-shadow: 0 0 8px var(--el); }
+  .cp-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; margin: 14px 0 6px; }
+  .cp-stat { display: grid; grid-template-columns: auto 1fr; align-items: baseline; row-gap: 5px; }
+  .cp-stat span { font: 700 11px "Cinzel", Georgia, serif; letter-spacing: .12em; color: #a8987c; }
+  .cp-stat b { justify-self: end; font: 700 15px Georgia, serif; }
+  .cp-stat i { grid-column: 1 / -1; height: 5px; border-radius: 3px; background: linear-gradient(90deg, var(--el) calc(var(--f) * 100%), rgba(255, 255, 255, .1) 0); }
+  .cp-lore h4 { margin: 14px 0 2px; font: 900 11px "Cinzel", Georgia, serif; letter-spacing: .16em; text-transform: uppercase; color: var(--tier); }
+  .cp-lore p { margin: 6px 0 0; color: #e9dcc2; }
+  .cp-chain { margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(255, 220, 160, .15); font-size: 13.5px; }
+  .cp-chain summary { cursor: pointer; font: 700 12px "Cinzel", Georgia, serif; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+  .cp-chain dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; margin: 10px 0 0; }
+  .cp-chain dt { color: #8d7f68; }
+  .cp-chain dd { margin: 0; overflow-wrap: anywhere; }
+  .cp-chain a { color: #ffd37a; text-decoration: none; }
+  .cp-chain a:hover { text-decoration: underline; }
+  .cp-ok { color: #7fe0a0; margin-left: 4px; }
+  @media (max-width: 700px), (max-aspect-ratio: 1/1) {
+    #card-panel { left: 12px; right: 12px; top: auto; bottom: 92px; width: auto; max-height: calc(57vh - 104px); padding: 16px 18px; transform: translateY(24px); }
+    #card-panel h2 { font-size: 24px; }
+    /* the sheet and AERIS's box share the bottom of a phone: the sheet wins while it is open */
+    body:has(#card-panel.on) #npc .npc-box { opacity: 0; pointer-events: none; }
+  }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<!-- title / loading screen (title.js + title.css): covers the hall until the player enters -->
+<div id="title" data-phase="presents" role="dialog" aria-label="The Forge, presented by LIT Games">
+  <div class="t-vignette"></div>
+  <div class="t-flash"></div>
+  <div class="t-studio"><img src="./assets/title/litgames.webp" alt="LIT Games" width="646" height="313" /><span>presents</span></div>
+  <div class="t-head" aria-hidden="true"><img src="./assets/title/litgames.webp" alt="" width="646" height="313" /><span>presents</span></div>
+  <h1 class="t-logo"><img src="./assets/title/theforge.webp" srcset="./assets/title/theforge-900.webp 900w, ./assets/title/theforge.webp 1763w"
+    sizes="(max-aspect-ratio: 1/1) min(90vw, 560px), min(50vw, 92vh, 980px)" alt="The Forge" width="1763" height="824" /><i class="t-shine"></i></h1>
+  <p class="t-story" aria-live="polite"><b class="t-num"></b><span class="t-line"></span><small class="t-hint"></small></p>
+  <div class="t-prompt"><span>Strike to enter</span></div>
+  <div class="t-load"><i><b></b></i><span>Heating the forge</span></div>
+  <button class="t-skip" type="button">Skip</button>
+  <button class="t-replay" type="button">Prologue</button>
+  <button class="t-sound" type="button" aria-label="Sound"></button>
+</div>
+<div id="load">LIGHTING THE FORGE…</div>
+<div id="hud"></div>
+<div id="vignette"></div>
+<div id="flash"></div>
+<div id="npc"></div>
+<div id="card-panel" hidden></div>
+<a id="about-link" href="./about.html" target="_blank" rel="noopener">About &amp; what this app asks your wallet</a>
+<div id="wallet" hidden></div>
+<div id="chain-status" hidden role="status" aria-live="polite"></div>
+<div id="pack-ui">
+  <button id="open-pack" class="forge-btn" disabled>Open Pack</button>
+  <button id="preview-pack" class="forge-btn ghost" hidden>Free Preview</button>
+  <button id="skip-pack" class="forge-btn ghost" hidden>Skip</button>
+  <button id="again-pack" class="forge-btn" hidden>Open Another</button>
+  <button id="back-pack" class="forge-btn ghost" hidden>Back to Forge</button>
+</div>
+<script type="module" src="./title.js"></script>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

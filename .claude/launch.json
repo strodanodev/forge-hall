@@ -1,0 +1,38 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "forge-web",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8765",
+        "--directory",
+        "web"
+      ],
+      "port": 8765
+    },
+    {
+      "name": "forge-title",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8771",
+        "--directory",
+        "web"
+      ],
+      "port": 8771
+    },
+    {
+      "name": "aeris-web",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "aeris/web/serve.py",
+        "8766"
+      ],
+      "port": 8766
+    }
+  ]
+}

@@ -1,0 +1,317 @@
+{
+  "network": "liteforge",
+  "chainId": 4441,
+  "rpc": "https://liteforge.rpc.caldera.xyz/http",
+  "explorer": "https://liteforge.explorer.caldera.xyz",
+  "faucet": "https://liteforge.hub.caldera.xyz",
+  "currency": {
+    "name": "zkLTC",
+    "symbol": "zkLTC",
+    "decimals": 18
+  },
+  "packShop": "0x3E39be64A4dE8752E45067d6Bbe4787b4D272B0c",
+  "cards": "0x138F1A2E48111aFD0Af865F421F05Fd1B0A72721",
+  "templates": [
+    {
+      "id": 0,
+      "sourceTokenId": "4294967296",
+      "designHash": "0x1f3b616afcbb8314b7807b5e47916cff5580d2a5eb4ca3e90018bd1f0545fea3",
+      "kind": 4
+    },
+    {
+      "id": 1,
+      "sourceTokenId": "4294967297",
+      "designHash": "0xf509408896fcf009f99859615dea9da40b6ca431ba454d154172f209c5e073e1",
+      "kind": 0
+    },
+    {
+      "id": 2,
+      "sourceTokenId": "4294967298",
+      "designHash": "0xebe7d93919e769ab411618c495dda54c582b9a19b3383c7795be593b63a2a370",
+      "kind": 4
+    },
+    {
+      "id": 3,
+      "sourceTokenId": "4294967299",
+      "designHash": "0x09a2ddea7f24d5cc424edb86737984fc82e7283fd824d335c53a27299c87a7b9",
+      "kind": 4
+    },
+    {
+      "id": 4,
+      "sourceTokenId": "4294967300",
+      "designHash": "0x1c3dc3e646cc91040898997b09ae5887cbeddee7b4397cf8febed3793684e429",
+      "kind": 4
+    },
+    {
+      "id": 5,
+      "sourceTokenId": "4294967301",
+      "designHash": "0xd1c7cb93fa4172500281f9d3dfa788a4a6497043fab7643aa1fc9039c31c0f34",
+      "kind": 4
+    },
+    {
+      "id": 6,
+      "sourceTokenId": "4294967302",
+      "designHash": "0x5876ba109be7b0c660d08848113141f07f1dd1efb8367400cae306ebed52e76a",
+      "kind": 4
+    },
+    {
+      "id": 7,
+      "sourceTokenId": "4294967303",
+      "designHash": "0xee53504a6b7eaf6de13936c69e881302928df132b9a24948752b0a77bd891d0d",
+      "kind": 4
+    },
+    {
+      "id": 8,
+      "sourceTokenId": "4294967304",
+      "designHash": "0x5efea5961a1bb8c1b56303b460d1045f045269a9a8c5d9f03f15f6ed21f48aca",
+      "kind": 4
+    },
+    {
+      "id": 9,
+      "sourceTokenId": "4294967305",
+      "designHash": "0xef04afe291c12e15e291087b90512462e4fbe60b571e7691006c3f6a1b6cc3da",
+      "kind": 4
+    },
+    {
+      "id": 10,
+      "sourceTokenId": "4294967306",
+      "designHash": "0x17bbd4df0419c2487b622f846a9eb95920734f4f4f67d926233b29f5f42ee1f9",
+      "kind": 4
+    },
+    {
+      "id": 11,
+      "sourceTokenId": "4294967307",
+      "designHash": "0xb3a90c9be229ce4641651f33ea4fdd8721055ba82d8ceeed1ab7ef9f6f1972b4",
+      "kind": 2
+    },
+    {
+      "id": 12,
+      "sourceTokenId": "4294967308",
+      "designHash": "0x09a4275813dc3d3e3bcef30e0b8f943971be04e0b5d2b881db4e96d5e70fcc18",
+      "kind": 2
+    },
+    {
+      "id": 13,
+      "sourceTokenId": "4294967309",
+      "designHash": "0xa2c71696eefbc932d8141c022b6f73c6aad0908836775fafb16f298e060e6bca",
+      "kind": 2
+    },
+    {
+      "id": 14,
+      "sourceTokenId": "4294967310",
+      "designHash": "0x8cf36f215243aac708bf52d14a44f5e085a54c1048b647ab90887e2878ce1dca",
+      "kind": 2
+    },
+    {
+      "id": 15,
+      "sourceTokenId": "4294967311",
+      "designHash": "0xbb7680e0d4e7e16c4fa64161620f718e1951e97a58eef65db0d6495929330a04",
+      "kind": 2
+    },
+    {
+      "id": 16,
+      "sourceTokenId": "4294967312",
+      "designHash": "0x8fea4396c968bafb3b9e20a2031570a2df944517db0af060264dfdfe7e6af312",
+      "kind": 2
+    },
+    {
+      "id": 17,
+      "sourceTokenId": "4294967313",
+      "designHash": "0x157438a3252aa20c5479835622e9ca2cd665decefef7e403fbf90a974c60a600",
+      "kind": 2
+    },
+    {
+      "id": 18,
+      "sourceTokenId": "4294967314",
+      "designHash": "0x4ca59c3a72b82639fb92c3b53a29d5e7a9de611e45539cf646ff651ed94c1dbf",
+      "kind": 2
+    },
+    {
+      "id": 19,
+      "sourceTokenId": "4294967315",
+      "designHash": "0x0ae6744a9a93043820ded1db46129e5967076499c62575b3b600b512f0d9908f",
+      "kind": 2
+    },
+    {
+      "id": 20,
+      "sourceTokenId": "4294967316",
+      "designHash": "0x4b1fa9a9a9965c43690ad5abb9f978cc8a8ff55520c69978213430edc2867d69",
+      "kind": 2
+    },
+    {
+      "id": 21,
+      "sourceTokenId": "4294967317",
+      "designHash": "0xe58dd13f812ea43d5535c26b5a5e496457e42b4f327e6c7db9544233c1c129ce",
+      "kind": 3
+    },
+    {
+      "id": 22,
+      "sourceTokenId": "4294967318",
+      "designHash": "0xb497daec64a812a8ad58016070018b7f0631a3e1d12488ac111235bde011923a",
+      "kind": 3
+    },
+    {
+      "id": 23,
+      "sourceTokenId": "4294967319",
+      "designHash": "0xf6251221f3bbf4f7bffa09799cd71bf2042082c93e7cf4eec96c6666734ad42a",
+      "kind": 3
+    },
+    {
+      "id": 24,
+      "sourceTokenId": "4294967320",
+      "designHash": "0xace9f0cbeaf21cd02572025910d00d6a7f3523a1b260b52d8c60211988f2f8d2",
+      "kind": 3
+    },
+    {
+      "id": 25,
+      "sourceTokenId": "4294967321",
+      "designHash": "0x21d13394f1c1d7c2370d36be85ea5748a3f2bf1f26663f095ecca865b532a40d",
+      "kind": 3
+    },
+    {
+      "id": 26,
+      "sourceTokenId": "4294967322",
+      "designHash": "0x71fb15a06b286f0d46be5e44b77cef060b250bce795da6f1e6d43ed3d8e9f0ce",
+      "kind": 3
+    },
+    {
+      "id": 27,
+      "sourceTokenId": "4294967323",
+      "designHash": "0x1c02eb1e0effdaf9faf042417f15f36dd67ebc53910fc965679b55a31481b2b6",
+      "kind": 3
+    },
+    {
+      "id": 28,
+      "sourceTokenId": "4294967324",
+      "designHash": "0x55e4b041fcf01f40f178e0f9f6d1fa9bdbb0e6df4e561dac1a85f17ccbd52433",
+      "kind": 3
+    },
+    {
+      "id": 29,
+      "sourceTokenId": "4294967325",
+      "designHash": "0x0bae9621f8560be8b49ae5a168e3902e10c7d8ea1db7eaf54772fa18ff23e419",
+      "kind": 3
+    },
+    {
+      "id": 30,
+      "sourceTokenId": "4294967326",
+      "designHash": "0xc0870a74524e4026782d68072bfb94c0b50c8709e791f3198c31f8b828e6f814",
+      "kind": 3
+    },
+    {
+      "id": 31,
+      "sourceTokenId": "4294967327",
+      "designHash": "0x98b1734c87cfd10dfaa227fd77e910e5ce8d0d0dc973c18d9d41c62654c912d0",
+      "kind": 1
+    },
+    {
+      "id": 32,
+      "sourceTokenId": "4294967328",
+      "designHash": "0xf54d57e751cbb527d4ae8804f17cd28e1379101e56fc5a7f97876c355812fea6",
+      "kind": 1
+    },
+    {
+      "id": 33,
+      "sourceTokenId": "4294967329",
+      "designHash": "0xc2dec51330cc2598e1ec2f4131dbe6dac18e13eef233ec76dd845de9705e2883",
+      "kind": 1
+    },
+    {
+      "id": 34,
+      "sourceTokenId": "4294967330",
+      "designHash": "0x4da5925a7551108cd8418ed5716d6bcda933be1ce22229f97b7b0ded8e71073a",
+      "kind": 1
+    },
+    {
+      "id": 35,
+      "sourceTokenId": "4294967331",
+      "designHash": "0xa8eb2c1c191e2f01e67d10850c15e48c2f35deb4c77042ea4ddc49d834cc3a42",
+      "kind": 1
+    },
+    {
+      "id": 36,
+      "sourceTokenId": "4294967332",
+      "designHash": "0x2cec7a166921a36c374d6a2992497fb8135551b7bcc6ceffde3e356b5d6199cb",
+      "kind": 1
+    },
+    {
+      "id": 37,
+      "sourceTokenId": "4294967333",
+      "designHash": "0x5707c120b30af1635b43163cac3565bf32e86e17ba0834d433fa4956548271d8",
+      "kind": 1
+    },
+    {
+      "id": 38,
+      "sourceTokenId": "4294967334",
+      "designHash": "0x0f4168d92f7e96ae9dfcc1c3df89bc9298a8e1c7f2268203c44fb199ac03703b",
+      "kind": 1
+    },
+    {
+      "id": 39,
+      "sourceTokenId": "4294967335",
+      "designHash": "0x673bbae5e0f005c1e351a5ae1aeb0d55d40801fef89d88cd4d7cc8bfbc81e260",
+      "kind": 1
+    },
+    {
+      "id": 40,
+      "sourceTokenId": "4294967336",
+      "designHash": "0x54c235adeb3e13d1d321b308e51456b4cc2d217a77d60f9f5aeb4343c459c9d1",
+      "kind": 1
+    },
+    {
+      "id": 41,
+      "sourceTokenId": "4294967337",
+      "designHash": "0xf5d6d88c0905ddcdc8b927db3eb32c64b14b6ae962528956199420580bcc319b",
+      "kind": 0
+    },
+    {
+      "id": 42,
+      "sourceTokenId": "4294967338",
+      "designHash": "0xf1494e4f7179468cebd2be4f92a58e4b7475663d8a9b2e6ae64523e47ceb688d",
+      "kind": 0
+    },
+    {
+      "id": 43,
+      "sourceTokenId": "4294967339",
+      "designHash": "0x3430b97382fdfb893f04766efc9279cee88bcf74bd9459502ce8e4ce3b2c33a6",
+      "kind": 0
+    },
+    {
+      "id": 44,
+      "sourceTokenId": "4294967340",
+      "designHash": "0x0116ae82b4aacd3301a6f9296b6174a494fbd0e0116b3bc5f3ec5d31f77723f4",
+      "kind": 0
+    },
+    {
+      "id": 45,
+      "sourceTokenId": "4294967341",
+      "designHash": "0x68f28980d5ec6aeab0db724e7df63fcde5c3fd37c9991cb15cf666a89c6da16f",
+      "kind": 0
+    },
+    {
+      "id": 46,
+      "sourceTokenId": "4294967342",
+      "designHash": "0x8646fdfe6b17b416073c7125c7ecfea865fb63269331d6f48198bf64ded68ab0",
+      "kind": 0
+    },
+    {
+      "id": 47,
+      "sourceTokenId": "4294967343",
+      "designHash": "0x4feeb63033af47e72e63db70af2fbfd52c41e8a054270b1b61d5b25a5b0f1dc7",
+      "kind": 0
+    },
+    {
+      "id": 48,
+      "sourceTokenId": "4294967344",
+      "designHash": "0xef7e30f9400c92409da3dc26d82d18d97e756ce4c968eb45e2633ddd97f049bf",
+      "kind": 0
+    },
+    {
+      "id": 49,
+      "sourceTokenId": "4294967345",
+      "designHash": "0xeb3dbac694a0d50f00ca354c2cf81bc0a6123c25576d0b43fe671c0e462e7fc7",
+      "kind": 0
+    }
+  ],
+  "writtenAt": "2026-10-01T18:18:29.829Z"
+}

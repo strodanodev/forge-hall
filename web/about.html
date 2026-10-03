@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About the FORGE and what it asks your wallet to do</title>
+<meta name="description" content="The FORGE is a demo hall for Rapture trading cards on the LitVM Liteforge test network. This page lists every wallet request the app makes, and what it never makes." />
+<link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+<style>
+  :root { --ink: #f3e6cf; --dim: #b9a88c; --gold: #f0b14a; --bg: #0b0a09; --panel: #15120e; --line: rgba(255, 220, 160, .22); }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 ui-sans-serif, system-ui, "Segoe UI", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font: 700 28px/1.2 Georgia, "Times New Roman", serif; letter-spacing: .02em; margin: 0 0 6px; }
+  h2 { font: 700 14px/1.3 ui-sans-serif, system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin: 34px 0 10px; }
+  p, li { color: #e9dcc2; }
+  .lede { color: var(--dim); margin: 0 0 22px; }
+  a { color: #ffd37a; }
+  code { font: 13px ui-monospace, Consolas, monospace; background: rgba(255, 255, 255, .06); padding: 1px 6px; border-radius: 5px; overflow-wrap: anywhere; }
+  table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 15px; }
+  th { color: var(--dim); font-weight: 600; width: 34%; }
+  tr:last-child th, tr:last-child td { border-bottom: 0; }
+  .never li { margin: 4px 0; }
+  .note { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 14px 16px; margin-top: 10px; }
+  .back { display: inline-block; margin-bottom: 18px; color: var(--dim); text-decoration: none; font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="./">← Back to the FORGE</a>
+  <h1>The FORGE: about, and what it asks your wallet to do</h1>
+  <p class="lede">A demo hall for <b>Rapture</b> trading cards, running on the <b>LitVM Liteforge test network</b> (chain 4441). The currency, zkLTC, is test currency: you can get free test zkLTC from the <a href="https://liteforge.hub.caldera.xyz" rel="noopener">Liteforge faucet</a>.</p>
+
+  <h2>Every request the app can make</h2>
+  <table>
+    <tr><th>Connect</th><td>Shares your public address with this page. It cannot move funds or see your keys.</td></tr>
+    <tr><th>Add / switch network</th><td>Adds "LitVM Liteforge" (chain 4441, RPC <code>liteforge.rpc.caldera.xyz</code>) to your wallet and switches to it, if it is not there already.</td></tr>
+    <tr><th>Buy a pack</th><td>One transaction to the PackShop contract: the price shown on the button (currently <b>0.001 zkLTC</b>) plus a small network fee. Function <code>buyPack()</code>.</td></tr>
+    <tr><th>Open the pack</th><td>A second transaction to the same contract (<code>openPack</code>), after a short wait. It mints 5 cards into your wallet. You pay only the network fee.</td></tr>
+    <tr><th>Refund</th><td>Only if a bought pack was never opened in time: <code>refundExpired</code> returns exactly what you paid.</td></tr>
+    <tr><th>Sign in (optional)</th><td>Signs a plain text message (EIP-4361, "Sign in to the FORGE"). It is free, it is not a transaction, and it only proves you control the address.</td></tr>
+  </table>
+
+  <h2>What it never asks for</h2>
+  <ul class="never">
+    <li>Token or NFT approvals (<code>approve</code>, <code>setApprovalForAll</code>) or <code>permit</code> / typed-data signatures.</li>
+    <li>Your seed phrase or private key. No site should ever ask for these.</li>
+    <li>Any transfer of tokens or NFTs you already own.</li>
+  </ul>
+  <div class="note">If your wallet ever shows one of the requests above, or a recipient other than the contract listed below, <b>reject it</b>.</div>
+
+  <h2>Contracts (Liteforge testnet)</h2>
+  <table>
+    <tr><th>PackShop (sells and mints packs)</th><td><a href="https://liteforge.explorer.caldera.xyz/address/0x3E39be64A4dE8752E45067d6Bbe4787b4D272B0c" rel="noopener"><code>0x3E39be64A4dE8752E45067d6Bbe4787b4D272B0c</code></a><br /><a href="https://liteforge.explorer.caldera.xyz/address/0x3E39be64A4dE8752E45067d6Bbe4787b4D272B0c?tab=contract" rel="noopener">Source code verified on the explorer</a>: you can read exactly what it does before you buy.</td></tr>
+    <tr><th>Rapture Cards (the ERC-721 collection)</th><td><a href="https://liteforge.explorer.caldera.xyz/address/0x138F1A2E48111aFD0Af865F421F05Fd1B0A72721" rel="noopener"><code>0x138F1A2E48111aFD0Af865F421F05Fd1B0A72721</code></a></td></tr>
+    <tr><th>StudioMinter (mints for PackShop)</th><td><a href="https://liteforge.explorer.caldera.xyz/address/0x52Ad7703dB1dab3Cc75F29d5281b5b815d493b94" rel="noopener"><code>0x52Ad7703dB1dab3Cc75F29d5281b5b815d493b94</code></a></td></tr>
+  </table>
+
+  <h2>Good to know</h2>
+  <ul>
+    <li>This is a test deployment. Pack contents are drawn from the chain's block hash, which is fine for a test network and is not meant to carry real value.</li>
+    <li>Cards are ordinary ERC-721 tokens in your wallet. Nothing here holds custody of them.</li>
+    <li>The page reads the chain directly from the public Liteforge RPC. It has no passwords; the optional sign-in stores your public address and a session cookie, nothing else.</li>
+  </ul>
+</main>
+</body>
+</html>

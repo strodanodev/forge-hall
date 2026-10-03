@@ -1,0 +1,1811 @@
+{
+  "chainId": 4441,
+  "source": {
+    "RaptureCards": "0x138F1A2E48111aFD0Af865F421F05Fd1B0A72721",
+    "CardDesign": "0x75Fa6d1a80dea2Bf266f32bF5084497607e6A8C1",
+    "setId": 1
+  },
+  "exportedAt": "2026-09-29T19:12:59.853Z",
+  "templates": [
+    {
+      "id": 0,
+      "sourceTokenId": "4294967296",
+      "kindName": "God",
+      "template": {
+        "kind": 4,
+        "traits": {
+          "faction": 0,
+          "alignment": 0,
+          "element": 3,
+          "frame": 3,
+          "bodyparts": 258,
+          "strength": 39956,
+          "agility": 36159,
+          "resilience": 47159,
+          "intelligence": 45958
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x1f3b616afcbb8314b7807b5e47916cff5580d2a5eb4ca3e90018bd1f0545fea3",
+          "art": "0x175b87c80aa32ce4dca9a4f41d8e62b5e043cac3611baf54b8f1bedf7e93758c",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x9656b45f61f23033defaca4d5791b0e7729a9f6c7c7c7f84e598a1e68cb7da8e",
+          "avatar": "0x00e6930ae57cc473c390238005c66f91abdfdecdbb8dabe1c9752c6b2a17e7cb",
+          "avatarPlain": "0xbd9de467e80cd71c5dc0ff27f95dc7cf8c345dd01c0db955387fd28b0500cf28",
+          "soul": "0x5215195d2b93b209c8b6390457412444e289d1cb9c6532f6e985c9ad02e5c4f1",
+          "kit": 4,
+          "name": "Vaelmyra",
+          "epithet": "Halo of the Sinking Throne"
+        }
+      }
+    },
+    {
+      "id": 1,
+      "sourceTokenId": "4294967297",
+      "kindName": "Mortal",
+      "template": {
+        "kind": 0,
+        "traits": {
+          "faction": 0,
+          "alignment": 2,
+          "element": 0,
+          "frame": 3,
+          "bodyparts": 65538,
+          "strength": 20662,
+          "agility": 13832,
+          "resilience": 14248,
+          "intelligence": 16149
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xf509408896fcf009f99859615dea9da40b6ca431ba454d154172f209c5e073e1",
+          "art": "0x68820cdb5252508e0347f003378266a0b9ef6c353bdf056289d45aaee20134b8",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x12b2c3589f1d85f4a42d2b1a7dd49e8e10ba28399beb6a93254a1db20d4138b9",
+          "avatar": "0x02df44885424f2c7dc47c1af37b028d9f4f3d3d3b5a6395dc1c0e2f8bdd59b44",
+          "avatarPlain": "0xc8a5317c4db801a8b83c2ac334ca0606daacfdc6d199a321278931f87b71202c",
+          "soul": "0x551f5cb6cb2e454fb94d2accf37521dc8837a02ef34393634bfb4249237c625c",
+          "kit": 0,
+          "name": "Oreus",
+          "epithet": "Tidal Who Waits"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "sourceTokenId": "4294967298",
+      "kindName": "God",
+      "template": {
+        "kind": 4,
+        "traits": {
+          "faction": 1,
+          "alignment": 1,
+          "element": 1,
+          "frame": 1,
+          "bodyparts": 16842752,
+          "strength": 52000,
+          "agility": 52000,
+          "resilience": 52000,
+          "intelligence": 52000
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xebe7d93919e769ab411618c495dda54c582b9a19b3383c7795be593b63a2a370",
+          "art": "0x119f32e6c473e50c1dd915d04606c6a1ab91ad91f4de9c233ccccda0d31ff579",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x309067034960271df2bb847b2f7fd3a02c93ce39da7671bbd291edf39a2768ed",
+          "avatar": "0xb5045313503755e5f07e30f3a2a7b4ab245a3341462dca23ab605106a856f39f",
+          "avatarPlain": "0xd07fab38d3171300d11e73c866551853a43d4927fa718f12912629e68558c4e6",
+          "soul": "0x479950c1e13169a17286260d25defa7b58f546f4a1135347354240a0f0654cc3",
+          "kit": 1,
+          "name": "Tharnyx",
+          "epithet": "The Molten Throne, Ascended and Unmade"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "sourceTokenId": "4294967299",
+      "kindName": "God",
+      "template": {
+        "kind": 4,
+        "traits": {
+          "faction": 0,
+          "alignment": 2,
+          "element": 2,
+          "frame": 2,
+          "bodyparts": 131329,
+          "strength": 45055,
+          "agility": 38300,
+          "resilience": 38813,
+          "intelligence": 37565
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x09a2ddea7f24d5cc424edb86737984fc82e7283fd824d335c53a27299c87a7b9",
+          "art": "0xb984bc3fb5b4a11f50c70255150055056a91370941c7d6b7f1524b2c9ad01757",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x154d92393dcb8229367cc26646a4d3768491afcf2cc661d4b912d0e934f445d2",
+          "avatar": "0x5ad3b31d67e63688e75217a01fe880a34c203c2b221e9cf14c6d687cb6f357b6",
+          "avatarPlain": "0x168eb5514e0dbdf335e4fdaa9a4d4409e9248b66d56ef215feeee19cdda4565b",
+          "soul": "0xe6a916485a588761a9a299350c103a4383349e7c0ad8da29ad9107b1cb1e30d4",
+          "kit": 2,
+          "name": "Korvazh",
+          "epithet": "Halo of the Ninth Refrain"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "sourceTokenId": "4294967300",
+      "kindName": "God",
+      "template": {
+        "kind": 4,
+        "traits": {
+          "faction": 1,
+          "alignment": 255,
+          "element": 3,
+          "frame": 3,
+          "bodyparts": 16777473,
+          "strength": 40017,
+          "agility": 38130,
+          "resilience": 41091,
+          "intelligence": 49696
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x1c3dc3e646cc91040898997b09ae5887cbeddee7b4397cf8febed3793684e429",
+          "art": "0x947491ef9a7841c1d14c4ac4350de8827526b526d85acdcfe8088121a4aaf586",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xe522921455074702f916a1f6b944e28c75a97f6815187d883944915ee0a43175",
+          "avatar": "0x78cf9afebaaa6461250c14077cba4b5d53fe06786c889b4fb4f21d8e069a5d45",
+          "avatarPlain": "0x0aa63c0a76af5c6c7609cac9c871553ea3f0b59b0b19cad02623fba63ebd9bfc",
+          "soul": "0x874bc533f234e8f922acbefe7900bc2d9407d10190854e92d4cb1d4c8fdbe445",
+          "kit": 3,
+          "name": "Nyxarion",
+          "epithet": "The Drowned Choir, Last Voice of the Undertow"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "sourceTokenId": "4294967301",
+      "kindName": "God",
+      "template": {
+        "kind": 4,
+        "traits": {
+          "faction": 0,
+          "alignment": 0,
+          "element": 0,
+          "frame": 0,
+          "bodyparts": 65538,
+          "strength": 41724,
+          "agility": 38678,
+          "resilience": 39204,
+          "intelligence": 44379
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xd1c7cb93fa4172500281f9d3dfa788a4a6497043fab7643aa1fc9039c31c0f34",
+          "art": "0x1b2e5140bab23a27af6a0a52b6b0317cf96b59bec2dab386cd9ca419ca8f7153",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x2ab5d608920ef8f53eac3c56b282958c94475d600f9d29a4de6171053ee0bec9",
+          "avatar": "0xe3bc10239a0b7e27c800ac008ab934322b07b438d5f93abd66d1b39bbcfc67de",
+          "avatarPlain": "0x1e8e96f363b4f9ecd779db44cf49fb1d2d2ba07111f075d6b06f4a5808ffc667",
+          "soul": "0x179017c25b21a966f6d0a6917db5960a5c4b755e2512d174d940761f2f1d856b",
+          "kit": 5,
+          "name": "Halvorne",
+          "epithet": "The Ledger of Roots"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "sourceTokenId": "4294967302",
+      "kindName": "God",
+      "template": {
+        "kind": 4,
+        "traits": {
+          "faction": 1,
+          "alignment": 1,
+          "element": 1,
+          "frame": 1,
+          "bodyparts": 16908290,
+          "strength": 42517,
+          "agility": 48183,
+          "resilience": 47148,
+          "intelligence": 44789
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x5876ba109be7b0c660d08848113141f07f1dd1efb8367400cae306ebed52e76a",
+          "art": "0x6bb176b997fb26d10c74e095f9c887ac5f00ab48b0cedc05fd4b6a36d0fb35c5",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x96102d62d3bbb84f055a40bc9655361c479bcdfe5e3df4ddf9009195c63046b1",
+          "avatar": "0xa994e97e397ec9b9df3fa76b947935206b5a14ea371738cfedf0703ea22b70ae",
+          "avatarPlain": "0xacdfd6af645c07b83df85f563dce1093e8d1728edc68c2f2ab2888ca0f08e2f3",
+          "soul": "0x054089dcb3ffdf947c5d87a0406726cbe82840ce1a3110f137db45cbb9cefb3f",
+          "kit": 1,
+          "name": "Pyravane",
+          "epithet": "the Molten Choir, Unsealed"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "sourceTokenId": "4294967303",
+      "kindName": "God",
+      "template": {
+        "kind": 4,
+        "traits": {
+          "faction": 0,
+          "alignment": 2,
+          "element": 2,
+          "frame": 2,
+          "bodyparts": 259,
+          "strength": 41817,
+          "agility": 48658,
+          "resilience": 38796,
+          "intelligence": 49092
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xee53504a6b7eaf6de13936c69e881302928df132b9a24948752b0a77bd891d0d",
+          "art": "0x373870bffb3b05f4d9744cbfbd66aeb15c5f105dda5427ef09f95efc76411396",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xdf70f1137a4fd6e994e1dc96bb67cdba6fc128fd4cbe41a590aba881fe7d943a",
+          "avatar": "0xd46874abbe6b9e22291e4b2500d67090564722efbab084f6ae9f9737bb06c8f2",
+          "avatarPlain": "0x306f775b8da3a667f99ebeb2ff82c7076651595010584842dd7621481fe9b031",
+          "soul": "0x341cfd831fb45ad4df85ea1dad295e5ec365913ee8045a750160c3572913b262",
+          "kit": 2,
+          "name": "Serrivane",
+          "epithet": "Halo of the Unlatched Sky"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "sourceTokenId": "4294967304",
+      "kindName": "God",
+      "template": {
+        "kind": 4,
+        "traits": {
+          "faction": 1,
+          "alignment": 255,
+          "element": 3,
+          "frame": 3,
+          "bodyparts": 16843011,
+          "strength": 37671,
+          "agility": 36577,
+          "resilience": 47451,
+          "intelligence": 37790
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x5efea5961a1bb8c1b56303b460d1045f045269a9a8c5d9f03f15f6ed21f48aca",
+          "art": "0x86158078aa7ec6d00d24d9464613a8640928804f27dda8c63b3b842c4debcdf6",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x12db5d02f39d03b913a97f8ae73c927e1c61bdcc6ee7de7cc99197d14bb3b77e",
+          "avatar": "0x99fde2f40f02bc4b80f4438b474b91c2a33a226daf0d0bb23e4be21aaf07a663",
+          "avatarPlain": "0xf7ccca119c78f946d26f08528dfa6ae4ce4f4560ffe0e4a53db0b0484adef8de",
+          "soul": "0x67a79edd9e89cf5e2a032b16e824192cfb434698921b3e264d7780e4b2b4cfad",
+          "kit": 3,
+          "name": "Marrowquill",
+          "epithet": "The Drowned Verdict"
+        }
+      }
+    },
+    {
+      "id": 9,
+      "sourceTokenId": "4294967305",
+      "kindName": "God",
+      "template": {
+        "kind": 4,
+        "traits": {
+          "faction": 0,
+          "alignment": 0,
+          "element": 0,
+          "frame": 0,
+          "bodyparts": 131072,
+          "strength": 43977,
+          "agility": 38774,
+          "resilience": 45842,
+          "intelligence": 50023
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xef04afe291c12e15e291087b90512462e4fbe60b571e7691006c3f6a1b6cc3da",
+          "art": "0xf98ad450b28a5cff6eb79d72416806d261118ca477991ec4b9bde17ec6465a5e",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x09dedec557ae8bf754bb66ed32f1498e4b4c15c88cb3eb03d3ebf17ea49bcfa1",
+          "avatar": "0x6c4508020d7711d774827c2b3dd396ec51e733ebdc531dbab70e0c8a0904f3e8",
+          "avatarPlain": "0x17c60cafa19c5fededc951b57652dec0907cfd44c55ca089629c5ca6f576b1a2",
+          "soul": "0x0303193df69a2fd6edebebeb7ae1e288c60ebe3e06e6fb2f48883310ef75ad9d",
+          "kit": 4,
+          "name": "Golvexis",
+          "epithet": "The Unbroken Ledger of Stone"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "sourceTokenId": "4294967306",
+      "kindName": "God",
+      "template": {
+        "kind": 4,
+        "traits": {
+          "faction": 1,
+          "alignment": 1,
+          "element": 1,
+          "frame": 1,
+          "bodyparts": 16777217,
+          "strength": 49695,
+          "agility": 41096,
+          "resilience": 49575,
+          "intelligence": 40129
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x17bbd4df0419c2487b622f846a9eb95920734f4f4f67d926233b29f5f42ee1f9",
+          "art": "0x8a24cc18dd7d2c71ddcea74ba50737777106213168d86d63b8e7f295cd04ba12",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xb5a95ad8e7b5edc5a2d3cd68b13ad7d6fcc92bee6916bf631e5360ced62c7763",
+          "avatar": "0xb77ac4c40591f04e8ecd4022c744cfab61684ed93e8d47a80f3ffff48dddb3bc",
+          "avatarPlain": "0x8d58e9e0a83d71445a869680b5c322b5fae760b77ef8a3b29f5475eaad91b24b",
+          "soul": "0xccabab3c216dfaa067490575e796393cbac1c1043524cba15d5f87274a4b034d",
+          "kit": 5,
+          "name": "Ruvaxel",
+          "epithet": "The Forge That Weeps Molten"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "sourceTokenId": "4294967307",
+      "kindName": "Demigod",
+      "template": {
+        "kind": 2,
+        "traits": {
+          "faction": 0,
+          "alignment": 2,
+          "element": 2,
+          "frame": 2,
+          "bodyparts": 0,
+          "strength": 29560,
+          "agility": 27735,
+          "resilience": 28719,
+          "intelligence": 24242
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xb3a90c9be229ce4641651f33ea4fdd8721055ba82d8ceeed1ab7ef9f6f1972b4",
+          "art": "0xaa7e8da295949ddb9d4ac46005777bb3fea97c02e33189f9fc96a0cd54e7fb77",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xd80c8dcf58f5f5b0d95088abe60897ae66a1bf3482cb8948e65497b0c6f028cc",
+          "avatar": "0x8ab053abd6338ac4ecfd0227b83926dda24da59960fa03ae603ad3b3bf61f7f3",
+          "avatarPlain": "0x0921b7718ac100d9ac4dacdf959bacddd4e2380825b43d3ddde47042fa74cb7d",
+          "soul": "0x90f74c86d6fcaf7baa92ad5e6b871d498c27d5f92a3fb98b5839d787aed96c98",
+          "kit": 1,
+          "name": "Cindralux",
+          "epithet": "Feral of the Unlit Halo"
+        }
+      }
+    },
+    {
+      "id": 12,
+      "sourceTokenId": "4294967308",
+      "kindName": "Demigod",
+      "template": {
+        "kind": 2,
+        "traits": {
+          "faction": 1,
+          "alignment": 255,
+          "element": 3,
+          "frame": 3,
+          "bodyparts": 16842752,
+          "strength": 23501,
+          "agility": 27295,
+          "resilience": 25992,
+          "intelligence": 28961
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x09a4275813dc3d3e3bcef30e0b8f943971be04e0b5d2b881db4e96d5e70fcc18",
+          "art": "0x482eb2f0f990fa19cce9ae0ae551e899944021850112e4ce3fbab3c9262e6e54",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x66cd1304ddb6a4be2f6cc9530efc1e4894c768356531f0f9734ce1e5d8a9bd84",
+          "avatar": "0x23ec0d89214a67f7a73e16016baccb7bfa78277c7a75ba40ac3f6a4fe44ae585",
+          "avatarPlain": "0x6d49ee887cb973a984780d65e873ebd8fd40ecb80d31d8efc1cd3ce29c7a8a76",
+          "soul": "0xb7a55f1fb46580e836212078bfb38fbcde9b41e9a167d8aa34de3d268186ae11",
+          "kit": 2,
+          "name": "Dessalyne",
+          "epithet": "Tide-Bent, The Unsundered"
+        }
+      }
+    },
+    {
+      "id": 13,
+      "sourceTokenId": "4294967309",
+      "kindName": "Demigod",
+      "template": {
+        "kind": 2,
+        "traits": {
+          "faction": 0,
+          "alignment": 0,
+          "element": 0,
+          "frame": 0,
+          "bodyparts": 131329,
+          "strength": 24229,
+          "agility": 30619,
+          "resilience": 31936,
+          "intelligence": 23393
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xa2c71696eefbc932d8141c022b6f73c6aad0908836775fafb16f298e060e6bca",
+          "art": "0xdef77ff2ce380d5a1f70cf4c51f43b1a2ebb739435b048320cdc8de9a7daaf07",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x3bf5430e4e3b6069ecfd2a54abcd40d33d0309b4d7e329aa2680f90d0864c0af",
+          "avatar": "0x2b8d3ea15096cd47d7407b9fcd5d974b9a439dfad516b9027b7ec9da015bf5a1",
+          "avatarPlain": "0x973b399d158b3ca914a4a03be17f93c08dd9ddaa83557037e08ea3bb39e09088",
+          "soul": "0x0a703ab17668c75b79e4f63f1b2675eace058ee94a2f2078824c6afb4100c9ed",
+          "kit": 3,
+          "name": "Thessaly Vorn",
+          "epithet": "Rootwarden of the Ninth Furrow"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "sourceTokenId": "4294967310",
+      "kindName": "Demigod",
+      "template": {
+        "kind": 2,
+        "traits": {
+          "faction": 1,
+          "alignment": 1,
+          "element": 1,
+          "frame": 1,
+          "bodyparts": 16777473,
+          "strength": 31754,
+          "agility": 30770,
+          "resilience": 30302,
+          "intelligence": 26069
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x8cf36f215243aac708bf52d14a44f5e085a54c1048b647ab90887e2878ce1dca",
+          "art": "0xce9b84f41c356a6509739cd27c9a4f53858393c5e4cfa8872b8acec786c67b8e",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xc9f5affc2c09a74b6020c85e9ba77e11760de93ec5067cde80694a8c9d622419",
+          "avatar": "0xdc45aefe0d9b9121c4f3cc458ed6e930b8745d33e1b1251b5d46f7f9be500f64",
+          "avatarPlain": "0x9e831563a3be306bcfe044bda0006c80c13f1e0462e680f6de6dee9afa92f8a8",
+          "soul": "0xab707c6e7925b9d2dc4d2c7d0e89af8bd1d95fe765004d18c7211a1db308c7e5",
+          "kit": 4,
+          "name": "Skoria Vex",
+          "epithet": "The Molten Oath, Broken"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "sourceTokenId": "4294967311",
+      "kindName": "Demigod",
+      "template": {
+        "kind": 2,
+        "traits": {
+          "faction": 0,
+          "alignment": 2,
+          "element": 2,
+          "frame": 2,
+          "bodyparts": 65538,
+          "strength": 26750,
+          "agility": 28890,
+          "resilience": 28017,
+          "intelligence": 23977
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xbb7680e0d4e7e16c4fa64161620f718e1951e97a58eef65db0d6495929330a04",
+          "art": "0x05b54a236f6699ac60bced54c64edae879baa49c79e382eb71f04f5f3d45a6af",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x68d5fddb58c15144f7b4ae39bb2c3a4e2dc679c1e62b54d4d08e736d50045bb0",
+          "avatar": "0x682fa7a22d22fa7a7e6cdd503fc29e0f182d365f8b8ba5facb770d3846eea194",
+          "avatarPlain": "0x19c7611d9fdc4d2ea54c9009f69cf53a4a755fcc551cd3fd0a777b3e71daed42",
+          "soul": "0x4b49c750c5d12fe68437ad8b2ae0321d81a2f99b01a3c8a42bfd96c04ef3248e",
+          "kit": 5,
+          "name": "Kessandrix",
+          "epithet": "The Unlatched, Forge-Born of the Rising Path"
+        }
+      }
+    },
+    {
+      "id": 16,
+      "sourceTokenId": "4294967312",
+      "kindName": "Demigod",
+      "template": {
+        "kind": 2,
+        "traits": {
+          "faction": 1,
+          "alignment": 255,
+          "element": 3,
+          "frame": 3,
+          "bodyparts": 16908290,
+          "strength": 24608,
+          "agility": 27525,
+          "resilience": 23969,
+          "intelligence": 24753
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x8fea4396c968bafb3b9e20a2031570a2df944517db0af060264dfdfe7e6af312",
+          "art": "0x72de137f16ec176ccda42f847a6935f7cc303a7aa477c723adb6b3c353fe0fa5",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x01eb4096ccf2431972366f97291387734d53555cb01d6a13dabfbe2013a655ba",
+          "avatar": "0x4fbacbb6b73af91c45ab297b29ac969f5491688e8862323c6ec4b0d4038ef5e7",
+          "avatarPlain": "0x265c4795b9ff063cef80a2d7fdd8ae2c426c5fed6094b87df320523af3c853f0",
+          "soul": "0xcbdbf15a2da1444b7a63c1c9c8614a6cca706b8b76b7ad6c69463139ce4dd9de",
+          "kit": 1,
+          "name": "Umbryssel",
+          "epithet": "The Undertow That Remembers"
+        }
+      }
+    },
+    {
+      "id": 17,
+      "sourceTokenId": "4294967313",
+      "kindName": "Demigod",
+      "template": {
+        "kind": 2,
+        "traits": {
+          "faction": 0,
+          "alignment": 0,
+          "element": 0,
+          "frame": 0,
+          "bodyparts": 259,
+          "strength": 26317,
+          "agility": 28565,
+          "resilience": 31235,
+          "intelligence": 26058
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x157438a3252aa20c5479835622e9ca2cd665decefef7e403fbf90a974c60a600",
+          "art": "0xf59d630b7e923d957dcb76d44c453c545d0b38b188fd9115e3c00bcc8531e01d",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xefeb20275d112ea56b508035e902b97b9c325030ac2a8b4302f318446644ec36",
+          "avatar": "0x0e58c3b62aada240dd45c7be5160e11f6c826ba45eb52bf7e9cd2d203f149335",
+          "avatarPlain": "0xc7bf8be9b7490140fb89b1f0874fe452d90dd6e9a884f98abc12adea76beb142",
+          "soul": "0x64db71b96d223f6646b8f07e63e118876dc63529db5740cccdc6cfa1231e0ad4",
+          "kit": 2,
+          "name": "Dravenkil",
+          "epithet": "The Fault-Line That Walks"
+        }
+      }
+    },
+    {
+      "id": 18,
+      "sourceTokenId": "4294967314",
+      "kindName": "Demigod",
+      "template": {
+        "kind": 2,
+        "traits": {
+          "faction": 1,
+          "alignment": 1,
+          "element": 1,
+          "frame": 1,
+          "bodyparts": 16843011,
+          "strength": 25325,
+          "agility": 29432,
+          "resilience": 25700,
+          "intelligence": 28136
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x4ca59c3a72b82639fb92c3b53a29d5e7a9de611e45539cf646ff651ed94c1dbf",
+          "art": "0x9a58dc6562bbf281a594fc8cfa647f281069530458b1b3c339d5015aa39ee365",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x7e04288c3fb7191aa23b17c8099e71213a6a439d0445f10f399fa1d40c44f055",
+          "avatar": "0xc9e57146256d4d97c57932e3b68a290222d51450e7ce657467d09ba48e6d0355",
+          "avatarPlain": "0x24d3f426c28290c548886519e58f404417a15bddcbdea4fb020a577e6ce0b842",
+          "soul": "0x0c5296eafbf72b5fc01eb524b6597c860b4b7451da10eef67b540bc8bf6b5a25",
+          "kit": 3,
+          "name": "Morvaxis",
+          "epithet": "The Cracked Ascendant, ARC 1"
+        }
+      }
+    },
+    {
+      "id": 19,
+      "sourceTokenId": "4294967315",
+      "kindName": "Demigod",
+      "template": {
+        "kind": 2,
+        "traits": {
+          "faction": 0,
+          "alignment": 2,
+          "element": 2,
+          "frame": 2,
+          "bodyparts": 131073,
+          "strength": 24570,
+          "agility": 27104,
+          "resilience": 23888,
+          "intelligence": 23020
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x0ae6744a9a93043820ded1db46129e5967076499c62575b3b600b512f0d9908f",
+          "art": "0x975c9acc9cd523d227ba1ceb5d1c2c0de3be1e822fe73533ae09def57dd49d61",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xefa699c47874bbf4a327fbf2a5051001dc0c74faf4fce15e4d3fbcf536c9e521",
+          "avatar": "0x7daa7ea1c08975978c787cfc9ddc357b3b714d2e407b888e55208b72984abc6c",
+          "avatarPlain": "0x3e175a41b20606bbf68db53973f67207085b99354fdd091cac6eb9d2842057fe",
+          "soul": "0xfc50a20637da890e9bc0ea288a08ff485cb8c75f00e119c86500af4d112c7f0e",
+          "kit": 4,
+          "name": "Aurexe",
+          "epithet": "The Split Spine of Raised Volts"
+        }
+      }
+    },
+    {
+      "id": 20,
+      "sourceTokenId": "4294967316",
+      "kindName": "Demigod",
+      "template": {
+        "kind": 2,
+        "traits": {
+          "faction": 1,
+          "alignment": 255,
+          "element": 3,
+          "frame": 3,
+          "bodyparts": 16777217,
+          "strength": 30921,
+          "agility": 31489,
+          "resilience": 24760,
+          "intelligence": 25259
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x4b1fa9a9a9965c43690ad5abb9f978cc8a8ff55520c69978213430edc2867d69",
+          "art": "0xe7b44a259cec5adfc0bd5c97d8f138104b77aab0c4cd762b38225eccae73eb3d",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x7807538641fce42ec9df03e6ae6b2b2a9623630882c0ff8028f706e7a4b245d3",
+          "avatar": "0xeaa940f5f0cb92d841b78c286ec7f25ba1473c3247ecae16c633aae1b902479d",
+          "avatarPlain": "0xde9b7c291e0ac3b6dd718534ebbdff5f046fe8a9e7eb207d64c01b2b7db3e31a",
+          "soul": "0x195010e3e16a5ee4165e40ca53fc3b9f90ae32546b6b8764d26142fe873c1722",
+          "kit": 5,
+          "name": "Neruvia Shalqor",
+          "epithet": "Tide-Hewn, Sealed of the Horde"
+        }
+      }
+    },
+    {
+      "id": 21,
+      "sourceTokenId": "4294967317",
+      "kindName": "Titan",
+      "template": {
+        "kind": 3,
+        "traits": {
+          "faction": 1,
+          "alignment": 255,
+          "element": 0,
+          "frame": 3,
+          "bodyparts": 0,
+          "strength": 39752,
+          "agility": 31651,
+          "resilience": 36254,
+          "intelligence": 34262
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xe58dd13f812ea43d5535c26b5a5e496457e42b4f327e6c7db9544233c1c129ce",
+          "art": "0xf5cbdb1f76cbc2920a81ed1ca981811335ec950988718e0af2ad18cc08f6df2a",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x48fc39927d190c4abe12cd0987bbf7b8135f22fba22a96d1e3f4eb2049d50af4",
+          "avatar": "0x1369197e450e28615dacfd2942a73581a124e30a1857a1d774cd12ce5957d6cb",
+          "avatarPlain": "0x6e274d6751e5a33b70c41eecdc8f132ced9846bb6290aea31ab61d0225056051",
+          "soul": "0xee3e2892e6d13ab41d86f75f5fa08f22dec92deb65aab4d5f44368ddc510f7ef",
+          "kit": 0,
+          "name": "Terramond",
+          "epithet": "The Fallen Keystone"
+        }
+      }
+    },
+    {
+      "id": 22,
+      "sourceTokenId": "4294967318",
+      "kindName": "Titan",
+      "template": {
+        "kind": 3,
+        "traits": {
+          "faction": 0,
+          "alignment": 0,
+          "element": 0,
+          "frame": 0,
+          "bodyparts": 0,
+          "strength": 35699,
+          "agility": 32643,
+          "resilience": 31148,
+          "intelligence": 39396
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xb497daec64a812a8ad58016070018b7f0631a3e1d12488ac111235bde011923a",
+          "art": "0x65d70be04dc94b549c8d8e52f28d2be7e85ce518578b84d8a57505e44a6c4a9f",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x697595d6fda5cd8049274ce7393010d331140c649af13355a987db1df5bb13e8",
+          "avatar": "0xfec11b38c1ceaec19394601f8515498de03aeef7965581dda808602f3fef8e5f",
+          "avatarPlain": "0x4b473abe16e22923bcfa159e7c1ffac13cb6dfb5c297480728fcb728f83803cf",
+          "soul": "0x92b3c8bff2ece8b0ebdacf7a9cb8e45ad8d2e53a484a87ec40cb805ff7742358",
+          "kit": 0,
+          "name": "Ghalbrith",
+          "epithet": "The Unsealed Root"
+        }
+      }
+    },
+    {
+      "id": 23,
+      "sourceTokenId": "4294967319",
+      "kindName": "Titan",
+      "template": {
+        "kind": 3,
+        "traits": {
+          "faction": 1,
+          "alignment": 1,
+          "element": 0,
+          "frame": 1,
+          "bodyparts": 0,
+          "strength": 32576,
+          "agility": 39418,
+          "resilience": 28046,
+          "intelligence": 32168
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xf6251221f3bbf4f7bffa09799cd71bf2042082c93e7cf4eec96c6666734ad42a",
+          "art": "0x26401bb84909cc19f8e864add4ac4907c508634a9860e6d9d2c29c9eb6bf9348",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x3ea5ea8507287c3609f1817cc17ebd2e100a7c3af5d407ab6bdc41b8fe120100",
+          "avatar": "0xfcb245893accf845f8c246c1f9024db9af2a1a8c26816e7fa76ed61499d1770b",
+          "avatarPlain": "0x48b42747ab94b7d2abceb9fd6318f5d281cc98d1e1bbfe27b27f5e896f24e2e6",
+          "soul": "0x1e747b769974abc78c7f2091d43e03879aaaf4a21f08edcf1654eaf5012b5c54",
+          "kit": 0,
+          "name": "Threxalune",
+          "epithet": "The Unfurrowed, Root-Beneath-Ruin"
+        }
+      }
+    },
+    {
+      "id": 24,
+      "sourceTokenId": "4294967320",
+      "kindName": "Titan",
+      "template": {
+        "kind": 3,
+        "traits": {
+          "faction": 0,
+          "alignment": 2,
+          "element": 1,
+          "frame": 2,
+          "bodyparts": 0,
+          "strength": 39240,
+          "agility": 35137,
+          "resilience": 35176,
+          "intelligence": 39177
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xace9f0cbeaf21cd02572025910d00d6a7f3523a1b260b52d8c60211988f2f8d2",
+          "art": "0xca4edc7d64e8672bdae48422d7e8fd62cf3f525510f9fcbc0197268d0c0cf10a",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x0d97049f2a8754baa658a1d3ff460faa1d10730a8f722d9adf28cd046516578e",
+          "avatar": "0x2e7fa32dcbb0d997efd45603f095f6d912f8c9c77df61fdf28561de0d7dd66cb",
+          "avatarPlain": "0xabec6c76cf234c83eb8e4743f4cf88069ed5dd1f54b856deba08bbf69bb16cd0",
+          "soul": "0x382f3a26665f161ca4065428d9728e359b3832f3b60f5b2f1a3f7dd833573ede",
+          "kit": 0,
+          "name": "Vorrukhal",
+          "epithet": "The Molten Halo, Cracked"
+        }
+      }
+    },
+    {
+      "id": 25,
+      "sourceTokenId": "4294967321",
+      "kindName": "Titan",
+      "template": {
+        "kind": 3,
+        "traits": {
+          "faction": 1,
+          "alignment": 255,
+          "element": 1,
+          "frame": 3,
+          "bodyparts": 0,
+          "strength": 34772,
+          "agility": 39573,
+          "resilience": 36081,
+          "intelligence": 29665
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x21d13394f1c1d7c2370d36be85ea5748a3f2bf1f26663f095ecca865b532a40d",
+          "art": "0x2fdfc1deeebfd18856fbec989870f296555ab94075cb7c5ec9e784b31e6e71f5",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x9c4bb478632c77ad3062f33ccd514c4f2a89fe480bdef0eebd737b09a60a3687",
+          "avatar": "0x5c783ba7611c844acbe32d364a675c02d69a589799ee545b04340ce1078faaea",
+          "avatarPlain": "0x837452410a3a57ce1c39b0ccaaf74db68585a65aaffd263057ac9863e8ea25fc",
+          "soul": "0x9b7b9afd47904a827cd09f05875d29024c6a0ab912b91dce96dbbc00b64aebe4",
+          "kit": 0,
+          "name": "Magnarok",
+          "epithet": "The Molten Seal That Remembers Gold"
+        }
+      }
+    },
+    {
+      "id": 26,
+      "sourceTokenId": "4294967322",
+      "kindName": "Titan",
+      "template": {
+        "kind": 3,
+        "traits": {
+          "faction": 0,
+          "alignment": 0,
+          "element": 1,
+          "frame": 0,
+          "bodyparts": 0,
+          "strength": 38848,
+          "agility": 32823,
+          "resilience": 38429,
+          "intelligence": 33858
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x71fb15a06b286f0d46be5e44b77cef060b250bce795da6f1e6d43ed3d8e9f0ce",
+          "art": "0xc7e098d24b647648ce27a601a36c401c244ab82054b930cb846dae79e73817a1",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xf3583f3746aacdb8e0a8aed5793abc01e60d6bf2a8b163d0a2df9f8c8e4b0a9a",
+          "avatar": "0x0091b55a196ef04bf046142417f2aec1749f1d752abfecc5f9449208ac3e1e95",
+          "avatarPlain": "0x5124c6b0dcb1e4d694202568384ae37da41facbdc0deff4ec1da52e9ac8d164b",
+          "soul": "0xb5b45ea49b9215862f9f6932c197f20a0b041055b74b98cf46d86c2dfcc0d92f",
+          "kit": 0,
+          "name": "Lavaskarn",
+          "epithet": "The Molten Penitent"
+        }
+      }
+    },
+    {
+      "id": 27,
+      "sourceTokenId": "4294967323",
+      "kindName": "Titan",
+      "template": {
+        "kind": 3,
+        "traits": {
+          "faction": 1,
+          "alignment": 1,
+          "element": 2,
+          "frame": 1,
+          "bodyparts": 0,
+          "strength": 36874,
+          "agility": 34732,
+          "resilience": 30590,
+          "intelligence": 33741
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x1c02eb1e0effdaf9faf042417f15f36dd67ebc53910fc965679b55a31481b2b6",
+          "art": "0x302e1173d66042e7f0e947c5b8d52c728c64e607a5931239b224cb3e8b69c43f",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xba4db996f4fef0959d1d426232f8040cd229a4bbf0ae5ab20156dcdc2495a351",
+          "avatar": "0x0048ac58db16322b85e3990bac3f681f17fb151df918862bbeebf877ee79cb4b",
+          "avatarPlain": "0x40fd520f304466b824937359609e7fa5325a668611960dd851f9d2c78c2502ed",
+          "soul": "0xe944d8c93ca8da95ce07c6c21152ac540f84be7058aa297c52f10936758c3ea2",
+          "kit": 0,
+          "name": "Draxolune",
+          "epithet": "The Ninth Chain, Fell Warden of the Rusted Vault"
+        }
+      }
+    },
+    {
+      "id": 28,
+      "sourceTokenId": "4294967324",
+      "kindName": "Titan",
+      "template": {
+        "kind": 3,
+        "traits": {
+          "faction": 0,
+          "alignment": 2,
+          "element": 2,
+          "frame": 2,
+          "bodyparts": 0,
+          "strength": 38275,
+          "agility": 29760,
+          "resilience": 33411,
+          "intelligence": 35990
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x55e4b041fcf01f40f178e0f9f6d1fa9bdbb0e6df4e561dac1a85f17ccbd52433",
+          "art": "0xf6079df2f950001f8791150fbf2007c1afb55b15d7aa19cd02cc31ab012179e9",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xade8354f483ba11713a9cb9a845b5ad2dbe52ecda7be82c56657225dcf142e60",
+          "avatar": "0xd6b4f408cf2c242db764a608c36912eb5c6c8dae2bc67e6139148600170e0cbf",
+          "avatarPlain": "0x74d3cee41fe61e4932edd3a7dae36d65440848f93e9e4227edcde2e67563532e",
+          "soul": "0x578c934cff48281c75f5f0419d946f23660aab3393256aebcdbd9970e606b97d",
+          "kit": 0,
+          "name": "Crucibrand",
+          "epithet": "The Kettle That Would Not Cool"
+        }
+      }
+    },
+    {
+      "id": 29,
+      "sourceTokenId": "4294967325",
+      "kindName": "Titan",
+      "template": {
+        "kind": 3,
+        "traits": {
+          "faction": 1,
+          "alignment": 255,
+          "element": 3,
+          "frame": 3,
+          "bodyparts": 0,
+          "strength": 38025,
+          "agility": 31633,
+          "resilience": 28420,
+          "intelligence": 37573
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x0bae9621f8560be8b49ae5a168e3902e10c7d8ea1db7eaf54772fa18ff23e419",
+          "art": "0x1f38b2f9df51e7ab20a9a2d239b46181ecf208fb1a6a2e5a7d47d085069ff3fd",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xe5aaee34d616e3cb7a6091ed563601e87454fc165523f2ea6a4cdad54c6ced3a",
+          "avatar": "0x5702f0c60f0966ad40d4b2d2d33b425babe13d119ab1ed9db32bc6a0c2bad1d5",
+          "avatarPlain": "0x4002481b73f36f2ff116b312977b9f548ee16d23fb3021b332d48c371be6f2ae",
+          "soul": "0xe26386b2188651dc6af7c01612ea2ecfd674df4a2925557a5db9678e5bcf8854",
+          "kit": 0,
+          "name": "Umbraloch",
+          "epithet": "The Tide That Was Sealed"
+        }
+      }
+    },
+    {
+      "id": 30,
+      "sourceTokenId": "4294967326",
+      "kindName": "Titan",
+      "template": {
+        "kind": 3,
+        "traits": {
+          "faction": 0,
+          "alignment": 0,
+          "element": 3,
+          "frame": 0,
+          "bodyparts": 0,
+          "strength": 33487,
+          "agility": 36682,
+          "resilience": 39278,
+          "intelligence": 32152
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xc0870a74524e4026782d68072bfb94c0b50c8709e791f3198c31f8b828e6f814",
+          "art": "0x78134c2d9883c1309d20080530474f10d14c576ec5050e543f5576ba0a7a318c",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x55da25dfb16e240bd04b8c793d14c0965a4f842f9ea591db1f09243d25b03d66",
+          "avatar": "0xc08b6c5b33ff80c356e033affcad9720ff0541d50bd390aa4b949d52f4f1133a",
+          "avatarPlain": "0xe539518e4eea2a24c26d932d28f7a9ec283f261b5a42b572d85edb5cacf55bdd",
+          "soul": "0xe48b5212644df1ba0cfece926cdc3d1d7491851266b77161394eb94a6b0ea041",
+          "kit": 0,
+          "name": "Ossuarcane",
+          "epithet": "The Drowned Crown of the Ninth Deep"
+        }
+      }
+    },
+    {
+      "id": 31,
+      "sourceTokenId": "4294967327",
+      "kindName": "King",
+      "template": {
+        "kind": 1,
+        "traits": {
+          "faction": 1,
+          "alignment": 1,
+          "element": 1,
+          "frame": 0,
+          "bodyparts": 0,
+          "strength": 25460,
+          "agility": 23206,
+          "resilience": 25042,
+          "intelligence": 22438
+        },
+        "styleSource": {
+          "chainId": "1",
+          "collection": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+          "tokenId": "8817"
+        },
+        "design": {
+          "designHash": "0x98b1734c87cfd10dfaa227fd77e910e5ce8d0d0dc973c18d9d41c62654c912d0",
+          "art": "0xe172e71ecc3e6ad33f3888542b4ed7d2489eeb2f852835516688f2a14a8554d3",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x13774ae7ee8731e64f2c4dafe23a8d19864d40d38d2b9c88b10448271269edab",
+          "avatar": "0xaa3e9322f975c5c371481b3449afa4bbb496ac7e736d691c0300a18c43b1bc6d",
+          "avatarPlain": "0x8e64ab435c52b2d77059ef47802c242700680688950e9ce195614f418ae2b379",
+          "soul": "0x9927535a4294dadcc945a602cf67d92e04ef82d7bde48baa86d6834b19c05e52",
+          "kit": 0,
+          "name": "Skarnhold Vex",
+          "epithet": "The Slag-Crowned King of the Rising Ash"
+        }
+      }
+    },
+    {
+      "id": 32,
+      "sourceTokenId": "4294967328",
+      "kindName": "King",
+      "template": {
+        "kind": 1,
+        "traits": {
+          "faction": 0,
+          "alignment": 2,
+          "element": 2,
+          "frame": 1,
+          "bodyparts": 16842752,
+          "strength": 16907,
+          "agility": 22752,
+          "resilience": 21316,
+          "intelligence": 17002
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xf54d57e751cbb527d4ae8804f17cd28e1379101e56fc5a7f97876c355812fea6",
+          "art": "0x9edd5f041721dbe1d3a5909eb30def25113ad3dbfc94963c89e976353ec257e9",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x5f4640c06bfc408e026bd1220ce1dea78837ecc194475749318a61cf785e4a32",
+          "avatar": "0x5be737930d9366a4ebcd6c261a4e55c92054fb78268819a6d550b584c0803898",
+          "avatarPlain": "0xb635a10d43beaa4881a0292b784cd8ced477a607a9cc89632e7e2881c2f89e0f",
+          "soul": "0x1c9d4069cd3957863033e575d52c9607bf5a00120228e34c79decb7bcc43cead",
+          "kit": 0,
+          "name": "Vantrikol",
+          "epithet": "The Furnace-Crowned, Twice-Broken"
+        }
+      }
+    },
+    {
+      "id": 33,
+      "sourceTokenId": "4294967329",
+      "kindName": "King",
+      "template": {
+        "kind": 1,
+        "traits": {
+          "faction": 1,
+          "alignment": 255,
+          "element": 3,
+          "frame": 2,
+          "bodyparts": 131329,
+          "strength": 21241,
+          "agility": 23801,
+          "resilience": 20645,
+          "intelligence": 17281
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xc2dec51330cc2598e1ec2f4131dbe6dac18e13eef233ec76dd845de9705e2883",
+          "art": "0x9739511c8c067bac5f38d3f492033af21b693f7d66c0392966f778e430e4a840",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xf8d8421f1f148a3e955ba1ab9ebd08bf4857b1801ceb204e4f4f7871954facc5",
+          "avatar": "0x3d818abcf8ea84ba8f76e7035aea2ceaca50ada291d1c8e1012cd23851b949c9",
+          "avatarPlain": "0x31c1c795a04d61502986e5882be6d46654007d941a415c90c91a7825baa7b283",
+          "soul": "0x67b736087a81104042bcb6880e6b978fe23fcf7f76ff2f7a2f8e1e1005c223e5",
+          "kit": 0,
+          "name": "Zerunal",
+          "epithet": "Tidewright of the Broken Halo"
+        }
+      }
+    },
+    {
+      "id": 34,
+      "sourceTokenId": "4294967330",
+      "kindName": "King",
+      "template": {
+        "kind": 1,
+        "traits": {
+          "faction": 0,
+          "alignment": 0,
+          "element": 0,
+          "frame": 3,
+          "bodyparts": 16777473,
+          "strength": 25935,
+          "agility": 20635,
+          "resilience": 21429,
+          "intelligence": 19169
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x4da5925a7551108cd8418ed5716d6bcda933be1ce22229f97b7b0ded8e71073a",
+          "art": "0xb97332430b37a5a2ebe1c34e7ea7a267f2ae76f00513af69294553fd0adb5d9b",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x280bcbba9f3c758690a55fcd7033ce5e3533f62c47923ee5d96dedb33879a0bb",
+          "avatar": "0x98d2189fd1eb0cb4b2d906c57132c5a158609309de68f327e5cbfbb9e128d6f5",
+          "avatarPlain": "0xc971f58e2305fad248061e379bb69287986d095679f9c9feb45f3f90e0977e88",
+          "soul": "0xee9fbfabadae3dfa0c866bb78a18ceaea0b3839bf1eccf6bcdcc13712ea0f954",
+          "kit": 0,
+          "name": "Gravemarrow",
+          "epithet": "the Ledger of Stones"
+        }
+      }
+    },
+    {
+      "id": 35,
+      "sourceTokenId": "4294967331",
+      "kindName": "King",
+      "template": {
+        "kind": 1,
+        "traits": {
+          "faction": 1,
+          "alignment": 1,
+          "element": 1,
+          "frame": 0,
+          "bodyparts": 65538,
+          "strength": 23748,
+          "agility": 21163,
+          "resilience": 19234,
+          "intelligence": 24414
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xa8eb2c1c191e2f01e67d10850c15e48c2f35deb4c77042ea4ddc49d834cc3a42",
+          "art": "0xd0988c885cd31ad6e5e432b62b342997276b50a46aa23ff8aa065032b2328f95",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xc3f137fbda0008a695f7cbfff59c793f3e416e8cc4753a8f8b671788897d67d8",
+          "avatar": "0x641e679f198bec58db77e941c18457a6c88492d7bf4b46f76920352e11a8c509",
+          "avatarPlain": "0x895791c40d115d059a091312fef438d0be118615e64094b03b2beb07dc750065",
+          "soul": "0x21c357357a439a46b6bce51842b37ee710f3fb462c4cafb0a72f2195ec92dae0",
+          "kit": 0,
+          "name": "Vaulkrenn",
+          "epithet": "The Molten Claimant"
+        }
+      }
+    },
+    {
+      "id": 36,
+      "sourceTokenId": "4294967332",
+      "kindName": "King",
+      "template": {
+        "kind": 1,
+        "traits": {
+          "faction": 0,
+          "alignment": 2,
+          "element": 2,
+          "frame": 1,
+          "bodyparts": 16908290,
+          "strength": 18277,
+          "agility": 20368,
+          "resilience": 25649,
+          "intelligence": 21610
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x2cec7a166921a36c374d6a2992497fb8135551b7bcc6ceffde3e356b5d6199cb",
+          "art": "0x998e7a0e69f046bc28df7c44394d5097ad03cd30778a7af3f24e91a38e250336",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x55bf94bb08932f2dfbde5436f2a041bba0741e59d44f3509a72c8f8af9c69058",
+          "avatar": "0xe3530d6e92c182b743db25671ce8980d0d742e668ee0754fe4f2c8645814aff6",
+          "avatarPlain": "0x8ef09b564193fd7a96871cf6c2f282c79901760b014e5c9a0a846fc06a8fa70d",
+          "soul": "0x06cdbb641120b1f4b2a2531d16f911b134e218633eb3ee443d18a3e4518d1cd1",
+          "kit": 0,
+          "name": "Vantricol",
+          "epithet": "The Rust-Sworn, First King of the Rising"
+        }
+      }
+    },
+    {
+      "id": 37,
+      "sourceTokenId": "4294967333",
+      "kindName": "King",
+      "template": {
+        "kind": 1,
+        "traits": {
+          "faction": 1,
+          "alignment": 255,
+          "element": 3,
+          "frame": 2,
+          "bodyparts": 259,
+          "strength": 25583,
+          "agility": 18784,
+          "resilience": 18077,
+          "intelligence": 18989
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x5707c120b30af1635b43163cac3565bf32e86e17ba0834d433fa4956548271d8",
+          "art": "0xd584bf5f158c12e3207786551c7be5e4b2810596e04c4306c1360cdbc8f35560",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x54d588756778b84a576989809b97ea306b220960fd34ab8d35b7c0abe6aeaea4",
+          "avatar": "0xec22a7398b25b112ee646a0c124c105c8f5b3c0e5e5230ed0827517bec201255",
+          "avatarPlain": "0x44b667c8addaed004f5f0040582523057a76c094256a8bc3b72d427d8f193ff7",
+          "soul": "0x6bbb0eb60d60c90bd187b00ff3a6136f0be096c06b946c1baa8c3c7b6a7b5f18",
+          "kit": 0,
+          "name": "Quelmora",
+          "epithet": "Tide-Warden of the Horde"
+        }
+      }
+    },
+    {
+      "id": 38,
+      "sourceTokenId": "4294967334",
+      "kindName": "King",
+      "template": {
+        "kind": 1,
+        "traits": {
+          "faction": 0,
+          "alignment": 0,
+          "element": 0,
+          "frame": 3,
+          "bodyparts": 16843011,
+          "strength": 17657,
+          "agility": 19135,
+          "resilience": 25776,
+          "intelligence": 17800
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x0f4168d92f7e96ae9dfcc1c3df89bc9298a8e1c7f2268203c44fb199ac03703b",
+          "art": "0xe9f42a8613d6c156b86f91956ded71faf31db4d42f3910dfaa3500a8298d4e41",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x2c3b09e8f3d6b55d9ad22c81355ea362dc1457bb3b3971a0d4dc0f0f759a4005",
+          "avatar": "0x9b2122844b4b9dddd6f8149b03466ddbfcd8439e0f98ba5e03d07a36d55006c9",
+          "avatarPlain": "0x211b1ccb8b547abaa4b0903d7ad9d13330b4596734e08eb4bfed762026bc3f5f",
+          "soul": "0x8cf1321cecf63b9d70175e36995e78e54754b9d11546ca109c6aec9a25cb4efa",
+          "kit": 0,
+          "name": "Bramweld",
+          "epithet": "The Unshaken Foundation"
+        }
+      }
+    },
+    {
+      "id": 39,
+      "sourceTokenId": "4294967335",
+      "kindName": "King",
+      "template": {
+        "kind": 1,
+        "traits": {
+          "faction": 1,
+          "alignment": 1,
+          "element": 1,
+          "frame": 0,
+          "bodyparts": 131073,
+          "strength": 16036,
+          "agility": 18748,
+          "resilience": 20771,
+          "intelligence": 16182
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x673bbae5e0f005c1e351a5ae1aeb0d55d40801fef89d88cd4d7cc8bfbc81e260",
+          "art": "0x4d50c64f0d2a59c5302b2f0d352ac06c049d97f2565f41b787907fc69b807fe2",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x820e25ca8db4629f35dc4bc85831e5aeff0a0603bb82fec4b24ccebfb58920b8",
+          "avatar": "0xb73019daa0ae15183fe1fdb1d70b1e1d050fdabbbdeeb675b55de3ccbe987721",
+          "avatarPlain": "0x3dc0325b4fba0e4e093ff1fbba991add0ed81f761bf1ea4f92b15dc3597419ad",
+          "soul": "0x3ede0197fc07bf1758cf723024884ced458570dbbeb96f9a8e28bb71a7a5ab0e",
+          "kit": 0,
+          "name": "Kalthrix Molvane",
+          "epithet": "The Slagheart, Crowned in Cooling Rage"
+        }
+      }
+    },
+    {
+      "id": 40,
+      "sourceTokenId": "4294967336",
+      "kindName": "King",
+      "template": {
+        "kind": 1,
+        "traits": {
+          "faction": 0,
+          "alignment": 2,
+          "element": 2,
+          "frame": 1,
+          "bodyparts": 16777217,
+          "strength": 25763,
+          "agility": 23588,
+          "resilience": 22505,
+          "intelligence": 24240
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x54c235adeb3e13d1d321b308e51456b4cc2d217a77d60f9f5aeb4343c459c9d1",
+          "art": "0xbd92072f09a7ed971cfbf92865002a6aae859dba91ebdb3fe0e1337e20a3e69f",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xa7e09b9d25472773b4095f79106953c6b97f2e79789a79e14f8143e833c24a22",
+          "avatar": "0x256d59b21151b689e33ee36798bdb3f1839ab44c57000f41b67be84657571530",
+          "avatarPlain": "0x1bc687f86622827f8af8f1a176ce26110c8aa470c40562effd79ef0dd1d592b8",
+          "soul": "0x1b1bc04383a3fe2dbbb94881c599ac4c4eef7f940506e548c8a9e2399e1ff771",
+          "kit": 0,
+          "name": "Ferrivane",
+          "epithet": "The Crowned Rust, First Alloy of the Alliance"
+        }
+      }
+    },
+    {
+      "id": 41,
+      "sourceTokenId": "4294967337",
+      "kindName": "Mortal",
+      "template": {
+        "kind": 0,
+        "traits": {
+          "faction": 1,
+          "alignment": 1,
+          "element": 1,
+          "frame": 1,
+          "bodyparts": 16842752,
+          "strength": 12000,
+          "agility": 12000,
+          "resilience": 12000,
+          "intelligence": 12000
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xf5d6d88c0905ddcdc8b927db3eb32c64b14b6ae962528956199420580bcc319b",
+          "art": "0xd9082199533f567b35f9413d03f2ce78ecd730b97e1ac4d463db7226a980f1a9",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x4176f62e624658e858caf3da917d1348ce321664dbd4f785abeef4edfcaaa782",
+          "avatar": "0x4f2fc4a68898783dfa62601742452f7872c6c7c7effb7aa27f5328707e24821f",
+          "avatarPlain": "0xd0419457aefc96439503218c9bfc5d738cf09a19fc90cffcb167a3c2a003cb2d",
+          "soul": "0x2b300f75c17102404bcaad66ff9b0c079a77580974ac1555517ae31ab0b6175a",
+          "kit": 0,
+          "name": "Fenvraxil",
+          "epithet": "The Test-Blade of Cinder"
+        }
+      }
+    },
+    {
+      "id": 42,
+      "sourceTokenId": "4294967338",
+      "kindName": "Mortal",
+      "template": {
+        "kind": 0,
+        "traits": {
+          "faction": 0,
+          "alignment": 2,
+          "element": 2,
+          "frame": 2,
+          "bodyparts": 131073,
+          "strength": 20149,
+          "agility": 18223,
+          "resilience": 20006,
+          "intelligence": 16521
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xf1494e4f7179468cebd2be4f92a58e4b7475663d8a9b2e6ae64523e47ceb688d",
+          "art": "0x7cb8444939c0261707a7c61a11184591930c55aa00f12907d5e520631ffc1600",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x595435eb993b4fda05b4ed60f9b0c5f18a79da9abc554c0e97202e047cc1ce0b",
+          "avatar": "0x5b1313e91026775034aed2dc3d03b627a4cc8d0993176715e51a92b1074c4299",
+          "avatarPlain": "0x08fd14a49bce3a1b8e4637c96cbd8c55e0f4456ea6bc55969066223d2d54d415",
+          "soul": "0xf4dfda28e1372db629d608a044f7accaa982c47b0509796f5d06534f0433fe28",
+          "kit": 0,
+          "name": "Ferrix Vane",
+          "epithet": "The Blueprint That Bites"
+        }
+      }
+    },
+    {
+      "id": 43,
+      "sourceTokenId": "4294967339",
+      "kindName": "Mortal",
+      "template": {
+        "kind": 0,
+        "traits": {
+          "faction": 1,
+          "alignment": 255,
+          "element": 3,
+          "frame": 3,
+          "bodyparts": 16777217,
+          "strength": 20222,
+          "agility": 16839,
+          "resilience": 21777,
+          "intelligence": 16317
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x3430b97382fdfb893f04766efc9279cee88bcf74bd9459502ce8e4ce3b2c33a6",
+          "art": "0x6b054d6b9c7b49d16fb10598dd7674e86e2cc0a0bd32056272138f93a4a54157",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x96bdb4f56f1be36c2df3c72cea8bfc9fad6602985c31a894c4b5e5349736896e",
+          "avatar": "0x73a8e98c4432e0455b473d989e30f548e5d43834be5c6594ba0fc5bfa6f24d02",
+          "avatarPlain": "0x9800c4a056bdf054d4fbfa3970caff0b1cfae5094b725db2d6e6a72e0d5c3854",
+          "soul": "0x019277de58a3eb73a15f2bcf38e9dd50ca822ed00214ae2d99b10b7eeab0e4b7",
+          "kit": 0,
+          "name": "Nepharyl",
+          "epithet": "The Blueprint That Weeps"
+        }
+      }
+    },
+    {
+      "id": 44,
+      "sourceTokenId": "4294967340",
+      "kindName": "Mortal",
+      "template": {
+        "kind": 0,
+        "traits": {
+          "faction": 0,
+          "alignment": 0,
+          "element": 0,
+          "frame": 0,
+          "bodyparts": 65536,
+          "strength": 17813,
+          "agility": 17351,
+          "resilience": 16388,
+          "intelligence": 14559
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x0116ae82b4aacd3301a6f9296b6174a494fbd0e0116b3bc5f3ec5d31f77723f4",
+          "art": "0x52ef6918ce99c990c8e158287086686b8f0cb054b19252418d52af37a11b7a17",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x611473fce086e358024bc152828d3c38d1fde00257fda51070349738d3daab15",
+          "avatar": "0x74c3810f64ce21f43811b59895e598a1fa3f28504399ef3a39b62d9765b7bce1",
+          "avatarPlain": "0x07cf221a93ca36976b9c6fe56d40b9912613bd65257d72b9eab22cefb33ec5b7",
+          "soul": "0xe87ae798ed8a005270e90cb8f0b0f781a7d9ae5f9cab6763b2c2cf9bb2bc7b78",
+          "kit": 0,
+          "name": "Torvaleth Rinn",
+          "epithet": "The Unfired Vessel"
+        }
+      }
+    },
+    {
+      "id": 45,
+      "sourceTokenId": "4294967341",
+      "kindName": "Mortal",
+      "template": {
+        "kind": 0,
+        "traits": {
+          "faction": 1,
+          "alignment": 1,
+          "element": 1,
+          "frame": 1,
+          "bodyparts": 16908290,
+          "strength": 16562,
+          "agility": 20828,
+          "resilience": 17623,
+          "intelligence": 17807
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x68f28980d5ec6aeab0db724e7df63fcde5c3fd37c9991cb15cf666a89c6da16f",
+          "art": "0xbc50b94a49be14130b77e885449e8825b1ce120b184ba1ee61680b10252db117",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x838fb0bfd640c422a79d7d6c084f51ea490a4919e5a6545ab19c8241afd3f341",
+          "avatar": "0x11bc7b4386ff4a7fefb705af65776c33c6b42454bfbe319171d54716ee67c781",
+          "avatarPlain": "0xf3ac4283afdf8dea6b3125de8617fcdc6bcfc8cbb32fee6cf7d7dcd56878dddc",
+          "soul": "0xb2003d7c32d6e08863e16b0a27344c9e1244a717ce76eee1c8008af07d7f46bc",
+          "kit": 0,
+          "name": "Slagwyrd",
+          "epithet": "The Cracked Vessel of the Rising Horde"
+        }
+      }
+    },
+    {
+      "id": 46,
+      "sourceTokenId": "4294967342",
+      "kindName": "Mortal",
+      "template": {
+        "kind": 0,
+        "traits": {
+          "faction": 0,
+          "alignment": 2,
+          "element": 2,
+          "frame": 2,
+          "bodyparts": 3,
+          "strength": 14965,
+          "agility": 16392,
+          "resilience": 18343,
+          "intelligence": 14156
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x8646fdfe6b17b416073c7125c7ecfea865fb63269331d6f48198bf64ded68ab0",
+          "art": "0x9a38c6bcfa3d544bafe845ba6e7b2c3521339ed45d0be02ba2a9897accdff94d",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xab6f622cd9a2e380b8d977162b901ca36e81b1d78546dd8cadee84afbc9337f9",
+          "avatar": "0x7c91bb2b548f561d17cebfaf7f350a21a56d5bcbe2b2808aa0df12a0bb14a5a2",
+          "avatarPlain": "0x88de534d59450af14293b0b1e0d31676fa73bde2e1bdc7840e07de770b8a5cd4",
+          "soul": "0x9003195baa3efabc506361927e3e4d771a51d6f40414cac0153304a5dcde58d2",
+          "kit": 0,
+          "name": "Brasswyn",
+          "epithet": "Hollow-Blueprint of the Rising"
+        }
+      }
+    },
+    {
+      "id": 47,
+      "sourceTokenId": "4294967343",
+      "kindName": "Mortal",
+      "template": {
+        "kind": 0,
+        "traits": {
+          "faction": 1,
+          "alignment": 255,
+          "element": 3,
+          "frame": 3,
+          "bodyparts": 16842755,
+          "strength": 15752,
+          "agility": 13148,
+          "resilience": 12088,
+          "intelligence": 14166
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0x4feeb63033af47e72e63db70af2fbfd52c41e8a054270b1b61d5b25a5b0f1dc7",
+          "art": "0xc8efe383d19e423265cbb8ecc347042d081aca2a3fa0356449f37e3e89edeedf",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xb6b5f64532009bb7460850023ba26bf25be7609be3c47a235ede7f2da1b4f0b8",
+          "avatar": "0xcdd70e8ff6010700929c32322f5db7002c103db821253a4a1f31c87f3336093e",
+          "avatarPlain": "0x5a763f35bea16de1e50f5209ac7a95b0ef00094d2bc1f6d79cd3fe7056d6c667",
+          "soul": "0xfdcda7f4efedef5b7a185945a1bd3002aaa3f6eb09219d11d64a6c3f2593c6f4",
+          "kit": 0,
+          "name": "Yslende Corr",
+          "epithet": "Sealed Tidewright of the Horde"
+        }
+      }
+    },
+    {
+      "id": 48,
+      "sourceTokenId": "4294967344",
+      "kindName": "Mortal",
+      "template": {
+        "kind": 0,
+        "traits": {
+          "faction": 0,
+          "alignment": 0,
+          "element": 0,
+          "frame": 0,
+          "bodyparts": 131073,
+          "strength": 14192,
+          "agility": 13792,
+          "resilience": 14068,
+          "intelligence": 18719
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xef7e30f9400c92409da3dc26d82d18d97e756ce4c968eb45e2633ddd97f049bf",
+          "art": "0x58e6eb0aa9909e5da00bd67d4491e6ced2405352078e89cc8ccc8e66f6cb9b94",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0x4cd3a476c405764356e28caa14069252394079ed7e79f3457bd870a3fb648cf0",
+          "avatar": "0xe046449e5817dfe98fa2bb1e5e9203a8074619b04ad1abcc441ce706583c38c5",
+          "avatarPlain": "0xa7992186a4656b198d069e7dd92431ef2ed3916714243c01c34b3df8387206e3",
+          "soul": "0x632f4f7f9103774c3224756931dedc43858336ee05657c7379105ca1780a016f",
+          "kit": 0,
+          "name": "Cairnmere",
+          "epithet": "Surveyor of the First Terrace"
+        }
+      }
+    },
+    {
+      "id": 49,
+      "sourceTokenId": "4294967345",
+      "kindName": "Mortal",
+      "template": {
+        "kind": 0,
+        "traits": {
+          "faction": 1,
+          "alignment": 1,
+          "element": 1,
+          "frame": 1,
+          "bodyparts": 16777217,
+          "strength": 12217,
+          "agility": 18182,
+          "resilience": 15895,
+          "intelligence": 16115
+        },
+        "styleSource": {
+          "chainId": "0",
+          "collection": "0x0000000000000000000000000000000000000000",
+          "tokenId": "0"
+        },
+        "design": {
+          "designHash": "0xeb3dbac694a0d50f00ca354c2cf81bc0a6123c25576d0b43fe671c0e462e7fc7",
+          "art": "0x1ad279dfe172a0d03431b1413228eed98aba4a94d9c34395a8698e5616a4f99b",
+          "turntable": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "overridesHash": "0xf5321ef8c5c31221bdb5b9921652b4197c3dea952b270e685192d63eb9982760",
+          "avatar": "0x6b11bfaaf9cdfd482d2c991faef3c99121af1c06892ed2e0703cdf1a098a3028",
+          "avatarPlain": "0x856d20950090be45b1f64baba05fecaf13c69d7a3d64ef166a24ba4fbf373b75",
+          "soul": "0x6870353ae254a18430604850b75cbb1cb53fdb9693a1ca7d90f206a92178e0f0",
+          "kit": 0,
+          "name": "Flaethrix",
+          "epithet": "Emberwright of the Last Forge"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1522 @@
+{
+  "compiler": {
+    "version": "0.8.28+commit.7893614a"
+  },
+  "language": "Solidity",
+  "output": {
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "contract IStudioMinter",
+            "name": "minter_",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "owner_",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "price_",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint8",
+            "name": "packSize_",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint16[5]",
+            "name": "weights_",
+            "type": "uint16[5]"
+          },
+          {
+            "internalType": "uint16",
+            "name": "dailyLimit_",
+            "type": "uint16"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "inputs": [],
+        "name": "BadMinter",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "BadPackSize",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "BadTemplate",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "BadWeights",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "DailyLimitReached",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "DuplicateDesign",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "EnforcedPause",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "ExpectedPause",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "Expired",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "Insufficient",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "LastOfKind",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "NotExpired",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "NotMinter",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "NotSealed",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "NotStocked",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          }
+        ],
+        "name": "OwnableInvalidOwner",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "OwnableUnauthorizedAccount",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "ReentrancyGuardReentrantCall",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "RenounceDisabled",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "TooEarly",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "TooManyTemplates",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "TransferFailed",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "UnknownTemplate",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "WrongPayment",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "ZeroAddress",
+        "type": "error"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint16",
+            "name": "limit",
+            "type": "uint16"
+          }
+        ],
+        "name": "DailyLimitSet",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "previousOwner",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "OwnershipTransferStarted",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "previousOwner",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "OwnershipTransferred",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "packId",
+            "type": "uint256"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "buyer",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "paid",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "commitBlock",
+            "type": "uint256"
+          }
+        ],
+        "name": "PackBought",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "packId",
+            "type": "uint256"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "buyer",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256[]",
+            "name": "tokenIds",
+            "type": "uint256[]"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint16[]",
+            "name": "templateIds",
+            "type": "uint16[]"
+          }
+        ],
+        "name": "PackOpened",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "packId",
+            "type": "uint256"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "buyer",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "PackRefunded",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "Paused",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "price",
+            "type": "uint256"
+          }
+        ],
+        "name": "PriceSet",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "templateId",
+            "type": "uint256"
+          },
+          {
+            "indexed": true,
+            "internalType": "uint8",
+            "name": "kind",
+            "type": "uint8"
+          },
+          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "designHash",
+            "type": "bytes32"
+          }
+        ],
+        "name": "TemplateAdded",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "templateId",
+            "type": "uint256"
+          }
+        ],
+        "name": "TemplateRetired",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "Unpaused",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint16[5]",
+            "name": "weights",
+            "type": "uint16[5]"
+          }
+        ],
+        "name": "WeightsSet",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "Withdrawn",
+        "type": "event"
+      },
+      {
+        "inputs": [],
+        "name": "KINDS",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "MAX_PACK_SIZE",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "MAX_TEMPLATES",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "REVEAL_WINDOW",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "acceptOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint8",
+            "name": "kind",
+            "type": "uint8"
+          }
+        ],
+        "name": "activeTemplates",
+        "outputs": [
+          {
+            "internalType": "uint16[]",
+            "name": "",
+            "type": "uint16[]"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "kind",
+                "type": "uint8"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "uint8",
+                    "name": "faction",
+                    "type": "uint8"
+                  },
+                  {
+                    "internalType": "uint8",
+                    "name": "alignment",
+                    "type": "uint8"
+                  },
+                  {
+                    "internalType": "uint8",
+                    "name": "element",
+                    "type": "uint8"
+                  },
+                  {
+                    "internalType": "uint8",
+                    "name": "frame",
+                    "type": "uint8"
+                  },
+                  {
+                    "internalType": "uint32",
+                    "name": "bodyparts",
+                    "type": "uint32"
+                  },
+                  {
+                    "internalType": "uint16",
+                    "name": "strength",
+                    "type": "uint16"
+                  },
+                  {
+                    "internalType": "uint16",
+                    "name": "agility",
+                    "type": "uint16"
+                  },
+                  {
+                    "internalType": "uint16",
+                    "name": "resilience",
+                    "type": "uint16"
+                  },
+                  {
+                    "internalType": "uint16",
+                    "name": "intelligence",
+                    "type": "uint16"
+                  }
+                ],
+                "internalType": "struct Traits",
+                "name": "traits",
+                "type": "tuple"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "uint64",
+                    "name": "chainId",
+                    "type": "uint64"
+                  },
+                  {
+                    "internalType": "address",
+                    "name": "collection",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "tokenId",
+                    "type": "uint256"
+                  }
+                ],
+                "internalType": "struct Origin",
+                "name": "styleSource",
+                "type": "tuple"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "bytes32",
+                    "name": "designHash",
+                    "type": "bytes32"
+                  },
+                  {
+                    "internalType": "bytes32",
+                    "name": "art",
+                    "type": "bytes32"
+                  },
+                  {
+                    "internalType": "bytes32",
+                    "name": "turntable",
+                    "type": "bytes32"
+                  },
+                  {
+                    "internalType": "bytes32",
+                    "name": "overridesHash",
+                    "type": "bytes32"
+                  },
+                  {
+                    "internalType": "bytes32",
+                    "name": "avatar",
+                    "type": "bytes32"
+                  },
+                  {
+                    "internalType": "bytes32",
+                    "name": "avatarPlain",
+                    "type": "bytes32"
+                  },
+                  {
+                    "internalType": "bytes32",
+                    "name": "soul",
+                    "type": "bytes32"
+                  },
+                  {
+                    "internalType": "uint8",
+                    "name": "kit",
+                    "type": "uint8"
+                  },
+                  {
+                    "internalType": "string",
+                    "name": "name",
+                    "type": "string"
+                  },
+                  {
+                    "internalType": "string",
+                    "name": "epithet",
+                    "type": "string"
+                  }
+                ],
+                "internalType": "struct Design",
+                "name": "design",
+                "type": "tuple"
+              }
+            ],
+            "internalType": "struct PackShop.Template[]",
+            "name": "ts",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "addTemplates",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "buyPack",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "packId",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "config",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "price_",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint8",
+            "name": "packSize_",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint16",
+            "name": "dailyLimit_",
+            "type": "uint16"
+          },
+          {
+            "internalType": "bool",
+            "name": "paused_",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "ready_",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint16[5]",
+            "name": "weights_",
+            "type": "uint16[5]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "templateCount_",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "dailyLimit",
+        "outputs": [
+          {
+            "internalType": "uint16",
+            "name": "",
+            "type": "uint16"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "name": "hasDesign",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "liability",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "minter",
+        "outputs": [
+          {
+            "internalType": "contract IStudioMinter",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "nextPackId",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "packId",
+            "type": "uint256"
+          }
+        ],
+        "name": "openPack",
+        "outputs": [
+          {
+            "internalType": "uint256[]",
+            "name": "tokenIds",
+            "type": "uint256[]"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "who",
+            "type": "address"
+          }
+        ],
+        "name": "packCountOf",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "packId",
+            "type": "uint256"
+          }
+        ],
+        "name": "packOf",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "buyer",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "commitBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum PackShop.Phase",
+            "name": "phase",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "paid",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "packSize",
+        "outputs": [
+          {
+            "internalType": "uint8",
+            "name": "",
+            "type": "uint8"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "who",
+            "type": "address"
+          }
+        ],
+        "name": "packsLeftToday",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "pause",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "paused",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "pendingOwner",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "packId",
+            "type": "uint256"
+          }
+        ],
+        "name": "phaseOf",
+        "outputs": [
+          {
+            "internalType": "enum PackShop.Phase",
+            "name": "",
+            "type": "uint8"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "price",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "ready",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "who",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "n",
+            "type": "uint256"
+          }
+        ],
+        "name": "recentPacks",
+        "outputs": [
+          {
+            "internalType": "uint256[]",
+            "name": "ids",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "enum PackShop.Phase[]",
+            "name": "phases",
+            "type": "uint8[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "commitBlocks",
+            "type": "uint256[]"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "packId",
+            "type": "uint256"
+          }
+        ],
+        "name": "refundExpired",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "renounceOwnership",
+        "outputs": [],
+        "stateMutability": "pure",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "templateId",
+            "type": "uint256"
+          }
+        ],
+        "name": "retireTemplate",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "retired",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint16",
+            "name": "limit",
+            "type": "uint16"
+          }
+        ],
+        "name": "setDailyLimit",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "price_",
+            "type": "uint256"
+          }
+        ],
+        "name": "setPrice",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint16[5]",
+            "name": "weights_",
+            "type": "uint16[5]"
+          }
+        ],
+        "name": "setWeights",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "templateCount",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "templateId",
+            "type": "uint256"
+          }
+        ],
+        "name": "templateOf",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "uint8",
+                "name": "kind",
+                "type": "uint8"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "uint8",
+                    "name": "faction",
+                    "type": "uint8"
+                  },
+                  {
+                    "internalType": "uint8",
+                    "name": "alignment",
+                    "type": "uint8"
+                  },
+                  {
+                    "internalType": "uint8",
+                    "name": "element",
+                    "type": "uint8"
+                  },
+                  {
+                    "internalType": "uint8",
+                    "name": "frame",
+                    "type": "uint8"
+                  },
+                  {
+                    "internalType": "uint32",
+                    "name": "bodyparts",
+                    "type": "uint32"
+                  },
+                  {
+                    "internalType": "uint16",
+                    "name": "strength",
+                    "type": "uint16"
+                  },
+                  {
+                    "internalType": "uint16",
+                    "name": "agility",
+                    "type": "uint16"
+                  },
+                  {
+                    "internalType": "uint16",
+                    "name": "resilience",
+                    "type": "uint16"
+                  },
+                  {
+                    "internalType": "uint16",
+                    "name": "intelligence",
+                    "type": "uint16"
+                  }
+                ],
+                "internalType": "struct Traits",
+                "name": "traits",
+                "type": "tuple"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "uint64",
+                    "name": "chainId",
+                    "type": "uint64"
+                  },
+                  {
+                    "internalType": "address",
+                    "name": "collection",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "tokenId",
+                    "type": "uint256"
+                  }
+                ],
+                "internalType": "struct Origin",
+                "name": "styleSource",
+                "type": "tuple"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "bytes32",
+                    "name": "designHash",
+                    "type": "bytes32"
+                  },
+                  {
+                    "internalType": "bytes32",
+                    "name": "art",
+                    "type": "bytes32"
+                  },
+                  {
+                    "internalType": "bytes32",
+                    "name": "turntable",
+                    "type": "bytes32"
+                  },
+                  {
+                    "internalType": "bytes32",
+                    "name": "overridesHash",
+                    "type": "bytes32"
+                  },
+                  {
+                    "internalType": "bytes32",
+                    "name": "avatar",
+                    "type": "bytes32"
+                  },
+                  {
+                    "internalType": "bytes32",
+                    "name": "avatarPlain",
+                    "type": "bytes32"
+                  },
+                  {
+                    "internalType": "bytes32",
+                    "name": "soul",
+                    "type": "bytes32"
+                  },
+                  {
+                    "internalType": "uint8",
+                    "name": "kit",
+                    "type": "uint8"
+                  },
+                  {
+                    "internalType": "string",
+                    "name": "name",
+                    "type": "string"
+                  },
+                  {
+                    "internalType": "string",
+                    "name": "epithet",
+                    "type": "string"
+                  }
+                ],
+                "internalType": "struct Design",
+                "name": "design",
+                "type": "tuple"
+              }
+            ],
+            "internalType": "struct PackShop.Template",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "unpause",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "weights",
+        "outputs": [
+          {
+            "internalType": "uint16",
+            "name": "",
+            "type": "uint16"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "withdraw",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ],
+    "devdoc": {
+      "errors": {
+        "EnforcedPause()": [
+          {
+            "details": "The operation failed because the contract is paused."
+          }
+        ],
+        "ExpectedPause()": [
+          {
+            "details": "The operation failed because the contract is not paused."
+          }
+        ],
+        "OwnableInvalidOwner(address)": [
+          {
+            "details": "The owner is not a valid owner account. (eg. `address(0)`)"
+          }
+        ],
+        "OwnableUnauthorizedAccount(address)": [
+          {
+            "details": "The caller account is not authorized to perform an operation."
+          }
+        ],
+        "ReentrancyGuardReentrantCall()": [
+          {
+            "details": "Unauthorized reentrant call."
+          }
+        ]
+      },
+      "events": {
+        "Paused(address)": {
+          "details": "Emitted when the pause is triggered by `account`."
+        },
+        "Unpaused(address)": {
+          "details": "Emitted when the pause is lifted by `account`."
+        }
+      },
+      "kind": "dev",
+      "methods": {
+        "acceptOwnership()": {
+          "details": "The new owner accepts the ownership transfer."
+        },
+        "owner()": {
+          "details": "Returns the address of the current owner."
+        },
+        "paused()": {
+          "details": "Returns true if the contract is paused, and false otherwise."
+        },
+        "pendingOwner()": {
+          "details": "Returns the address of the pending owner."
+        },
+        "transferOwnership(address)": {
+          "details": "Starts the ownership transfer of the contract to a new account. Replaces the pending transfer if there is one. Can only be called by the current owner."
+        }
+      },
+      "title": "PackShop — sell sealed Rapture card packs for native zkLTC and mint the cards to the buyer. PackShop is a separate contract from the card collection. It holds one role: MINTER on the Studio Test set's StudioMinter (the owner of that contract grants it with setMinter). It holds a pool of card TEMPLATES (a card's traits, stats and design record, copied from a finished card) and, on every pack, mints fresh tokens from those templates straight to the buyer. Templates are editions: a hundred wallets can hold a copy of the same design, each its own token with its own id. Flow (two transactions, so a buyer can never simulate and revert a bad pull):   1. buyPack()      pay the exact price; a sealed pack is recorded with the current block number   2. openPack(id)   once block.number >= commit + 2, the pack's cards are drawn from blockhash(commit + 1)                     and minted to the buyer. Anyone may send this transaction; the cards always go to the buyer. A pack nobody opens inside the blockhash window (255 block numbers, ~50 min on Liteforge) is refunded with refundExpired(id). TESTNET-GRADE RANDOMNESS. Liteforge is an Arbitrum Nitro chain: block.number follows the parent chain (one number every ~12 s), block.prevrandao is the constant 1, and Arbitrum documents blockhash as \"cryptographically insecure\". A commit-reveal on it stops the buyer from grinding, but the sequencer can still see or influence the seed. Before real value rides on a pull, replace _seed() with a VRF or drand beacon.",
+      "version": 1
+    },
+    "userdoc": {
+      "kind": "user",
+      "methods": {
+        "REVEAL_WINDOW()": {
+          "notice": "The blockhash window, less one number so a pack is never opened on the edge of it."
+        },
+        "addTemplates((uint8,(uint8,uint8,uint8,uint8,uint32,uint16,uint16,uint16,uint16),(uint64,address,uint256),(bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,uint8,string,string))[])": {
+          "notice": "Load cards the shop may mint. Each is checked against the same rules StudioMinter and CardDesign apply at mint time, so a paid pack cannot draw a template that would revert."
+        },
+        "config()": {
+          "notice": "One call for a client: everything it needs to draw the buy button."
+        },
+        "constructor": {
+          "notice": "Deploys PAUSED: load the templates, then unpause."
+        },
+        "dailyLimit()": {
+          "notice": "Packs one wallet may buy per UTC day; 0 = no limit."
+        },
+        "liability()": {
+          "notice": "Wei paid for packs that are still sealed. The owner can only withdraw the balance above it."
+        },
+        "openPack(uint256)": {
+          "notice": "Draw and mint a sealed pack. Anyone may call; the buyer always receives the cards."
+        },
+        "packCountOf(address)": {
+          "notice": "How many packs `who` has ever bought."
+        },
+        "packSize()": {
+          "notice": "Cards per pack, fixed for this deployment (a different size is a new PackShop)."
+        },
+        "price()": {
+          "notice": "Exact price of one pack, in wei of the native token (zkLTC)."
+        },
+        "ready()": {
+          "notice": "Can the shop sell? Every Kind that has odds needs an active template (or a paid pack could not be drawn), and PackShop must hold the MINTER role on StudioMinter (or it could not be opened)."
+        },
+        "recentPacks(address,uint256)": {
+          "notice": "`who`'s most recent `n` packs (at most 16), oldest first: id, phase and commit block of each. One call is all a page needs to resume a sealed pack (Waiting / Openable) or offer a refund (Expired)."
+        },
+        "refundExpired(uint256)": {
+          "notice": "Give the price back for a pack that was not opened inside the blockhash window. Anyone may call; the refund goes to the buyer. The pack still counts against the buyer's daily limit."
+        },
+        "renounceOwnership()": {
+          "notice": "Revenue is only reachable through the owner: renouncing would strand it."
+        },
+        "retireTemplate(uint256)": {
+          "notice": "Stop minting a template. Cards already minted from it are untouched. The last template of a Kind that has odds cannot be retired (add its replacement first, or set that Kind's odds to 0)."
+        },
+        "weights(uint256)": {
+          "notice": "Odds per slot of a pack, Mortal, King, Demigod, Titan, God. Only the ratio matters."
+        },
+        "withdraw(address,uint256)": {
+          "notice": "Revenue only: the balance above what sealed packs could still be refunded."
+        }
+      },
+      "version": 1
+    }
+  },
+  "settings": {
+    "compilationTarget": {
+      "contracts/PackShop.sol": "PackShop"
+    },
+    "evmVersion": "shanghai",
+    "libraries": {},
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "remappings": [],
+    "viaIR": true
+  },
+  "sources": {
+    "@openzeppelin/contracts/access/Ownable.sol": {
+      "keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
+        "dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
+      ]
+    },
+    "@openzeppelin/contracts/access/Ownable2Step.sol": {
+      "keccak256": "0x5d3e5de9eadfa1f8a892eb2e95bbebd3e4b8c8ada5b76f104d383fea518fa688",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://cde108962511e6a4d3cfb7b6fb6a36bdcfa300761c17dad2d7dd87d4f8117b48",
+        "dweb:/ipfs/Qmf7YxUVK68JedWybWfXvzLCegsD95DtGc3mbpEWkWSMm8"
+      ]
+    },
+    "@openzeppelin/contracts/utils/Context.sol": {
+      "keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+        "dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+      ]
+    },
+    "@openzeppelin/contracts/utils/Pausable.sol": {
+      "keccak256": "0xb2e5f50762c27fb4b123e3619c3c02bdcba5e515309382e5bfb6f7d6486510bd",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://1a4b83328c98d518a2699c2cbe9e9b055e78aa57fa8639f1b88deb8b3750b5dc",
+        "dweb:/ipfs/QmXdcYj5v7zQxXFPULShHkR5p4Wa2zYuupbHnFdV3cHYtc"
+      ]
+    },
+    "@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+      "keccak256": "0xf980daa263b661ab8ddee7d4fd833c7da7e7995e2c359ff1f17e67e4112f2236",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://7448ab095d6940130bcf76ba47a2eab14148c83119523b93dd89f6d84edd6c02",
+        "dweb:/ipfs/QmawrZ4voKQjH3oomXT3Kuheb3Mnmo2VvVpxg8Ne5UJUrd"
+      ]
+    },
+    "contracts/PackShop.sol": {
+      "keccak256": "0xc9e810d5936fc4cf057d89e71b9cda7204a0ba5df49395b9dc5b0ececae2c4d7",
+      "license": "Apache-2.0",
+      "urls": [
+        "bzz-raw://f92bff9321fa6ad6467ac4f89b28444e8c1d12698757953f6967938fc4e772ff",
+        "dweb:/ipfs/QmYz8USHALv5oEVM7wQbnNprD76S2iS7726cyEaNVaL7V7"
+      ]
+    },
+    "contracts/vendor/rapture/interfaces/Rapture.sol": {
+      "keccak256": "0x7771ad6b3a2b51f484b3cb23a53cd7d6257f74a0821afff587ca8e47a30a3ed7",
+      "license": "Apache-2.0",
+      "urls": [
+        "bzz-raw://d9d5f2139ba7fb16a4c1bb858f1e28b9cb27d23218b3ecb5973e0f52d9f77f3f",
+        "dweb:/ipfs/QmdSVRqDjnLLvZmrMSuPBMqNfAKGVVw2qThjcdXpcZPdry"
+      ]
+    }
+  },
+  "version": 1
+}

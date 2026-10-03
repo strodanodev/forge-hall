@@ -1,0 +1,165 @@
+/* FORGE — Card Library (library.js). Loaded by library.js itself, so index.html needs no edit.
+   Uses the hall's own tokens (--ink, --dim) and the same gold/dark language as the inspect panel and wallet menu. */
+
+/* ---- the button that opens it */
+#library-btn { position: fixed; left: 50%; top: 12px; transform: translateX(-50%); z-index: 7; display: inline-flex; align-items: center; gap: 8px;
+               padding: 8px 16px; border-radius: 999px; cursor: pointer; color: var(--ink, #f3e6cf);
+               font: 900 12px "Cinzel", Georgia, serif; letter-spacing: .16em; text-transform: uppercase;
+               background: var(--panel, rgba(12, 10, 8, .72)); border: 1px solid rgba(255, 220, 160, .3); transition: border-color .15s, opacity .2s; }
+#library-btn:hover:not(:disabled) { border-color: rgba(255, 220, 160, .65); }
+#library-btn:disabled { opacity: .45; cursor: default; }
+#library-btn[hidden], body.lib-open #library-btn { display: none; }
+#library-btn .lb-btn-n { font: 700 11px ui-sans-serif, system-ui, sans-serif; letter-spacing: .04em; color: var(--dim, #b9a88c); text-transform: none; }
+#library-btn .lb-btn-new { padding: 1px 8px; border-radius: 999px; font: 800 10px ui-sans-serif, system-ui, sans-serif; letter-spacing: .08em; color: #2a1606;
+                           background: linear-gradient(180deg, #ffe7a8, #f0b14a); animation: lb-pulse 1.8s ease-in-out infinite; }
+@keyframes lb-pulse { 50% { box-shadow: 0 0 0 4px rgba(255, 190, 90, .25), 0 0 16px rgba(255, 190, 90, .6); } }
+@media (max-width: 700px) { #library-btn { left: auto; right: 12px; top: 96px; transform: none; z-index: 6; } }
+
+/* ---- the overlay (z-index 6 like the inspect panel, which comes later in the DOM and so sits above it) */
+#library { position: fixed; inset: 0; z-index: 6; display: flex; flex-direction: column; box-sizing: border-box; color: var(--ink, #f3e6cf);
+           font: 500 15px/1.45 "Alegreya", Georgia, serif; --tier: #ffbf3f; --el: #ffd37a;
+           background: radial-gradient(ellipse 80% 40% at 50% -6%, rgba(255, 170, 60, .13), transparent 70%), rgba(9, 8, 7, .99);
+           opacity: 0; transition: opacity .25s ease; }
+#library.on { opacity: 1; }
+#library[hidden] { display: none; }
+#library button { font: inherit; color: inherit; }
+#library *:focus-visible { outline: 2px solid #ffd37a; outline-offset: 2px; }
+
+.lb-head { display: flex; align-items: center; gap: 14px; padding: 14px 20px 0; }
+.lb-back { width: 38px; height: 38px; flex: none; border-radius: 50%; cursor: pointer; font-size: 18px; line-height: 1; background: rgba(0, 0, 0, .35); border: 1px solid rgba(255, 220, 160, .35); }
+.lb-back:hover { background: rgba(255, 200, 120, .15); }
+.lb-head h1 { margin: 0; font: 900 22px "Cinzel", Georgia, serif; letter-spacing: .18em; color: #f7e7c4; }
+.lb-sets { display: flex; gap: 6px; }
+.lb-sets button { padding: 5px 12px; border-radius: 999px; cursor: pointer; font-size: 13px; background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .12); }
+.lb-sets button[aria-pressed="true"] { border-color: rgba(255, 214, 140, .6); background: rgba(255, 190, 90, .14); }
+
+/* leave the top-right for the wallet button (fixed at right 12px, top 52px, z-index 7) */
+.lb-summary { padding: 8px 270px 0 20px; }
+.lb-set { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.lb-set b { font: 900 30px "Cinzel", Georgia, serif; color: #ffd37a; letter-spacing: .04em; }
+.lb-set span { color: var(--dim, #b9a88c); }
+.lb-meta { margin-top: 2px; font-size: 13.5px; color: #8d7f68; }
+.lb-bar { position: relative; height: 6px; border-radius: 3px; margin: 8px 0 10px; background: rgba(255, 255, 255, .09); overflow: hidden; max-width: 560px; }
+.lb-bar i { position: absolute; inset: 0 auto 0 0; width: calc(var(--f, 0) * 100%); border-radius: 3px; background: linear-gradient(90deg, #c9791f, #ffd37a); transition: width .5s ease; }
+.lb-title { margin: 0 0 2px; font: 700 12px "Cinzel", Georgia, serif; letter-spacing: .16em; text-transform: uppercase; color: var(--dim, #b9a88c); }
+
+.lb-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 10px 20px 8px; }
+.lb-tools input, .lb-tools select { padding: 7px 12px; border-radius: 999px; color: var(--ink, #f3e6cf); font: 500 14px ui-sans-serif, system-ui, sans-serif;
+                                     background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14); }
+.lb-tools input { width: min(220px, 100%); }
+.lb-tools input::placeholder { color: #8d7f68; }
+.lb-tools select { cursor: pointer; }
+.lb-tools select option { background: #17130e; }
+.lb-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.lb-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; cursor: pointer; font: 600 12.5px ui-sans-serif, system-ui, sans-serif;
+           background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .12); --c: #ffd37a; }
+.lb-chip:hover { border-color: rgba(255, 255, 255, .3); }
+.lb-chip[aria-pressed="true"] { border-color: color-mix(in srgb, var(--c) 70%, transparent); background: color-mix(in srgb, var(--c) 16%, transparent); }
+.lb-chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); box-shadow: 0 0 8px var(--c); }
+.lb-chip small { color: var(--dim, #b9a88c); font-size: 11.5px; }
+.lb-tools .lb-sep { width: 1px; height: 22px; background: rgba(255, 255, 255, .12); }
+
+.lb-banner { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; margin: 4px 20px 0; padding: 10px 14px; border-radius: 12px; font-size: 14.5px;
+             background: rgba(255, 190, 90, .09); border: 1px solid rgba(255, 190, 90, .32); }
+.lb-banner[hidden] { display: none; }
+.lb-banner.bad { background: rgba(255, 90, 90, .09); border-color: rgba(255, 110, 110, .4); }
+.lb-banner .lb-msg { flex: 1 1 260px; }
+.lb-banner button { padding: 6px 14px; border-radius: 999px; cursor: pointer; font: 800 12px "Cinzel", Georgia, serif; letter-spacing: .1em; text-transform: uppercase;
+                    color: #2a1606; border: 1px solid #ffe3a3; background: linear-gradient(180deg, #ffe7a8, #f0b14a 55%, #c9791f); }
+
+.lb-scroll { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 14px 20px 40px; scrollbar-width: thin; scrollbar-color: rgba(255, 214, 140, .35) transparent; }
+.lb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+.lb-none { grid-column: 1 / -1; padding: 40px 0; text-align: center; color: var(--dim, #b9a88c); }
+.lb-other { margin-top: 26px; }
+.lb-other .lb-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+
+/* ---- a card tile */
+.lb-tile { position: relative; display: block; padding: 0; aspect-ratio: 5 / 7; border-radius: 12px; overflow: hidden; cursor: pointer; text-align: left;
+           background: #0d0c11; border: 1px solid color-mix(in srgb, var(--tier) 55%, transparent); content-visibility: auto; contain-intrinsic-size: 160px 224px;
+           box-shadow: 0 6px 18px rgba(0, 0, 0, .45); transition: transform .18s ease, box-shadow .18s ease, border-color .18s; }
+.lb-tile[hidden] { display: none; }
+.lb-tile:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0, 0, 0, .55), 0 0 22px color-mix(in srgb, var(--tier) 30%, transparent); border-color: var(--tier); }
+.lb-tile img { position: absolute; left: 0; top: 0; width: 100%; height: 82%; object-fit: cover; object-position: 50% 0; }
+.lb-tile::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(180deg, transparent, rgba(8, 7, 10, .92) 62%); pointer-events: none; }
+.lb-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 8px 10px 9px; }
+.lb-name { display: block; font: 900 13.5px/1.15 "Cinzel", Georgia, serif; letter-spacing: .03em; color: #f7f4ee; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lb-sub { display: flex; align-items: center; gap: 6px; margin-top: 3px; font: 700 10px ui-sans-serif, system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--tier); }
+.lb-sub i { width: 7px; height: 7px; flex: none; border-radius: 50%; background: var(--el); box-shadow: 0 0 7px var(--el); }
+.lb-badge { position: absolute; z-index: 2; top: 7px; padding: 2px 8px; border-radius: 999px; font: 800 11px ui-sans-serif, system-ui, sans-serif; letter-spacing: .05em; }
+.lb-badge.count { right: 7px; color: #fff; background: rgba(10, 12, 18, .82); border: 1px solid color-mix(in srgb, var(--tier) 70%, transparent); }
+.lb-badge.new { left: 7px; color: #2a1606; background: linear-gradient(180deg, #ffe7a8, #f0b14a); animation: lb-pulse 1.8s ease-in-out infinite; }
+
+.lb-tile[data-state="locked"] { border: 1px dashed rgba(255, 255, 255, .16); box-shadow: none; cursor: default; }
+.lb-tile[data-state="locked"]:hover { transform: none; box-shadow: none; }
+.lb-tile[data-state="locked"] img { filter: brightness(0) contrast(2); opacity: .55; }
+.lb-tile[data-state="locked"]::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+                                        background: radial-gradient(ellipse 60% 44% at 50% 38%, color-mix(in srgb, var(--tier) 22%, transparent), transparent 72%); }
+.lb-tile[data-state="locked"] .lb-name { color: #6f6a78; letter-spacing: .3em; }
+.lb-tile[data-state="locked"] .lb-sub { color: #77717f; }
+.lb-tile[data-state="locked"] .lb-sub i { background: #5b5663; box-shadow: none; }
+.lb-tile[data-state="unknown"] { cursor: default; }
+.lb-tile[data-state="unknown"] .lb-q { position: absolute; inset: 0 0 18%; display: grid; place-items: center; font: 900 54px "Cinzel", Georgia, serif; color: rgba(255, 255, 255, .25); }
+
+.lb-toast { position: absolute; z-index: 4; left: 50%; bottom: 26px; transform: translate(-50%, 8px); max-width: min(560px, calc(100vw - 32px)); padding: 9px 18px; border-radius: 999px;
+            text-align: center; font-size: 14.5px; pointer-events: none; opacity: 0; transition: opacity .2s, transform .25s;
+            background: rgba(20, 15, 10, .95); border: 1px solid rgba(255, 214, 140, .45); box-shadow: 0 10px 30px rgba(0, 0, 0, .5); }
+.lb-toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---- detail: the card at full size, its editions, and (to the right) the shared inspect panel */
+/* the hero covers the whole overlay (opaque, so nothing of the grid shows around the panel) and keeps the panel's space clear with padding */
+.lb-hero { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; box-sizing: border-box;
+           padding: 64px calc(min(400px, 34vw) + 44px) 24px 20px; --h: min(70vh, 760px);
+           background: radial-gradient(ellipse 70% 50% at 50% 40%, color-mix(in srgb, var(--tier) 10%, transparent), transparent 70%), #0a0908; }
+.lb-hero[hidden] { display: none; }
+.lb-hero > .lb-back { position: absolute; left: 20px; top: 14px; }
+.lb-stage { position: relative; height: var(--h); aspect-ratio: 5 / 7; perspective: 1000px; max-width: 100%; flex: none; }
+.lb-card { position: absolute; inset: 0; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .12s ease-out; transform-style: preserve-3d;
+           border-radius: 3.2%; box-shadow: 0 0 70px color-mix(in srgb, var(--tier) 32%, transparent), 0 20px 50px rgba(0, 0, 0, .6); }
+.lb-card canvas, .lb-card img { display: block; width: 100%; height: 100%; border-radius: 3.2%; object-fit: cover; }
+.lb-card .lb-wait { position: absolute; inset: 0; display: grid; place-items: center; color: var(--dim, #b9a88c); letter-spacing: .12em; font-size: 13px; }
+.lb-nav { position: absolute; top: 50%; width: 42px; height: 42px; margin-top: -21px; border-radius: 50%; cursor: pointer; font-size: 20px; line-height: 1; background: rgba(0, 0, 0, .4); border: 1px solid rgba(255, 220, 160, .35); }
+.lb-nav:hover:not(:disabled) { background: rgba(255, 200, 120, .16); }
+.lb-nav:disabled { opacity: .3; cursor: default; }
+.lb-nav.prev { left: -58px; }
+.lb-nav.next { right: -58px; }
+.lb-eds { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; max-width: 520px; max-height: 84px; overflow-y: auto; scrollbar-width: thin; }
+.lb-eds .lb-chip { --c: var(--tier); }
+.lb-eds .lb-chip b { color: #ffd37a; font-size: 10px; letter-spacing: .06em; }
+.lb-eds-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.lb-eds-title { font: 700 11px "Cinzel", Georgia, serif; letter-spacing: .16em; text-transform: uppercase; color: var(--dim, #b9a88c); }
+
+@media (max-width: 700px), (max-aspect-ratio: 1/1) {
+  .lb-head { padding: 12px 14px 0; gap: 10px; }
+  .lb-head h1 { font-size: 17px; letter-spacing: .12em; }
+  .lb-summary { padding: 6px 14px 0; }
+  .lb-set { padding-right: 168px; }                 /* clear of the (compact) wallet button */
+  .lb-set b { font-size: 22px; }
+  .lb-meta { font-size: 12.5px; }
+  .lb-bar { margin: 6px 0 6px; }
+  /* search + sort share a row; each chip group is ONE scrolling line instead of wrapping into a tall block */
+  .lb-tools { display: grid; grid-template-columns: 1fr auto; gap: 6px 8px; padding: 6px 14px 4px; }
+  .lb-tools input { width: 100%; min-width: 0; padding: 6px 12px; font-size: 13.5px; }
+  .lb-tools select { padding: 6px 10px; font-size: 13.5px; }
+  .lb-tools .lb-sep { display: none; }
+  .lb-tools .lb-chips { grid-column: 1 / -1; flex-wrap: nowrap; overflow-x: auto; margin: 0 -14px; padding: 0 14px 1px; scrollbar-width: none; }
+  .lb-tools .lb-chips::-webkit-scrollbar { display: none; }
+  .lb-chip { flex: none; padding: 4px 10px; font-size: 12px; }
+  .lb-banner { margin: 4px 14px 0; }
+  .lb-scroll { padding: 12px 14px 40px; }
+  .lb-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 10px; }
+  .lb-name { font-size: 11.5px; }
+  .lb-sub { font-size: 9px; }
+  /* the panel is a bottom sheet over the lower ~57%: the card and its copies live in the strip above it */
+  .lb-hero { padding: 88px 14px calc(57vh + 4px); gap: 6px; --h: max(170px, calc(43vh - 158px)); }   /* top: clear of the wallet button */
+  .lb-nav.prev { left: -8px; } .lb-nav.next { right: -8px; }
+  .lb-nav { width: 36px; height: 36px; margin-top: -18px; z-index: 2; }
+  .lb-eds-wrap { max-width: 100%; }
+  .lb-eds { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; overflow-y: hidden; max-height: none; padding-bottom: 2px; }
+  .lb-eds .lb-chip { flex: none; }
+}
+/* the hall's wallet button floats over the top of the inspect panel; with the library open, start the panel below it */
+@media (min-width: 701px) and (min-aspect-ratio: 1/1) { body.lib-open #card-panel { top: 96px; } }
+@media (prefers-reduced-motion: reduce) {
+  #library, .lb-tile, .lb-card, .lb-bar i { transition: none; }
+  .lb-badge.new, #library-btn .lb-btn-new { animation: none; }
+}

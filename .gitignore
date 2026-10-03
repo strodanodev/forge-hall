@@ -1,0 +1,30 @@
+# dependencies and build output
+node_modules/
+.vercel/
+
+# secrets: never commit real values (.env.example is the template)
+.env
+.env.*
+!.env.example
+
+# local development only
+web/assets/rapture/packshop.local.json
+*.log
+
+# Blender's automatic backups
+*.blend1
+
+.vercel
+
+# Blender working material: scenes, bake caches, renders, archived builds and paid model sources (hundreds of MB).
+# What ships is the web build in web/assets; the scripts that make it are tracked in scripts/.
+*.blend
+/bake/
+/renders/
+/archive/
+/aeris/
+/assets/meshy/
+
+# Hardhat build output (packshop/.gitignore covers it too)
+/packshop/artifacts/
+/packshop/cache/

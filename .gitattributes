@@ -1,0 +1,6 @@
+# Text files are LF here (as written) whatever core.autocrlf says: shell scripts must stay LF to run in bash.
+* text=auto eol=lf
+*.glb binary
+*.hdr binary
+*.mp4 binary
+*.webp binary

@@ -1,0 +1,9 @@
+node_modules/
+cache/
+artifacts/
+*.log
+
+# a key must never sit in this folder
+.env
+.env.*
+!.env.example

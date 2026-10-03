@@ -1,0 +1,37 @@
+# Keep the Vercel upload small: only web/, api/, db/, package.json, package-lock.json
+# and vercel.json are needed on the server. Syntax is .gitignore's.
+#
+# A leading "/" anchors a pattern to the repo root. That matters here:
+# web/assets/ IS the site's asset folder and must be uploaded, while the
+# repo-root assets/ is Blender working material and must not be.
+
+# Blender sources and their automatic backups (hundreds of MB)
+*.blend
+*.blend1
+
+# Blender working folders at the repo root
+/bake/
+/renders/
+/reference/
+/aeris/
+/assets/
+
+# Other projects and tooling that share this repo (run from your machine, not on Vercel)
+/packshop/
+/scripts/
+/.claude/
+
+# Tests are not endpoints: Vercel would deploy every api/**/*.js it can see as a function
+/api/test/
+
+# Inside web/: files the deployed site does not need (test page, local-only config,
+# raw model exports, and the 24 fps originals of the pack videos)
+/web/test/
+/web/assets/rapture/packshop.local.json
+/web/assets/*_raw.glb
+/web/assets/pack/pack_fx.mp4
+/web/assets/pack/pack_physics.mp4
+
+# Dependencies are installed by Vercel itself; secrets never leave your machine
+node_modules/
+.env*

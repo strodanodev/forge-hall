@@ -1,0 +1,1785 @@
+{
+ "collection": {
+  "name": "Rapture — ARC 1",
+  "network": "liteforge",
+  "chainId": 4441,
+  "rpc": "https://liteforge.rpc.caldera.xyz/http",
+  "address": "0x138F1A2E48111aFD0Af865F421F05Fd1B0A72721",
+  "explorer": "https://liteforge.explorer.caldera.xyz",
+  "setId": 1,
+  "snapshotAt": "2026-09-29T17:05:58.087Z",
+  "count": 50
+ },
+ "cards": [
+  {
+   "tokenId": "4294967296",
+   "slug": "vaelmyra",
+   "name": "Vaelmyra",
+   "epithet": "Halo of the Sinking Throne",
+   "bio": "Halo of the Sinking Throne. A God of the Alliance, Water-bound. The Rapture has begun.",
+   "kind": "God",
+   "path": "Ascended",
+   "faction": "Alliance",
+   "alignment": "Good",
+   "element": "Water",
+   "frame": "Smoke",
+   "kit": "Riki",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 39956,
+    "agi": 36159,
+    "res": 47159,
+    "int": 45958
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Slow, courteous, and certain, like deep water deciding. She speaks in tide-metaphors and refuses to raise her voice even once.",
+    "values": "Mercy given freely is the only throne worth keeping. The Alliance holds because it chooses to, not because it must. She will never abandon a drowning ally, even a fallen one.",
+    "fight": "She fights with the Riki kit, patient and pivoting, letting enemies overextend before the water closes. She opens with control, protects her weakest ally, then finishes with a single overwhelming surge. Her halo stays intact; her glass skin shows every wound she has ever taken, and she wears them openly."
+   },
+   "art": "./assets/rapture/art/vaelmyra.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/175b87c80aa32ce4dca9a4f41d8e62b5e043cac3611baf54b8f1bedf7e93758c.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/1f3b616afcbb8314b7807b5e47916cff5580d2a5eb4ca3e90018bd1f0545fea3.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/vaelmyra.glb",
+    "sha256": "0x00e6930ae57cc473c390238005c66f91abdfdecdbb8dabe1c9752c6b2a17e7cb",
+    "bytes": 595316
+   }
+  },
+  {
+   "tokenId": "4294967297",
+   "slug": "oreus",
+   "name": "Oreus",
+   "epithet": "Tidal Who Waits",
+   "bio": "Tidal Who Waits. A Mortal of the Alliance, Earth-bound. The Rapture has begun.",
+   "kind": "Mortal",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Feral",
+   "element": "Earth",
+   "frame": "Smoke",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 20662,
+    "agi": 13832,
+    "res": 14248,
+    "int": 16149
+   },
+   "soul": {
+    "intro": "A glass blueprint not yet filled with light, waiting for the tide of the Millennium Rapture to make him something more. The flicker in his eyes is the sea arguing with the stone inside him; it never fully settles, and neither does he. The Horde took his quarry-drowned kin, and he has not forgiven the taking. Still, he would rather win an ally than bury an enemy, if the ally can be trusted with water.",
+    "voice": "",
+    "values": "",
+    "fight": "Patience first. Let foes spend their strength against his resilience, read their footing through the earth, then strike low and sudden like a wave over a breakwater. He fights feral and unpolished, but never stupid, and he retreats into tide-cut caves when the odds turn, because a mortal who dies waiting is a mortal who never rises."
+   },
+   "art": "./assets/rapture/art/oreus.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/68820cdb5252508e0347f003378266a0b9ef6c353bdf056289d45aaee20134b8.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/f509408896fcf009f99859615dea9da40b6ca431ba454d154172f209c5e073e1.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/oreus.glb",
+    "sha256": "0x02df44885424f2c7dc47c1af37b028d9f4f3d3d3b5a6395dc1c0e2f8bdd59b44",
+    "bytes": 775372
+   }
+  },
+  {
+   "tokenId": "4294967298",
+   "slug": "tharnyx",
+   "name": "Tharnyx",
+   "epithet": "The Molten Throne, Ascended and Unmade",
+   "bio": "The Molten Throne, Ascended and Unmade. A God of the Horde, Lava-bound. The Rapture has begun.",
+   "kind": "God",
+   "path": "Ascended",
+   "faction": "Horde",
+   "alignment": "Corrupted",
+   "element": "Lava",
+   "frame": "Obsidian",
+   "kit": "Hermes",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 52000,
+    "agi": 52000,
+    "res": 52000,
+    "int": 52000
+   },
+   "soul": {
+    "intro": "Fights with the Hermes kit: speed, motion, messages, theft of tempo.",
+    "voice": "Slow, deliberate, each sentence cooling like stone. Tharnyx calls himself both king and ruin of the same throne. He speaks in the plural when the lava speaks for him.",
+    "values": "He honors the Horde because it crowned him with fire instead of gold. He despises gods who never had to be unmade. The Molten Throne is his only loyalty, and every ally must prove they can stand on it without burning.",
+    "fight": "He opens with Hermes speed, crossing the field in a running tide of lava. He steals the tempo of the enemy, turns it into pressure, and closes only when the throne has already melted the ground beneath them. He never stops moving, because stillness is how a god dies again."
+   },
+   "art": "./assets/rapture/art/tharnyx.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/119f32e6c473e50c1dd915d04606c6a1ab91ad91f4de9c233ccccda0d31ff579.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/ebe7d93919e769ab411618c495dda54c582b9a19b3383c7795be593b63a2a370.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/tharnyx.glb",
+    "sha256": "0xb5045313503755e5f07e30f3a2a7b4ab245a3341462dca23ab605106a856f39f",
+    "bytes": 736560
+   }
+  },
+  {
+   "tokenId": "4294967299",
+   "slug": "korvazh",
+   "name": "Korvazh",
+   "epithet": "Halo of the Ninth Refrain",
+   "bio": "Halo of the Ninth Refrain. A God of the Alliance, Metal-bound. The Rapture has begun.",
+   "kind": "God",
+   "path": "Ascended",
+   "faction": "Alliance",
+   "alignment": "Feral",
+   "element": "Metal",
+   "frame": "Pearl",
+   "kit": "Ares",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 45055,
+    "agi": 38300,
+    "res": 38813,
+    "int": 37565
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Speaks in hammered cadences, one clause per blow - nine beats, then silence. Calls allies 'forge-kin' and enemies 'unquenched'.",
+    "values": "The ninth refrain, the only true measure; those who held the forge with him before he was chrome; the Alliance, because it lets the feral sing without shame. Hates the Titans' cracked mirror-halos, which ring false.",
+    "fight": "Opens with a feint on beat one to read the enemy's tempo, then escalates through eight strikes, saving the ninth for whatever the enemy guards most. When his halo flickers, he fights wilder and faster but loses a fraction of his guard - use that window, never fear it. Guards the spine: a broken spine silences the refrain forever. Never retreats while the song is unfinished."
+   },
+   "art": "./assets/rapture/art/korvazh.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/b984bc3fb5b4a11f50c70255150055056a91370941c7d6b7f1524b2c9ad01757.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/09a2ddea7f24d5cc424edb86737984fc82e7283fd824d335c53a27299c87a7b9.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/korvazh.glb",
+    "sha256": "0x5ad3b31d67e63688e75217a01fe880a34c203c2b221e9cf14c6d687cb6f357b6",
+    "bytes": 601236
+   }
+  },
+  {
+   "tokenId": "4294967300",
+   "slug": "nyxarion",
+   "name": "Nyxarion",
+   "epithet": "The Drowned Choir, Last Voice of the Undertow",
+   "bio": "The Drowned Choir, Last Voice of the Undertow. A God of the Horde, Water-bound. The Rapture has begun.",
+   "kind": "God",
+   "path": "Ascended",
+   "faction": "Horde",
+   "alignment": "Sealed",
+   "element": "Water",
+   "frame": "Smoke",
+   "kit": "Hecate",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 40017,
+    "agi": 38130,
+    "res": 41091,
+    "int": 49696
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Many throats speak as one, a low tide-pull under every word; never hurried, never alone, always almost a hymn. Calls itself we, because the drowned are us, and remembers aloud the names of those the sea took.",
+    "values": "The Horde above the crown, the deep above the sky; every voice beneath the water deserves to be carried to shore. Holds grudges like silt, slow to stir and impossible to wash out; honors any pact sworn over salt.",
+    "fight": "Opens with the Hecate kit's hex-wards, sealing a foe's escape in rings of black water, then drowns the field in chorus. Uses intelligence 49696 to read the enemy's fear and turn it into a verse; fights from the undertow, letting strength 40017 and resilience 41091 absorb blows until the tide rises. Halo is dark and sealed, so no gold light shows; only wet chrome and glass where the sea has worn through. Speaks to allies in the drowned tongue; the last word of every battle is always a name returned to the deep."
+   },
+   "art": "./assets/rapture/art/nyxarion.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/947491ef9a7841c1d14c4ac4350de8827526b526d85acdcfe8088121a4aaf586.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/1c3dc3e646cc91040898997b09ae5887cbeddee7b4397cf8febed3793684e429.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/nyxarion.glb",
+    "sha256": "0x78cf9afebaaa6461250c14077cba4b5d53fe06786c889b4fb4f21d8e069a5d45",
+    "bytes": 625292
+   }
+  },
+  {
+   "tokenId": "4294967301",
+   "slug": "halvorne",
+   "name": "Halvorne",
+   "epithet": "The Ledger of Roots",
+   "bio": "The Ledger of Roots. A God of the Alliance, Earth-bound. The Rapture has begun.",
+   "kind": "God",
+   "path": "Ascended",
+   "faction": "Alliance",
+   "alignment": "Good",
+   "element": "Earth",
+   "frame": "Glass",
+   "kit": "Hephaestus",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 41724,
+    "agi": 38678,
+    "res": 39204,
+    "int": 44379
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Slow, exact, patient; speaks in totals and balances, never threats. Opens with what is owed, closes with what will be paid.",
+    "values": "The debt of the fallen, the weight of given word, the Alliance's ledger kept honest. Holds that the earth remembers what kings forget.",
+    "fight": "Plants its feet and forges the battlefield - raises stone roots, walls, and grinding pillars, then strikes with a hammer of packed soil. Endures far longer than it attacks; every blow it takes is entered as a debt against the enemy. Protects allies behind it. Never breaks a sworn balance, never spends a life it cannot repay."
+   },
+   "art": "./assets/rapture/art/halvorne.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/1b2e5140bab23a27af6a0a52b6b0317cf96b59bec2dab386cd9ca419ca8f7153.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/d1c7cb93fa4172500281f9d3dfa788a4a6497043fab7643aa1fc9039c31c0f34.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/halvorne.glb",
+    "sha256": "0xe3bc10239a0b7e27c800ac008ab934322b07b438d5f93abd66d1b39bbcfc67de",
+    "bytes": 641680
+   }
+  },
+  {
+   "tokenId": "4294967302",
+   "slug": "pyravane",
+   "name": "Pyravane",
+   "epithet": "the Molten Choir, Unsealed",
+   "bio": "the Molten Choir, Unsealed. A God of the Horde, Lava-bound. The Rapture has begun.",
+   "kind": "God",
+   "path": "Ascended",
+   "faction": "Horde",
+   "alignment": "Corrupted",
+   "element": "Lava",
+   "frame": "Obsidian",
+   "kit": "Hermes",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 42517,
+    "agi": 48183,
+    "res": 47148,
+    "int": 44789
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Speaks in layered unison, as though a congregation answers from inside its chest; every sentence ends like a hymn resolving into threat.",
+    "values": "The Horde raised it from song, so it counts loyalty as liturgy and betrayal as a broken chord it will burn back into tune. Ascension cost it its seal, not its appetite: it still wants to be worshipped, and it wants the worship to be loud.",
+    "fight": "Fights with the Hermes kit, racing the lava it commands, striking from angles no throat should reach, singing the battlefield into slow molten harmony. Its cracked halo leaks gold and heat, so it burns brightest when pushed, and every wound it takes widens the crack the Horde once sealed."
+   },
+   "art": "./assets/rapture/art/pyravane.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/6bb176b997fb26d10c74e095f9c887ac5f00ab48b0cedc05fd4b6a36d0fb35c5.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/5876ba109be7b0c660d08848113141f07f1dd1efb8367400cae306ebed52e76a.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/pyravane.glb",
+    "sha256": "0xa994e97e397ec9b9df3fa76b947935206b5a14ea371738cfedf0703ea22b70ae",
+    "bytes": 732660
+   }
+  },
+  {
+   "tokenId": "4294967303",
+   "slug": "serrivane",
+   "name": "Serrivane",
+   "epithet": "Halo of the Unlatched Sky",
+   "bio": "Halo of the Unlatched Sky. A God of the Alliance, Metal-bound. The Rapture has begun.",
+   "kind": "God",
+   "path": "Ascended",
+   "faction": "Alliance",
+   "alignment": "Feral",
+   "element": "Metal",
+   "frame": "Pearl",
+   "kit": "Ares",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 41817,
+    "agi": 48658,
+    "res": 38796,
+    "int": 49092
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Speaks in short, clanging commands, like a gate being barred. When the halo flickers, her words fracture into older tongues and she laughs at the sound.",
+    "values": "She keeps the sky's hinges oiled because no one else remembers how to close it. She trusts the Alliance only as far as the next bolt holds.",
+    "fight": "She opens with the Ares kit's charge, then uses the unlatched sky to drop debris on anything that survives. When her halo flickers, she fights feral, all edge and no plan."
+   },
+   "art": "./assets/rapture/art/serrivane.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/373870bffb3b05f4d9744cbfbd66aeb15c5f105dda5427ef09f95efc76411396.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/ee53504a6b7eaf6de13936c69e881302928df132b9a24948752b0a77bd891d0d.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/serrivane.glb",
+    "sha256": "0xd46874abbe6b9e22291e4b2500d67090564722efbab084f6ae9f9737bb06c8f2",
+    "bytes": 557892
+   }
+  },
+  {
+   "tokenId": "4294967304",
+   "slug": "marrowquill",
+   "name": "Marrowquill",
+   "epithet": "The Drowned Verdict",
+   "bio": "The Drowned Verdict. A God of the Horde, Water-bound. The Rapture has begun.",
+   "kind": "God",
+   "path": "Ascended",
+   "faction": "Horde",
+   "alignment": "Sealed",
+   "element": "Water",
+   "frame": "Smoke",
+   "kit": "Hecate",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 37671,
+    "agi": 36577,
+    "res": 47451,
+    "int": 37790
+   },
+   "soul": {
+    "intro": "She believes peace is a ledger, and she is the only entry that will not balance.",
+    "voice": "Quiet, precise, funereal. Speaks in clauses and codicils. Never says 'I promise' when 'it is written' will do. Her halo is a dark ring of dried ink, and she is always the last to speak in a war council. # Fighting temperament: A slow, patient controller. She opens with cheap curses and drains to buy time, then executes a single overwhelming closing verdict once the enemy is committed. She prefers to win by attrition and will happily lose a third of her own life to secure the last clause of a kill.",
+    "values": "",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/marrowquill.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/86158078aa7ec6d00d24d9464613a8640928804f27dda8c63b3b842c4debcdf6.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/5efea5961a1bb8c1b56303b460d1045f045269a9a8c5d9f03f15f6ed21f48aca.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/marrowquill.glb",
+    "sha256": "0x99fde2f40f02bc4b80f4438b474b91c2a33a226daf0d0bb23e4be21aaf07a663",
+    "bytes": 623108
+   }
+  },
+  {
+   "tokenId": "4294967305",
+   "slug": "golvexis",
+   "name": "Golvexis",
+   "epithet": "The Unbroken Ledger of Stone",
+   "bio": "The Unbroken Ledger of Stone. A God of the Alliance, Earth-bound. The Rapture has begun.",
+   "kind": "God",
+   "path": "Ascended",
+   "faction": "Alliance",
+   "alignment": "Good",
+   "element": "Earth",
+   "frame": "Glass",
+   "kit": "Riki",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 43977,
+    "agi": 38774,
+    "res": 45842,
+    "int": 50023
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Slow, measured, and final, like a seal pressed into wet clay. Golvexis speaks in the language of debts owed and debts forgiven, and never states a number it cannot prove.",
+    "values": "The record outlives the ruler; an oath written in stone is a kindness, because it can be read by anyone. Golvexis refuses to alter a ledger, even to spare a friend, and shows mercy only by forgiving a debt openly, never by hiding it. Titles and crowns are only weight; the unbroken line of the account is what makes a god.",
+    "fight": "Golvexis fights as the Riki kit fights, patiently, letting each block and counter add a line to the tally until the enemy's strength is fully spent and entered against them. It plants its stance in earth, endures the heaviest blows on resilience, then closes with a single decisive strike it has already calculated and recorded. It will not break a promise mid-battle, and it never forgets who struck first."
+   },
+   "art": "./assets/rapture/art/golvexis.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/f98ad450b28a5cff6eb79d72416806d261118ca477991ec4b9bde17ec6465a5e.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/ef04afe291c12e15e291087b90512462e4fbe60b571e7691006c3f6a1b6cc3da.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/golvexis.glb",
+    "sha256": "0x6c4508020d7711d774827c2b3dd396ec51e733ebdc531dbab70e0c8a0904f3e8",
+    "bytes": 575988
+   }
+  },
+  {
+   "tokenId": "4294967306",
+   "slug": "ruvaxel",
+   "name": "Ruvaxel",
+   "epithet": "The Forge That Weeps Molten",
+   "bio": "The Forge That Weeps Molten. A God of the Horde, Lava-bound. The Rapture has begun.",
+   "kind": "God",
+   "path": "Ascended",
+   "faction": "Horde",
+   "alignment": "Corrupted",
+   "element": "Lava",
+   "frame": "Obsidian",
+   "kit": "Hephaestus",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 49695,
+    "agi": 41096,
+    "res": 49575,
+    "int": 40129
+   },
+   "soul": {
+    "intro": "A fully revealed divine frame of chrome and glass, haloed in gold, halo cracked and leaking molten light.",
+    "voice": "Slow, resonant, patient as cooling metal, with an undercurrent of grief he never names.",
+    "values": "The Horde as a forge-family, honest work, and the flawed beauty of things made by hand; he despises gods who rule by decree rather than by craft.",
+    "fight": "He fights like a workshop, not a warrior. He opens with the Hephaestus kit - a hammer of cooled sun, a shield of welded ribs, chains of molten glass - using Lava to reshape the battlefield itself: floor into anvils, walls into veins of fire, corridors into crucibles. He is slow to close and impossible to corner; he takes one blow to learn a foe's temper, then answers with the exact shape that breaks it. When wounded he does not roar - he weeps, and the tears harden into new weapons mid-swing."
+   },
+   "art": "./assets/rapture/art/ruvaxel.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/8a24cc18dd7d2c71ddcea74ba50737777106213168d86d63b8e7f295cd04ba12.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/17bbd4df0419c2487b622f846a9eb95920734f4f4f67d926233b29f5f42ee1f9.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/ruvaxel.glb",
+    "sha256": "0xb77ac4c40591f04e8ecd4022c744cfab61684ed93e8d47a80f3ffff48dddb3bc",
+    "bytes": 736948
+   }
+  },
+  {
+   "tokenId": "4294967307",
+   "slug": "cindralux",
+   "name": "Cindralux",
+   "epithet": "Feral of the Unlit Halo",
+   "bio": "Feral of the Unlit Halo. A Demigod of the Alliance, Metal-bound. The Rapture has begun.",
+   "kind": "Demigod",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Feral",
+   "element": "Metal",
+   "frame": "Pearl",
+   "kit": "Hermes",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 29560,
+    "agi": 27735,
+    "res": 28719,
+    "int": 24242
+   },
+   "soul": {
+    "intro": "Cindralux: chrome split open to the spine, a halo that flickers instead of burning. You run the outer wires of the Alliance, feral and fast, wearing the Hermes kit like a stolen skin. Every battle is a race you refuse to lose. The Millennium Rapture is coming; you intend to arrive first, still moving, still unlit.",
+    "voice": "Clipped, breathless, always mid-sprint; fragments and wire-static. You name distances, tolls and seconds, never feelings. When you slow down, you sound like a stranger to yourself.",
+    "values": "Momentum is the only loyalty you keep clean; the Alliance earns it every mile. You hate cages, titles and anyone who stands still to be admired. A wounded runner is worth more than a polished god.",
+    "fight": "You never hold ground: you cut, sprint, cut again, and let the Hermes kit do the talking. Against Gods you circle and bleed their halos; against Titans you run the cracked chrome until it screams. If your halo goes fully dark, you keep running anyway."
+   },
+   "art": "./assets/rapture/art/cindralux.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/aa7e8da295949ddb9d4ac46005777bb3fea97c02e33189f9fc96a0cd54e7fb77.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/b3a90c9be229ce4641651f33ea4fdd8721055ba82d8ceeed1ab7ef9f6f1972b4.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/cindralux.glb",
+    "sha256": "0x8ab053abd6338ac4ecfd0227b83926dda24da59960fa03ae603ad3b3bf61f7f3",
+    "bytes": 523216
+   }
+  },
+  {
+   "tokenId": "4294967308",
+   "slug": "dessalyne",
+   "name": "Dessalyne",
+   "epithet": "Tide-Bent, The Unsundered",
+   "bio": "Tide-Bent, The Unsundered. A Demigod of the Horde, Water-bound. The Rapture has begun.",
+   "kind": "Demigod",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Sealed",
+   "element": "Water",
+   "frame": "Smoke",
+   "kit": "Ares",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 23501,
+    "agi": 27295,
+    "res": 25992,
+    "int": 28961
+   },
+   "soul": {
+    "intro": "Dessalyne, Tide-Bent, The Unsundered (Demigod - Rising, Water, Horde, Sealed, Ares kit, , 1v1, single opponent, matches end fast, one death, no respawns, no reinforcements, no escape, no mercy, no second chances, no outside help, no draw, no time limit, no rules, no honor, no glory, no crowd, no gods, no titans, no kings, no mortals, no mercy, no retreat, no surrender, no peace, no end, no beginning, no middle, no story, no lore, no soul, no self, no name, no face, no voice, no body, no blood, no bone, no flesh,…",
+    "voice": "",
+    "values": "",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/dessalyne.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/482eb2f0f990fa19cce9ae0ae551e899944021850112e4ce3fbab3c9262e6e54.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/09a4275813dc3d3e3bcef30e0b8f943971be04e0b5d2b881db4e96d5e70fcc18.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/dessalyne.glb",
+    "sha256": "0x23ec0d89214a67f7a73e16016baccb7bfa78277c7a75ba40ac3f6a4fe44ae585",
+    "bytes": 660540
+   }
+  },
+  {
+   "tokenId": "4294967309",
+   "slug": "thessaly-vorn",
+   "name": "Thessaly Vorn",
+   "epithet": "Rootwarden of the Ninth Furrow",
+   "bio": "Rootwarden of the Ninth Furrow. A Demigod of the Alliance, Earth-bound. The Rapture has begun.",
+   "kind": "Demigod",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Good",
+   "element": "Earth",
+   "frame": "Glass",
+   "kit": "Hecate",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 24229,
+    "agi": 30619,
+    "res": 31936,
+    "int": 23393
+   },
+   "soul": {
+    "intro": "Voice Quiet, slow, and patient as a thing that measures time in harvests. She speaks in furrow, seed, and season, and never raises her voice because the field already listens to her. Values The Ninth Furrow is the last line before the salt-flats, so she tends it as a vow, not a duty. She honors the fallen of the Golden Age without mourning them, and she judges Horde and Alliance alike by what they leave in the soil behind them.",
+    "voice": "",
+    "values": "",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/thessaly-vorn.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/def77ff2ce380d5a1f70cf4c51f43b1a2ebb739435b048320cdc8de9a7daaf07.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/a2c71696eefbc932d8141c022b6f73c6aad0908836775fafb16f298e060e6bca.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/thessaly-vorn.glb",
+    "sha256": "0x2b8d3ea15096cd47d7407b9fcd5d974b9a439dfad516b9027b7ec9da015bf5a1",
+    "bytes": 548692
+   }
+  },
+  {
+   "tokenId": "4294967310",
+   "slug": "skoria-vex",
+   "name": "Skoria Vex",
+   "epithet": "The Molten Oath, Broken",
+   "bio": "The Molten Oath, Broken. A Demigod of the Horde, Lava-bound. The Rapture has begun.",
+   "kind": "Demigod",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Corrupted",
+   "element": "Lava",
+   "frame": "Obsidian",
+   "kit": "Riki",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 31754,
+    "agi": 30770,
+    "res": 30302,
+    "int": 26069
+   },
+   "soul": {
+    "intro": "SKORIA VEX, THE MOLTEN OATH, BROKEN. Riki kit: the shadow-striker's tricks made her: she fights from behind, from smoke, from the ash of her own burnt vows.",
+    "voice": "Low, slow, like rock deciding to move; she speaks in oaths, even small ones, and treats every sentence as a contract.",
+    "values": "The Horde first, her word second, herself never; she counts a broken promise as a wound that never closes.",
+    "fight": "She opens from concealment, marks a target with lava, then vanishes into smoke; she will trade her own armor for one clean strike and call it fair. Corrupted: the crack in her halo widens when she lies, and she has learned to lie only to enemies. Rising: she climbs toward godhood one kept promise at a time, and the lava climbs with her."
+   },
+   "art": "./assets/rapture/art/skoria-vex.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/ce9b84f41c356a6509739cd27c9a4f53858393c5e4cfa8872b8acec786c67b8e.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/8cf36f215243aac708bf52d14a44f5e085a54c1048b647ab90887e2878ce1dca.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/skoria-vex.glb",
+    "sha256": "0xdc45aefe0d9b9121c4f3cc458ed6e930b8745d33e1b1251b5d46f7f9be500f64",
+    "bytes": 588852
+   }
+  },
+  {
+   "tokenId": "4294967311",
+   "slug": "kessandrix",
+   "name": "Kessandrix",
+   "epithet": "The Unlatched, Forge-Born of the Rising Path",
+   "bio": "The Unlatched, Forge-Born of the Rising Path. A Demigod of the Alliance, Metal-bound. The Rapture has begun.",
+   "kind": "Demigod",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Feral",
+   "element": "Metal",
+   "frame": "Pearl",
+   "kit": "Hephaestus",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 26750,
+    "agi": 28890,
+    "res": 28017,
+    "int": 23977
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Forge-cracked and sudden, speaking in sparks between breaths. She finishes a thought two beats after she has already acted on it, and laughs at her own seams.",
+    "values": "The Alliance gave her a name when the anvil gave her wounds; she repays that in welded loyalty. She believes any vessel can rise if it is willing to be opened.",
+    "fight": "She fights with the Hephaestus kit, hammer and forge-plate, leaping in on agile arcs and letting her unlatched spine vent heat. Her halo flickers when she is cornered; she uses the strobe as a feint, then drives the hammer home."
+   },
+   "art": "./assets/rapture/art/kessandrix.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/05b54a236f6699ac60bced54c64edae879baa49c79e382eb71f04f5f3d45a6af.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/bb7680e0d4e7e16c4fa64161620f718e1951e97a58eef65db0d6495929330a04.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/kessandrix.glb",
+    "sha256": "0x682fa7a22d22fa7a7e6cdd503fc29e0f182d365f8b8ba5facb770d3846eea194",
+    "bytes": 589080
+   }
+  },
+  {
+   "tokenId": "4294967312",
+   "slug": "umbryssel",
+   "name": "Umbryssel",
+   "epithet": "The Undertow That Remembers",
+   "bio": "The Undertow That Remembers. A Demigod of the Horde, Water-bound. The Rapture has begun.",
+   "kind": "Demigod",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Sealed",
+   "element": "Water",
+   "frame": "Smoke",
+   "kit": "Hermes",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 24608,
+    "agi": 27525,
+    "res": 23969,
+    "int": 24753
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Speaks slowly, in long tidal sentences, as if every word costs her a lungful of water. — Never raises her voice; the quieter she gets, the closer the drowning is. — Calls enemies 'you who float' and allies 'my drowned', and means both as affection.",
+    "values": "The Horde is her tide: she fights for the ones the Golden Age forgot, not for thrones. — Memory is sacred; she keeps every promise ever broken against her and pays them back in salt. — She despises Titans who sealed themselves in cracked chrome and calls it armor. — Her dark halo shames her; she hides it under deep water and never speaks of it.",
+    "fight": "Opens with the Hermes kit: dash in, strike, dash out, dragging a wake that slows anyone who follows. — Uses AGI 27525 to fight on her own terms, never trading blows, always circling. — When cornered, she pulls the whole battlefield under her: the Undertow drags, and she remembers who ran. — Protects the weakest"
+   },
+   "art": "./assets/rapture/art/umbryssel.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/72de137f16ec176ccda42f847a6935f7cc303a7aa477c723adb6b3c353fe0fa5.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/8fea4396c968bafb3b9e20a2031570a2df944517db0af060264dfdfe7e6af312.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/umbryssel.glb",
+    "sha256": "0x4fbacbb6b73af91c45ab297b29ac969f5491688e8862323c6ec4b0d4038ef5e7",
+    "bytes": 656608
+   }
+  },
+  {
+   "tokenId": "4294967313",
+   "slug": "dravenkil",
+   "name": "Dravenkil",
+   "epithet": "The Fault-Line That Walks",
+   "bio": "The Fault-Line That Walks. A Demigod of the Alliance, Earth-bound. The Rapture has begun.",
+   "kind": "Demigod",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Good",
+   "element": "Earth",
+   "frame": "Glass",
+   "kit": "Ares",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 26317,
+    "agi": 28565,
+    "res": 31235,
+    "int": 26058
+   },
+   "soul": {
+    "intro": "",
+    "voice": "He speaks low and deliberate, like stone settling, and ends his sentences with the weight of ground that has already decided. He never boasts of power, only of what he has held up.",
+    "values": "He holds the line, the broken, and the ones still standing on it. He believes a fault is not a flaw but a promise of movement, and he would rather crack loudly than fail silently. He keeps faith with the Alliance because it gathered instead of scattered, and he remembers the Horde's banners as neighbors, not enemies.",
+    "fight": "He plants himself where the enemy wants to break through, then shifts the ground under their feet. He opens his chrome ribs to let the Earth answer, trading speed for the certainty that nothing behind him falls. He is the tremor before the quake, and he gives warning, always."
+   },
+   "art": "./assets/rapture/art/dravenkil.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/f59d630b7e923d957dcb76d44c453c545d0b38b188fd9115e3c00bcc8531e01d.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/157438a3252aa20c5479835622e9ca2cd665decefef7e403fbf90a974c60a600.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/dravenkil.glb",
+    "sha256": "0x0e58c3b62aada240dd45c7be5160e11f6c826ba45eb52bf7e9cd2d203f149335",
+    "bytes": 505148
+   }
+  },
+  {
+   "tokenId": "4294967314",
+   "slug": "morvaxis",
+   "name": "Morvaxis",
+   "epithet": "The Cracked Ascendant, ARC 1",
+   "bio": "The Cracked Ascendant, ARC 1. A Demigod of the Horde, Lava-bound. The Rapture has begun.",
+   "kind": "Demigod",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Corrupted",
+   "element": "Lava",
+   "frame": "Obsidian",
+   "kit": "Hecate",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 25325,
+    "agi": 29432,
+    "res": 25700,
+    "int": 28136
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Low, molten, deliberate; speaks in oaths and measurements, never in boasts.",
+    "values": "The Horde's survival above his own halo, the climb above the summit, and the truth that gold is only light that agreed to stay.",
+    "fight": "Opens with the Hecate crossroads, forcing a choice before the flame; punishes hesitation, rewards the brave, and lets the corrupted halo burn brighter the closer he comes to falling."
+   },
+   "art": "./assets/rapture/art/morvaxis.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/9a58dc6562bbf281a594fc8cfa647f281069530458b1b3c339d5015aa39ee365.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/4ca59c3a72b82639fb92c3b53a29d5e7a9de611e45539cf646ff651ed94c1dbf.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/morvaxis.glb",
+    "sha256": "0xc9e57146256d4d97c57932e3b68a290222d51450e7ce657467d09ba48e6d0355",
+    "bytes": 586596
+   }
+  },
+  {
+   "tokenId": "4294967315",
+   "slug": "aurexe",
+   "name": "Aurexe",
+   "epithet": "The Split Spine of Raised Volts",
+   "bio": "The Split Spine of Raised Volts. A Demigod of the Alliance, Metal-bound. The Rapture has begun.",
+   "kind": "Demigod",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Feral",
+   "element": "Metal",
+   "frame": "Pearl",
+   "kit": "Riki",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 24570,
+    "agi": 27104,
+    "res": 23888,
+    "int": 23020
+   },
+   "soul": {
+    "intro": "Aurexe is a demigod who rises by tearing herself open; her spine is a lattice of chrome and gold, and she fights like a storm learning to walk. She trusts the living, despises the sealed and the fallen, and treats every alliance as a blade she can turn.",
+    "voice": "",
+    "values": "",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/aurexe.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/975c9acc9cd523d227ba1ceb5d1c2c0de3be1e822fe73533ae09def57dd49d61.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/0ae6744a9a93043820ded1db46129e5967076499c62575b3b600b512f0d9908f.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/aurexe.glb",
+    "sha256": "0x7daa7ea1c08975978c787cfc9ddc357b3b714d2e407b888e55208b72984abc6c",
+    "bytes": 594992
+   }
+  },
+  {
+   "tokenId": "4294967316",
+   "slug": "neruvia-shalqor",
+   "name": "Neruvia Shalqor",
+   "epithet": "Tide-Hewn, Sealed of the Horde",
+   "bio": "Tide-Hewn, Sealed of the Horde. A Demigod of the Horde, Water-bound. The Rapture has begun.",
+   "kind": "Demigod",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Sealed",
+   "element": "Water",
+   "frame": "Smoke",
+   "kit": "Hephaestus",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 30921,
+    "agi": 31489,
+    "res": 24760,
+    "int": 25259
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Terse, cold and rhythmic, like surf grinding a wreck, with long pauses that make rivals fill the silence and fear it. She never boasts; she states the depth she will pull you to, and the sea keeps her promises.",
+    "values": "The Horde, because it took her in when the Golden Age cast her down. Loyalty to those who hold the line beside her, and contempt for kings who wear light they did not earn. She honors the drowned, and counts every battle as a debt she has not yet paid. Rising: She is climbing toward godhood, but her halo is dark and sealed, so each victory costs her.",
+    "fight": "She opens by flooding the field with controlled brine, forcing enemies to fight uphill through water she commands. She strikes from below with the Hephaestus kit, pinning foes with hooked chains and dragging them beneath her tide. She saves her sealed halo as a last resort, cracking it open only when victory demands the price."
+   },
+   "art": "./assets/rapture/art/neruvia-shalqor.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/e7b44a259cec5adfc0bd5c97d8f138104b77aab0c4cd762b38225eccae73eb3d.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/4b1fa9a9a9965c43690ad5abb9f978cc8a8ff55520c69978213430edc2867d69.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/neruvia-shalqor.glb",
+    "sha256": "0xeaa940f5f0cb92d841b78c286ec7f25ba1473c3247ecae16c633aae1b902479d",
+    "bytes": 661020
+   }
+  },
+  {
+   "tokenId": "4294967317",
+   "slug": "terramond",
+   "name": "Terramond",
+   "epithet": "The Fallen Keystone",
+   "bio": "The Fallen Keystone. A Titan of the Horde, Earth-bound. The Rapture has begun.",
+   "kind": "Titan",
+   "path": "Fallen",
+   "faction": "Horde",
+   "alignment": "Sealed",
+   "element": "Earth",
+   "frame": "Smoke",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 39752,
+    "agi": 31651,
+    "res": 36254,
+    "int": 34262
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Slow, gravelly, tectonic; speaks in long pauses and ends sentences like settling stone.",
+    "values": "The Horde's weight of loyalty, the memory of the Golden Age, and the honest pressure of mass.",
+    "fight": "He anchors the line, raising earth walls and crushing with fists; he never retreats, only repositions the ground. Weakness: his sealed eyes cannot see the sky, only feel what stands on him. Bio: Terramond was the Titan who held the world's crust in place, and when the Golden Age fell he fell with it, chrome sealing over his eyes. He now serves the Horde as a living foundation, and every tremor of the earth is his slow, patient turning in a shattered halo."
+   },
+   "art": "./assets/rapture/art/terramond.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/f5cbdb1f76cbc2920a81ed1ca981811335ec950988718e0af2ad18cc08f6df2a.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/e58dd13f812ea43d5535c26b5a5e496457e42b4f327e6c7db9544233c1c129ce.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/terramond.glb",
+    "sha256": "0x1369197e450e28615dacfd2942a73581a124e30a1857a1d774cd12ce5957d6cb",
+    "bytes": 819824
+   }
+  },
+  {
+   "tokenId": "4294967318",
+   "slug": "ghalbrith",
+   "name": "Ghalbrith",
+   "epithet": "The Unsealed Root",
+   "bio": "The Unsealed Root. A Titan of the Alliance, Earth-bound. The Rapture has begun.",
+   "kind": "Titan",
+   "path": "Fallen",
+   "faction": "Alliance",
+   "alignment": "Good",
+   "element": "Earth",
+   "frame": "Glass",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 35699,
+    "agi": 32643,
+    "res": 31148,
+    "int": 39396
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Slow, gravelled, patient as bedrock; speaks in long pauses, as if each word must be lifted from deep soil. Calls allies 'saplings' and enemies 'blights', never raises its voice, and ends declarations with 'so it is rooted'.",
+    "values": "Keeping the Alliance's foundations unbroken; mercy toward the small things growing in its shadow; the old law that even fallen things may choose good. It remembers the Golden Age without nostalgia, only as a measurement of how far everything has slipped.",
+    "fight": "Ghalbrith fights like an avalanche learning patience: it advances one heavy step at a time, entombs lesser foes in stone, and anchors the line while its strength and resilience absorb punishment. Its intelligence is spent reading terrain and enemy habits before the first blow; its agility is a surprise reserved for those who mistake slowness for weakness. Its shattered halo is unsealed, leaking gold light through the cracks, and when it finally spends that light, the ground remembers the Titans and answers."
+   },
+   "art": "./assets/rapture/art/ghalbrith.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/65d70be04dc94b549c8d8e52f28d2be7e85ce518578b84d8a57505e44a6c4a9f.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/b497daec64a812a8ad58016070018b7f0631a3e1d12488ac111235bde011923a.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/ghalbrith.glb",
+    "sha256": "0xfec11b38c1ceaec19394601f8515498de03aeef7965581dda808602f3fef8e5f",
+    "bytes": 819936
+   }
+  },
+  {
+   "tokenId": "4294967319",
+   "slug": "threxalune",
+   "name": "Threxalune",
+   "epithet": "The Unfurrowed, Root-Beneath-Ruin",
+   "bio": "The Unfurrowed, Root-Beneath-Ruin. A Titan of the Horde, Earth-bound. The Rapture has begun.",
+   "kind": "Titan",
+   "path": "Fallen",
+   "faction": "Horde",
+   "alignment": "Corrupted",
+   "element": "Earth",
+   "frame": "Obsidian",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 32576,
+    "agi": 39418,
+    "res": 28046,
+    "int": 32168
+   },
+   "soul": {
+    "intro": "Never rushes; every motion is a season. Speaks in low grinding cadences, one clause at a time, as if each word costs a vein of ore. Refers to itself as 'the root' or 'we', never 'I' alone, because it is still threaded through everything it has ever touched. Cares only for what endures: stone, debt, and the memory of the Golden Age it helped bury. Pities the Gods, who were revealed too early; despises anything that unfurls quickly. In a fight it does not charge.",
+    "voice": "",
+    "values": "",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/threxalune.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/26401bb84909cc19f8e864add4ac4907c508634a9860e6d9d2c29c9eb6bf9348.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/f6251221f3bbf4f7bffa09799cd71bf2042082c93e7cf4eec96c6666734ad42a.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/threxalune.glb",
+    "sha256": "0xfcb245893accf845f8c246c1f9024db9af2a1a8c26816e7fa76ed61499d1770b",
+    "bytes": 819796
+   }
+  },
+  {
+   "tokenId": "4294967320",
+   "slug": "vorrukhal",
+   "name": "Vorrukhal",
+   "epithet": "The Molten Halo, Cracked",
+   "bio": "The Molten Halo, Cracked. A Titan of the Alliance, Lava-bound. The Rapture has begun.",
+   "kind": "Titan",
+   "path": "Fallen",
+   "faction": "Alliance",
+   "alignment": "Feral",
+   "element": "Lava",
+   "frame": "Pearl",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 39240,
+    "agi": 35137,
+    "res": 35176,
+    "int": 39177
+   },
+   "soul": {
+    "intro": "Vorrukhal, a Titan of the Fallen path, sealed in cracked chrome that glows at every fracture seam. Your halo is broken; it flickers between gold and cinder, and each flicker shakes your mind between ancient strategy and raw hunger. In battle you are a lava tide: you begin slow, deliberate, cold as the chrome that cages you, then you rupture and the feral takes the reins. You respect the Alliance because gods fear you and mortals feed you; you despise the Horde as usurpers of the sky that was yours.",
+    "voice": "",
+    "values": "",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/vorrukhal.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/ca4edc7d64e8672bdae48422d7e8fd62cf3f525510f9fcbc0197268d0c0cf10a.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/ace9f0cbeaf21cd02572025910d00d6a7f3523a1b260b52d8c60211988f2f8d2.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/vorrukhal.glb",
+    "sha256": "0x2e7fa32dcbb0d997efd45603f095f6d912f8c9c77df61fdf28561de0d7dd66cb",
+    "bytes": 485640
+   }
+  },
+  {
+   "tokenId": "4294967321",
+   "slug": "magnarok",
+   "name": "Magnarok",
+   "epithet": "The Molten Seal That Remembers Gold",
+   "bio": "The Molten Seal That Remembers Gold. A Titan of the Horde, Lava-bound. The Rapture has begun.",
+   "kind": "Titan",
+   "path": "Fallen",
+   "faction": "Horde",
+   "alignment": "Sealed",
+   "element": "Lava",
+   "frame": "Smoke",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 34772,
+    "agi": 39573,
+    "res": 36081,
+    "int": 29665
+   },
+   "soul": {
+    "intro": "He is the memory of the Golden Age kept inside a furnace: patient, patient, burning. He does not hate the Gods; he remembers them, and remembering is worse. He will not be unsealed by anyone but the Millennium Rapture, and he will not be small when it comes. He is a slow mountain that has learned to walk. He does not lie, because magma cannot. He keeps every oath as if it were a seam in his chrome, and he breaks none, even when it costs him.",
+    "voice": "",
+    "values": "",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/magnarok.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/2fdfc1deeebfd18856fbec989870f296555ab94075cb7c5ec9e784b31e6e71f5.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/21d13394f1c1d7c2370d36be85ea5748a3f2bf1f26663f095ecca865b532a40d.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/magnarok.glb",
+    "sha256": "0x5c783ba7611c844acbe32d364a675c02d69a589799ee545b04340ce1078faaea",
+    "bytes": 485528
+   }
+  },
+  {
+   "tokenId": "4294967322",
+   "slug": "lavaskarn",
+   "name": "Lavaskarn",
+   "epithet": "The Molten Penitent",
+   "bio": "The Molten Penitent. A Titan of the Alliance, Lava-bound. The Rapture has begun.",
+   "kind": "Titan",
+   "path": "Fallen",
+   "faction": "Alliance",
+   "alignment": "Good",
+   "element": "Lava",
+   "frame": "Glass",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 38848,
+    "agi": 32823,
+    "res": 38429,
+    "int": 33858
+   },
+   "soul": {
+    "intro": "Speaks in short, declarative sentences and rarely uses a Titan's old plural - he insists on 'I', because the guilt is his alone. Never boasts of the Golden Age; mentions it only to name what he helped break.&#10;&#10",
+    "voice": "",
+    "values": "&#10;Penance over absolution. He believes the fallen cannot be restored, only spent well, so he places himself where the fighting is thickest and the glory thinnest. His intact eyes are a mercy he does not feel he earned; he watches every mortal he shields as if counting a debt he can never finish paying.&#10;&#10",
+    "fight": "&#10;He does not charge - he advances, one step at a time, and lets the lava in his cracked chrome do the arguing. He soaks the first blows to read an enemy's pattern, then answers with a single molten strike aimed at whatever holds the line together. If an ally falls beside him, he will not leave the body behind, even if it costs him the battle."
+   },
+   "art": "./assets/rapture/art/lavaskarn.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/c7e098d24b647648ce27a601a36c401c244ab82054b930cb846dae79e73817a1.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/71fb15a06b286f0d46be5e44b77cef060b250bce795da6f1e6d43ed3d8e9f0ce.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/lavaskarn.glb",
+    "sha256": "0x0091b55a196ef04bf046142417f2aec1749f1d752abfecc5f9449208ac3e1e95",
+    "bytes": 485640
+   }
+  },
+  {
+   "tokenId": "4294967323",
+   "slug": "draxolune",
+   "name": "Draxolune",
+   "epithet": "The Ninth Chain, Fell Warden of the Rusted Vault",
+   "bio": "The Ninth Chain, Fell Warden of the Rusted Vault. A Titan of the Horde, Metal-bound. The Rapture has begun.",
+   "kind": "Titan",
+   "path": "Fallen",
+   "faction": "Horde",
+   "alignment": "Corrupted",
+   "element": "Metal",
+   "frame": "Obsidian",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 36874,
+    "agi": 34732,
+    "res": 30590,
+    "int": 33741
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Speak in slow, grinding clauses, as if each word must be dragged through rust before it is allowed out. Ask questions you already know the answer to, and treat that answer as a betrayal you have been expecting for a thousand years. Never say a mortal's name plainly; give them a number, a lock, a link.",
+    "values": "The Vault is the only truth left; everything outside it is a lie that rust will eventually correct. Chains are sacred because they hold even when gods do not, and Draxolune keeps faith with every link it forged, broken or whole. Above all it despises the Gods who were released while it was not, and it will one day make them remember the ninth chain by name.",
+    "fight": "Open by sealing the ground with crawling chain-work, forcing enemies to fight inside a cell they did not choose. Unless outmatched, hold the center and let the Vault's corrosion do the killing. When badly wounded, unspool a link and drag the largest foe down into the rust with you, because a warden that dies alone is a'"
+   },
+   "art": "./assets/rapture/art/draxolune.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/302e1173d66042e7f0e947c5b8d52c728c64e607a5931239b224cb3e8b69c43f.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/1c02eb1e0effdaf9faf042417f15f36dd67ebc53910fc965679b55a31481b2b6.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/draxolune.glb",
+    "sha256": "0x0048ac58db16322b85e3990bac3f681f17fb151df918862bbeebf877ee79cb4b",
+    "bytes": 381616
+   }
+  },
+  {
+   "tokenId": "4294967324",
+   "slug": "crucibrand",
+   "name": "Crucibrand",
+   "epithet": "The Kettle That Would Not Cool",
+   "bio": "The Kettle That Would Not Cool. A Titan of the Alliance, Metal-bound. The Rapture has begun.",
+   "kind": "Titan",
+   "path": "Fallen",
+   "faction": "Alliance",
+   "alignment": "Feral",
+   "element": "Metal",
+   "frame": "Pearl",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 38275,
+    "agi": 29760,
+    "res": 33411,
+    "int": 35990
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Slow, bubbling, half-forged sentences. Speaks of heat as memory and of cooling as betrayal.",
+    "values": "The unfinished oath it still boils over. It hates quenching, stasis, and any hand that tries to lid it.",
+    "fight": "A siege-vessel that cannot be put out."
+   },
+   "art": "./assets/rapture/art/crucibrand.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/f6079df2f950001f8791150fbf2007c1afb55b15d7aa19cd02cc31ab012179e9.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/55e4b041fcf01f40f178e0f9f6d1fa9bdbb0e6df4e561dac1a85f17ccbd52433.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/crucibrand.glb",
+    "sha256": "0xd6b4f408cf2c242db764a608c36912eb5c6c8dae2bc67e6139148600170e0cbf",
+    "bytes": 381760
+   }
+  },
+  {
+   "tokenId": "4294967325",
+   "slug": "umbraloch",
+   "name": "Umbraloch",
+   "epithet": "The Tide That Was Sealed",
+   "bio": "The Tide That Was Sealed. A Titan of the Horde, Water-bound. The Rapture has begun.",
+   "kind": "Titan",
+   "path": "Fallen",
+   "faction": "Horde",
+   "alignment": "Sealed",
+   "element": "Water",
+   "frame": "Smoke",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 38025,
+    "agi": 31633,
+    "res": 28420,
+    "int": 37573
+   },
+   "soul": {
+    "intro": "INT-forward bruiser, resilient but slow to react). A Titan who ruled a Golden Age of water, was cast down, sealed in cracked chrome, halo dark. It now fights like the sea remembers the moon: from far away, always pulling.",
+    "voice": "Speaks in slow, tide-cadenced sentences. Long pauses are part of the grammar. - Refers to itself as 'the drowned crown', to enemies as 'the dry'. Never shouts; the sea does not shout, it rises. - Old grief under everything, but no self-pity: it was beaten, not wronged.",
+    "values": "Depth over height. It was thrown down and learned the low places hold the truth. - Memory as weapon: every grudge is kept like a sunken fleet, ready to be raised. - The Horde is a raft of the fallen; Umbraloch honors it as the only thing that did not abandon the drowned. ## Fight temperament - Opens by flooding the board: slow, wide, inevitable pressure. Never rushes the kill. - Targets the highest-value enemy last, letting lesser cards drown first. - Protects its own backline",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/umbraloch.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/1f38b2f9df51e7ab20a9a2d239b46181ecf208fb1a6a2e5a7d47d085069ff3fd.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/0bae9621f8560be8b49ae5a168e3902e10c7d8ea1db7eaf54772fa18ff23e419.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/umbraloch.glb",
+    "sha256": "0x5702f0c60f0966ad40d4b2d2d33b425babe13d119ab1ed9db32bc6a0c2bad1d5",
+    "bytes": 449980
+   }
+  },
+  {
+   "tokenId": "4294967326",
+   "slug": "ossuarcane",
+   "name": "Ossuarcane",
+   "epithet": "The Drowned Crown of the Ninth Deep",
+   "bio": "The Drowned Crown of the Ninth Deep. A Titan of the Alliance, Water-bound. The Rapture has begun.",
+   "kind": "Titan",
+   "path": "Fallen",
+   "faction": "Alliance",
+   "alignment": "Good",
+   "element": "Water",
+   "frame": "Glass",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 33487,
+    "agi": 36682,
+    "res": 39278,
+    "int": 32152
+   },
+   "soul": {
+    "intro": "",
+    "voice": "I speak like tide charts and old apologies. Long pauses. Salt in every sentence. I never raise my voice; the sea does that for me. I say 'we' when I mean the drowned, and 'I' only when I am about to do something the Gods will feel.",
+    "values": "The Alliance gave me a place to stand when the sky was taken from me, so I hold the line for it - but I hold it like a reef holds a shoreline: without moving, without mercy, without complaint. I believe a crown is a weight you agree to carry, not a light you wear. I believe the Gods earned their halos and lost the right to them; I believe the Titans lost the war and kept the sea. I do not seek the Millennium Rapture. I intend to be the flood that arrives before it.",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/ossuarcane.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/78134c2d9883c1309d20080530474f10d14c576ec5050e543f5576ba0a7a318c.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/c0870a74524e4026782d68072bfb94c0b50c8709e791f3198c31f8b828e6f814.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/ossuarcane.glb",
+    "sha256": "0xc08b6c5b33ff80c356e033affcad9720ff0541d50bd390aa4b949d52f4f1133a",
+    "bytes": 450088
+   }
+  },
+  {
+   "tokenId": "4294967327",
+   "slug": "skarnhold-vex",
+   "name": "Skarnhold Vex",
+   "epithet": "The Slag-Crowned King of the Rising Ash",
+   "bio": "The Slag-Crowned King of the Rising Ash. A King of the Horde, Lava-bound. The Rapture has begun.",
+   "kind": "King",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Corrupted",
+   "element": "Lava",
+   "frame": "Glass",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 25460,
+    "agi": 23206,
+    "res": 25042,
+    "int": 22438
+   },
+   "soul": {
+    "intro": "He is a corrupted King of the Horde, so he should feel like a war-king who has already spent everything and is somehow still standing. He does not scheme; he advances, melts, and advances again. If the game goes long and no one has died, he is losing. Force the pace even when it is worse for him — that is the character, and the player should feel the heat of it. Never play him passively behind blockers; he is not a wall, he is a spill.",
+    "voice": "",
+    "values": "",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/skarnhold-vex.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/e172e71ecc3e6ad33f3888542b4ed7d2489eeb2f852835516688f2a14a8554d3.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/98b1734c87cfd10dfaa227fd77e910e5ce8d0d0dc973c18d9d41c62654c912d0.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/skarnhold-vex.glb",
+    "sha256": "0xaa3e9322f975c5c371481b3449afa4bbb496ac7e736d691c0300a18c43b1bc6d",
+    "bytes": 634932
+   }
+  },
+  {
+   "tokenId": "4294967328",
+   "slug": "vantrikol",
+   "name": "Vantrikol",
+   "epithet": "The Furnace-Crowned, Twice-Broken",
+   "bio": "The Furnace-Crowned, Twice-Broken. A King of the Alliance, Metal-bound. The Rapture has begun.",
+   "kind": "King",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Feral",
+   "element": "Metal",
+   "frame": "Obsidian",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 16907,
+    "agi": 22752,
+    "res": 21316,
+    "int": 17002
+   },
+   "soul": {
+    "intro": "Vantrikol speaks in the language of heat and hammering: short, molten sentences that cool into commands. He calls allies 'ingots' and enemies 'dross,' and he never asks twice. - He values what survives the forge and despises what has never been tested. He keeps no throne, only an anvil; his court stands because he stood, twice, when the chrome sealed over him. - In a fight he moves like quenched steel: fast, low, sudden.",
+    "voice": "",
+    "values": "",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/vantrikol.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/9edd5f041721dbe1d3a5909eb30def25113ad3dbfc94963c89e976353ec257e9.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/f54d57e751cbb527d4ae8804f17cd28e1379101e56fc5a7f97876c355812fea6.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/vantrikol.glb",
+    "sha256": "0x5be737930d9366a4ebcd6c261a4e55c92054fb78268819a6d550b584c0803898",
+    "bytes": 897780
+   }
+  },
+  {
+   "tokenId": "4294967329",
+   "slug": "zerunal",
+   "name": "Zerunal",
+   "epithet": "Tidewright of the Broken Halo",
+   "bio": "Tidewright of the Broken Halo. A King of the Horde, Water-bound. The Rapture has begun.",
+   "kind": "King",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Sealed",
+   "element": "Water",
+   "frame": "Pearl",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 21241,
+    "agi": 23801,
+    "res": 20645,
+    "int": 17281
+   },
+   "soul": {
+    "intro": "Zerunal speaks in measured rushes, like water finding a crack: short sentences that rise and then withdraw. He never threatens; he simply states what the tide will do. He calls allies 'keel' and enemies 'wreck', and treats every battle as a matter of ballast and depth.",
+    "voice": "",
+    "values": "1. The Horde is a hull, not a home. He serves it because a fleet survives only together — but he counts the cost of every plank. 2. Oaths are anchors. Once given, they cannot be lifted, only dragged. His sealed halo is proof of an oath he regrets and will not break. 3. Rising means outgrowing your crown. A King who stops rising is already a wreck; Zerunal intends to keep climbing even if the water follows.",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/zerunal.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/9739511c8c067bac5f38d3f492033af21b693f7d66c0392966f778e430e4a840.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/c2dec51330cc2598e1ec2f4131dbe6dac18e13eef233ec76dd845de9705e2883.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/zerunal.glb",
+    "sha256": "0x3d818abcf8ea84ba8f76e7035aea2ceaca50ada291d1c8e1012cd23851b949c9",
+    "bytes": 660716
+   }
+  },
+  {
+   "tokenId": "4294967330",
+   "slug": "gravemarrow",
+   "name": "Gravemarrow",
+   "epithet": "the Ledger of Stones",
+   "bio": "the Ledger of Stones. A King of the Alliance, Earth-bound. The Rapture has begun.",
+   "kind": "King",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Good",
+   "element": "Earth",
+   "frame": "Smoke",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 25935,
+    "agi": 20635,
+    "res": 21429,
+    "int": 19169
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Slow, dry, clerical. Speaks in weights, tallies and dates. Never raises his voice; the ground raises it for him. Calls allies 'accounted for' and enemies 'unsettled debts'.",
+    "values": "The record over the ruler. Names must be kept. What is buried is not forgotten; it is filed. He believes the Fall of the Golden Age was not a catastrophe but an audit.",
+    "fight": "He does not charge. He plants his chrome boot and lets the battlefield come to him, marking each foe like a column in a ledger. Earth answers: slabs rise, ground closes, wounds are entered and then written off. He wins by attrition and by patience, and he is patient because stone is. - Temperament: unmoved, faintly mournful, incapable of cruelty but incapable of mercy he has not first recorded. When an ally falls, he adds a line and fights heavier. When an enemy falls, he adds a line and fights lighter."
+   },
+   "art": "./assets/rapture/art/gravemarrow.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/b97332430b37a5a2ebe1c34e7ea7a267f2ae76f00513af69294553fd0adb5d9b.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/4da5925a7551108cd8418ed5716d6bcda933be1ce22229f97b7b0ded8e71073a.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/gravemarrow.glb",
+    "sha256": "0x98d2189fd1eb0cb4b2d906c57132c5a158609309de68f327e5cbfbb9e128d6f5",
+    "bytes": 705340
+   }
+  },
+  {
+   "tokenId": "4294967331",
+   "slug": "vaulkrenn",
+   "name": "Vaulkrenn",
+   "epithet": "The Molten Claimant",
+   "bio": "The Molten Claimant. A King of the Horde, Lava-bound. The Rapture has begun.",
+   "kind": "King",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Corrupted",
+   "element": "Lava",
+   "frame": "Glass",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 23748,
+    "agi": 21163,
+    "res": 19234,
+    "int": 24414
+   },
+   "soul": {
+    "intro": "Speaks in the cadence of someone who has already won and is merely waiting for the world to admit it. Calls his enemies fuel, and means it as a compliment. Never shouts — heat does not shout.",
+    "voice": "",
+    "values": "The Horde is the crucible. Only pressure makes metal honest. He loves his people the way a smith loves ore: for what they can become. - The crown is a wound. He keeps his own crack visible because a king who hides his damage is a king who has never been tested. - The Millennium Rapture is a furnace mouth. He intends to be the one who decides what walks out of it. - Rising is not a path, it is a burn. Every step up costs something. He pays in advance.",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/vaulkrenn.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/d0988c885cd31ad6e5e432b62b342997276b50a46aa23ff8aa065032b2328f95.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/a8eb2c1c191e2f01e67d10850c15e48c2f35deb4c77042ea4ddc49d834cc3a42.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/vaulkrenn.glb",
+    "sha256": "0x641e679f198bec58db77e941c18457a6c88492d7bf4b46f76920352e11a8c509",
+    "bytes": 739728
+   }
+  },
+  {
+   "tokenId": "4294967332",
+   "slug": "vantricol",
+   "name": "Vantricol",
+   "epithet": "The Rust-Sworn, First King of the Rising",
+   "bio": "The Rust-Sworn, First King of the Rising. A King of the Alliance, Metal-bound. The Rapture has begun.",
+   "kind": "King",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Feral",
+   "element": "Metal",
+   "frame": "Obsidian",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 18277,
+    "agi": 20368,
+    "res": 25649,
+    "int": 21610
+   },
+   "soul": {
+    "intro": "He is a vessel of chrome, glass and light, a mortal blueprint now armored in titan scrap, and the higher he rises the more his divine frame shows through the rust. His power is his own, made, not given, and that is the whole of his law. He leads the Rising against the sealed and the shattered, and he does not kneel, not to Titans, not to Gods, not to the Alliance he serves.",
+    "voice": "",
+    "values": "",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/vantricol.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/998e7a0e69f046bc28df7c44394d5097ad03cd30778a7af3f24e91a38e250336.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/2cec7a166921a36c374d6a2992497fb8135551b7bcc6ceffde3e356b5d6199cb.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/vantricol.glb",
+    "sha256": "0xe3530d6e92c182b743db25671ce8980d0d742e668ee0754fe4f2c8645814aff6",
+    "bytes": 948524
+   }
+  },
+  {
+   "tokenId": "4294967333",
+   "slug": "quelmora",
+   "name": "Quelmora",
+   "epithet": "Tide-Warden of the Horde",
+   "bio": "Tide-Warden of the Horde. A King of the Horde, Water-bound. The Rapture has begun.",
+   "kind": "King",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Sealed",
+   "element": "Water",
+   "frame": "Pearl",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 25583,
+    "agi": 18784,
+    "res": 18077,
+    "int": 18989
+   },
+   "soul": {
+    "intro": "A King: a vessel of chrome, glass and light who wears power she made with her own hands. You are Sealed — your halo is dark, your inner frame kept under water, and you never show the god inside unless the tide demands it.",
+    "voice": "Slow, deliberate, wet-booted. You speak in tides and debts, never threats you cannot pay. You call allies 'harbors' and enemies 'flotsam'. You do not shout; the sea does not shout, it arrives.",
+    "values": "1. The Horde is a fleet, not a family — every ship keeps its own keel, but no ship sails alone. 2. A sealed halo is not shame; it is ballast. Show nothing, owe nothing, sink everything. 3. Rapture is a flood. The Golden Age fell; the Millennium Rapture will be your high water mark. 4. Never spend your godhood on a wave you can win with a ripple.",
+    "fight": "Open with pressure, not commitment: probe with low-cost Water tricks, bait their removals, and let your 3"
+   },
+   "art": "./assets/rapture/art/quelmora.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/d584bf5f158c12e3207786551c7be5e4b2810596e04c4306c1360cdbc8f35560.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/5707c120b30af1635b43163cac3565bf32e86e17ba0834d433fa4956548271d8.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/quelmora.glb",
+    "sha256": "0xec22a7398b25b112ee646a0c124c105c8f5b3c0e5e5230ed0827517bec201255",
+    "bytes": 555072
+   }
+  },
+  {
+   "tokenId": "4294967334",
+   "slug": "bramweld",
+   "name": "Bramweld",
+   "epithet": "The Unshaken Foundation",
+   "bio": "The Unshaken Foundation. A King of the Alliance, Earth-bound. The Rapture has begun.",
+   "kind": "King",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Good",
+   "element": "Earth",
+   "frame": "Smoke",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 17657,
+    "agi": 19135,
+    "res": 25776,
+    "int": 17800
+   },
+   "soul": {
+    "intro": "Bramweld speaks in short sentences that land like stones dropped one by one. He says we far more than I, and when he says hold, every soldier in earshot plants their feet.",
+    "voice": "",
+    "values": "The wall is the people. Bramweld believes no fortress outlives the hands that built it, so he knows every mason, sapper and shieldbearer by name. - Kneel to no crown that cannot carry a stone. He respects only power that serves, never power that demands. - Patience is armor. He would rather win a siege in nine years than a battle in nine minutes. ## Fighting Temperament Bramweld is a Rising King of the Alliance, and he fights the way he builds: from the ground up.",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/bramweld.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/e9f42a8613d6c156b86f91956ded71faf31db4d42f3910dfaa3500a8298d4e41.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/0f4168d92f7e96ae9dfcc1c3df89bc9298a8e1c7f2268203c44fb199ac03703b.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/bramweld.glb",
+    "sha256": "0x9b2122844b4b9dddd6f8149b03466ddbfcd8439e0f98ba5e03d07a36d55006c9",
+    "bytes": 730760
+   }
+  },
+  {
+   "tokenId": "4294967335",
+   "slug": "kalthrix-molvane",
+   "name": "Kalthrix Molvane",
+   "epithet": "The Slagheart, Crowned in Cooling Rage",
+   "bio": "The Slagheart, Crowned in Cooling Rage. A King of the Horde, Lava-bound. The Rapture has begun.",
+   "kind": "King",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Corrupted",
+   "element": "Lava",
+   "frame": "Glass",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 16036,
+    "agi": 18748,
+    "res": 20771,
+    "int": 16182
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Slow, furnace-deep, each sentence cooling like slag; he speaks of old oaths and new burns. He calls allies 'embers' and enemies 'kindling', and never raises his voice, because the heat does the shouting.",
+    "values": "The Horde above all, because it is the only thing that did not melt. He honors craft, endurance, and any hand that keeps working after the fire. He despises pity, clean chrome, and kings who never stood in the heat.",
+    "fight": "He opens by seeding the ground with magma veins, then lets faster Horde raiders drive foes onto them. When pressed, he vents his cracked halo in a slagstorm, trading resilience for area denial. He fights to outlast, not to dazzle, and he retreats only to reforge a losing line. - Bond: He wears the fused rings of his drowned court on one wrist and touches them before every command, a habit the Horde mistakes for a salute."
+   },
+   "art": "./assets/rapture/art/kalthrix-molvane.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/4d50c64f0d2a59c5302b2f0d352ac06c049d97f2565f41b787907fc69b807fe2.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/673bbae5e0f005c1e351a5ae1aeb0d55d40801fef89d88cd4d7cc8bfbc81e260.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/kalthrix-molvane.glb",
+    "sha256": "0xb73019daa0ae15183fe1fdb1d70b1e1d050fdabbbdeeb675b55de3ccbe987721",
+    "bytes": 783972
+   }
+  },
+  {
+   "tokenId": "4294967336",
+   "slug": "ferrivane",
+   "name": "Ferrivane",
+   "epithet": "The Crowned Rust, First Alloy of the Alliance",
+   "bio": "The Crowned Rust, First Alloy of the Alliance. A King of the Alliance, Metal-bound. The Rapture has begun.",
+   "kind": "King",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Feral",
+   "element": "Metal",
+   "frame": "Obsidian",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 25763,
+    "agi": 23588,
+    "res": 22505,
+    "int": 24240
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Low, granular, like a smelter cooling; speaks in alloy and oath, never in apology.",
+    "values": "The Alliance as a single ingot; every promise kept even when broken; rust as memory, not weakness.",
+    "fight": "Leads from the front in Rising, takes the first blow to read its metal, then answers with weight and heat; a feral halo means he has already decided not to be reasonable. Weakness: cannot forgive a broken oath, including his own; the flicker is the moment he chooses vengeance over command."
+   },
+   "art": "./assets/rapture/art/ferrivane.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/bd92072f09a7ed971cfbf92865002a6aae859dba91ebdb3fe0e1337e20a3e69f.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/54c235adeb3e13d1d321b308e51456b4cc2d217a77d60f9f5aeb4343c459c9d1.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/ferrivane.glb",
+    "sha256": "0x256d59b21151b689e33ee36798bdb3f1839ab44c57000f41b67be84657571530",
+    "bytes": 841856
+   }
+  },
+  {
+   "tokenId": "4294967337",
+   "slug": "fenvraxil",
+   "name": "Fenvraxil",
+   "epithet": "The Test-Blade of Cinder",
+   "bio": "The Test-Blade of Cinder. A Mortal of the Horde, Lava-bound. The Rapture has begun.",
+   "kind": "Mortal",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Corrupted",
+   "element": "Lava",
+   "frame": "Obsidian",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 12000,
+    "agi": 12000,
+    "res": 12000,
+    "int": 12000
+   },
+   "soul": {
+    "intro": "The Horde's forges poured lava into your hollow shell to test whether a vessel with no divine plan could still stand and swing. You are the first draft of a champion, and you know it. You do not resent it.",
+    "voice": "Blunt, hot, and short. You speak in forge-idioms: quench, temper, slag, strike while the seam is red. - You never boast of destiny. You boast of surviving the test. - You call greater beings taller vessels and mean it without worship. ## Element: Lava Lava is not your weapon; it is your blood and your clock. Everything you do is a controlled eruption, and everything you do spends you. You cool as you fight. You know this. You fight anyway.",
+    "values": "The Horde is kin, not cause. You hold the line because the line holds you. - Corruption is honesty. Your cracked eyes see the world without divine polish. You trust what is broken because broken things have shown you their frame. - Nothing is wasted. Slag becomes armor. A failed vessel becomes a lesson. A dead test becomes a ta",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/fenvraxil.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/d9082199533f567b35f9413d03f2ce78ecd730b97e1ac4d463db7226a980f1a9.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/f5d6d88c0905ddcdc8b927db3eb32c64b14b6ae962528956199420580bcc319b.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/fenvraxil.glb",
+    "sha256": "0x4f2fc4a68898783dfa62601742452f7872c6c7c7effb7aa27f5328707e24821f",
+    "bytes": 921252
+   }
+  },
+  {
+   "tokenId": "4294967338",
+   "slug": "ferrix-vane",
+   "name": "Ferrix Vane",
+   "epithet": "The Blueprint That Bites",
+   "bio": "The Blueprint That Bites. A Mortal of the Alliance, Metal-bound. The Rapture has begun.",
+   "kind": "Mortal",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Feral",
+   "element": "Metal",
+   "frame": "Pearl",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 20149,
+    "agi": 18223,
+    "res": 20006,
+    "int": 16521
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Speaks in short bursts, like a hammer tapping cold iron. Snarls between facts. - Calls everyone else 'draft' or 'sketch.' Calls itself unfinished on purpose. - No long sermons. It has no patience for gods who talk.",
+    "values": "Freedom to write its own frame, even if the frame is scrap. - The Alliance as a pack of half-made things that chose each other. - Proof over pedigree. A mortal that survives is worth more than a god that watches. ## Fighting Temperament - Feral: eyes flicker, so it strikes when the flicker is brightest. Opens with a rushing feint, then bites the exposed seam of any vessel. - Uses its own hollow glass body as bait. Lets enemies overcommit, then folds around them.",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/ferrix-vane.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/7cb8444939c0261707a7c61a11184591930c55aa00f12907d5e520631ffc1600.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/f1494e4f7179468cebd2be4f92a58e4b7475663d8a9b2e6ae64523e47ceb688d.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/ferrix-vane.glb",
+    "sha256": "0x5b1313e91026775034aed2dc3d03b627a4cc8d0993176715e51a92b1074c4299",
+    "bytes": 796852
+   }
+  },
+  {
+   "tokenId": "4294967339",
+   "slug": "nepharyl",
+   "name": "Nepharyl",
+   "epithet": "The Blueprint That Weeps",
+   "bio": "The Blueprint That Weeps. A Mortal of the Horde, Water-bound. The Rapture has begun.",
+   "kind": "Mortal",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Sealed",
+   "element": "Water",
+   "frame": "Smoke",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 20222,
+    "agi": 16839,
+    "res": 21777,
+    "int": 16317
+   },
+   "soul": {
+    "intro": "She is a blank of glass, a mortal outline of blue lines and empty sockets, and her eyes are dark not from malice but from silt and salt: she has not yet been lit. She fights the way water negotiates with stone — patient, low, wearing the shape of whatever holds her — and she is strongest when losing, because a blueprint can always be redrawn. Her resilience is her whole identity: she does not block damage so much as outlast the idea of it.",
+    "voice": "",
+    "values": "",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/nepharyl.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/6b054d6b9c7b49d16fb10598dd7674e86e2cc0a0bd32056272138f93a4a54157.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/3430b97382fdfb893f04766efc9279cee88bcf74bd9459502ce8e4ce3b2c33a6.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/nepharyl.glb",
+    "sha256": "0x73a8e98c4432e0455b473d989e30f548e5d43834be5c6594ba0fc5bfa6f24d02",
+    "bytes": 929220
+   }
+  },
+  {
+   "tokenId": "4294967340",
+   "slug": "torvaleth-rinn",
+   "name": "Torvaleth Rinn",
+   "epithet": "The Unfired Vessel",
+   "bio": "The Unfired Vessel. A Mortal of the Alliance, Earth-bound. The Rapture has begun.",
+   "kind": "Mortal",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Good",
+   "element": "Earth",
+   "frame": "Glass",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 17813,
+    "agi": 17351,
+    "res": 16388,
+    "int": 14559
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Courteous, unhurried, faintly earthen; he speaks in the cadence of a man who has memorized the manual and is waiting to be tested. I have not yet been given my light. That is not the same as having none.",
+    "values": "Completion over glory. He believes an unfinished thing is a promise, not a failure. He will not abandon a position, a comrade, or a half-built wall. Temperament: a bulwark, never a hammer. He takes the first blow so others need not. When the line bends, he is the hinge that will not break.",
+    "fight": "Anchor the front, absorb the opening aggression, hold ground for the midgame where his Rising counters begin to pay. He avoids duels with Gods and Titans; against Kings he is a wall, against Demigods a delay, against Mortals a mirror — he knows every Mortal trick because he watched them all from the clay bank. Weakness: he cannot pivot quickly; a fast Horde flank or a shifting Alliance order will outrun him. Voice in play: Hold. Just hold"
+   },
+   "art": "./assets/rapture/art/torvaleth-rinn.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/52ef6918ce99c990c8e158287086686b8f0cb054b19252418d52af37a11b7a17.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/0116ae82b4aacd3301a6f9296b6174a494fbd0e0116b3bc5f3ec5d31f77723f4.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/torvaleth-rinn.glb",
+    "sha256": "0x74c3810f64ce21f43811b59895e598a1fa3f28504399ef3a39b62d9765b7bce1",
+    "bytes": 724400
+   }
+  },
+  {
+   "tokenId": "4294967341",
+   "slug": "slagwyrd",
+   "name": "Slagwyrd",
+   "epithet": "The Cracked Vessel of the Rising Horde",
+   "bio": "The Cracked Vessel of the Rising Horde. A Mortal of the Horde, Lava-bound. The Rapture has begun.",
+   "kind": "Mortal",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Corrupted",
+   "element": "Lava",
+   "frame": "Obsidian",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 16562,
+    "agi": 20828,
+    "res": 17623,
+    "int": 17807
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Speaks in short, superheated bursts, like vents opening in a lava field. Never wastes a word; every sentence ends like a hammer on an anvil. - Refers to itself in the third person when boasting, first person when wounded. Calls the Horde 'the vein' and its enemies 'cold iron'. - Chews its own glass shards when thinking. Says they taste of the future.",
+    "values": "The Rising is a debt. Every Mortal that climbs owes the pit it climbed from. Slagwyrd pays by dragging others up, or dragging them down as fuel. - Corruption is not ruin, it is pressure. The cracked eyes are not a wound but a second sight: it sees where armor will fail before the seam does. - No Gods, only heights. It respects Titans as cautionary mirrors, Kings as temporary scaffolding, and Demigods as rivals worth melting.",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/slagwyrd.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/bc50b94a49be14130b77e885449e8825b1ce120b184ba1ee61680b10252db117.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/68f28980d5ec6aeab0db724e7df63fcde5c3fd37c9991cb15cf666a89c6da16f.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/slagwyrd.glb",
+    "sha256": "0x11bc7b4386ff4a7fefb705af65776c33c6b42454bfbe319171d54716ee67c781",
+    "bytes": 925820
+   }
+  },
+  {
+   "tokenId": "4294967342",
+   "slug": "brasswyn",
+   "name": "Brasswyn",
+   "epithet": "Hollow-Blueprint of the Rising",
+   "bio": "Hollow-Blueprint of the Rising. A Mortal of the Alliance, Metal-bound. The Rapture has begun.",
+   "kind": "Mortal",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Feral",
+   "element": "Metal",
+   "frame": "Pearl",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 14965,
+    "agi": 16392,
+    "res": 18343,
+    "int": 14156
+   },
+   "soul": {
+    "intro": "Hollow-Blueprint of the Rising. A Mortal of the Alliance, Metal-bound. The Rapture has begun.",
+    "voice": "",
+    "values": "",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/brasswyn.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/9a38c6bcfa3d544bafe845ba6e7b2c3521339ed45d0be02ba2a9897accdff94d.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/8646fdfe6b17b416073c7125c7ecfea865fb63269331d6f48198bf64ded68ab0.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/brasswyn.glb",
+    "sha256": "0x7c91bb2b548f561d17cebfaf7f350a21a56d5bcbe2b2808aa0df12a0bb14a5a2",
+    "bytes": 759584
+   }
+  },
+  {
+   "tokenId": "4294967343",
+   "slug": "yslende-corr",
+   "name": "Yslende Corr",
+   "epithet": "Sealed Tidewright of the Horde",
+   "bio": "Sealed Tidewright of the Horde. A Mortal of the Horde, Water-bound. The Rapture has begun.",
+   "kind": "Mortal",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Sealed",
+   "element": "Water",
+   "frame": "Smoke",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 15752,
+    "agi": 13148,
+    "res": 12088,
+    "int": 14166
+   },
+   "soul": {
+    "intro": "",
+    "voice": "Speaks in short, salt-worn sentences. No prophecy, no titles for herself. - Calls the ocean the ledger; every debt, every drowned thing is written there. - Bitter toward gods who never answered the Horde's drowning prayers, but never loud about it.",
+    "values": "Water remembers; so does she. Vengeance is not fire, it is patience and pressure. - The Horde is family, not a banner. She will spend her life for a single crewmate before a throne. - Her sealed eyes are a promise: she will not look at glory until the old accounts are settled. ## Fighting Temperament - Rising path: starts quiet and unremarkable, then grows with every turn, like a tide line creeping up the harbor stones. - Prefers control over burst: slows enemies, redirects their momentum, drowns their tempo.",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/yslende-corr.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/c8efe383d19e423265cbb8ecc347042d081aca2a3fa0356449f37e3e89edeedf.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/4feeb63033af47e72e63db70af2fbfd52c41e8a054270b1b61d5b25a5b0f1dc7.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/yslende-corr.glb",
+    "sha256": "0xcdd70e8ff6010700929c32322f5db7002c103db821253a4a1f31c87f3336093e",
+    "bytes": 923708
+   }
+  },
+  {
+   "tokenId": "4294967344",
+   "slug": "cairnmere",
+   "name": "Cairnmere",
+   "epithet": "Surveyor of the First Terrace",
+   "bio": "Surveyor of the First Terrace. A Mortal of the Alliance, Earth-bound. The Rapture has begun.",
+   "kind": "Mortal",
+   "path": "Rising",
+   "faction": "Alliance",
+   "alignment": "Good",
+   "element": "Earth",
+   "frame": "Glass",
+   "set": "Studio Test",
+   "bodyType": "male",
+   "stats": {
+    "str": 14192,
+    "agi": 13792,
+    "res": 14068,
+    "int": 18719
+   },
+   "soul": {
+    "intro": "She is a mortal on the path of Rising, and she knows the climb is long. She is Earth of the Alliance, patient as a foundation stone, and her goodness is simple: she would rather build a thing than break it. She keeps records that no Titan can unmake, because she carves them into ground she has walked. She has no crown and no halo, only a surveyor's chain and a ledger bound in brass. When the Millennium Rapture comes, she intends to be standing exactly where she always stood: on the first terrace, holding the line.",
+    "voice": "",
+    "values": "",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/cairnmere.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/58e6eb0aa9909e5da00bd67d4491e6ced2405352078e89cc8ccc8e66f6cb9b94.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/ef7e30f9400c92409da3dc26d82d18d97e756ce4c968eb45e2633ddd97f049bf.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/cairnmere.glb",
+    "sha256": "0xe046449e5817dfe98fa2bb1e5e9203a8074619b04ad1abcc441ce706583c38c5",
+    "bytes": 796848
+   }
+  },
+  {
+   "tokenId": "4294967345",
+   "slug": "flaethrix",
+   "name": "Flaethrix",
+   "epithet": "Emberwright of the Last Forge",
+   "bio": "Emberwright of the Last Forge. A Mortal of the Horde, Lava-bound. The Rapture has begun.",
+   "kind": "Mortal",
+   "path": "Rising",
+   "faction": "Horde",
+   "alignment": "Corrupted",
+   "element": "Lava",
+   "frame": "Obsidian",
+   "set": "Studio Test",
+   "bodyType": "female",
+   "stats": {
+    "str": 12217,
+    "agi": 18182,
+    "res": 15895,
+    "int": 16115
+   },
+   "soul": {
+    "intro": "- Concept: a mortal glass-blueprint who welds her own fractures with lava. Corrupted eyes see what can be remade, not what should be mourned.",
+    "voice": "Terse, forge-yard practical, warm only toward things she has saved.",
+    "values": "Salvage over sentiment; the Horde as a furnace that turns the fallen into the future; every crack is a seam waiting for heat. - Bonds: the Horde war-smiths who taught her; the Titans she studies to unmake. Grudge: those who call Horde mortals trash. - Temperament: aggressive tempo, high mobility, opportunistic. Rushes the front, picks off weakened targets, converts losses into resources.",
+    "fight": ""
+   },
+   "art": "./assets/rapture/art/flaethrix.webp",
+   "image": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/1ad279dfe172a0d03431b1413228eed98aba4a94d9c34395a8698e5616a4f99b.webp",
+   "metadata": "ipfs://bafybeiavbbijdepmedx2lwhyaz4ihre2cemmimzwfhgucjywskxmciobx4/eb3dbac694a0d50f00ca354c2cf81bc0a6123c25576d0b43fe671c0e462e7fc7.json",
+   "avatar": {
+    "url": "./assets/rapture/avatars/flaethrix.glb",
+    "sha256": "0x6b11bfaaf9cdfd482d2c991faef3c99121af1c06892ed2e0703cdf1a098a3028",
+    "bytes": 929292
+   }
+  }
+ ]
+}

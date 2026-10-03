@@ -1,0 +1,23 @@
+{
+  "network": "liteforge",
+  "chainId": 4441,
+  "rpc": "https://liteforge.rpc.caldera.xyz/http",
+  "explorer": "https://liteforge.explorer.caldera.xyz",
+  "note": "Public addresses of the Rapture ARC 1 Studio Test collection (redeployed 2026-09-30). PackShop is added here after launch.",
+  "collection": {
+    "setId": 1,
+    "admin": "0x869790B388299FA1E73B8Ad3f188d1f10d4087b5",
+    "RaptureCards": "0x138F1A2E48111aFD0Af865F421F05Fd1B0A72721",
+    "CardDesign": "0x75Fa6d1a80dea2Bf266f32bF5084497607e6A8C1",
+    "StudioMinter": "0x52Ad7703dB1dab3Cc75F29d5281b5b815d493b94",
+    "SetRegistry": "0xDA43053721c25450DF148646B1e25Eb5b0D7af4a",
+    "RaptureMetadata": "0x045C93549F4cB88c0A94386e673E6D47436CaBD4",
+    "ERC6699Registry": "0xBeEe6cFAD12346124eb3d51b716fce00B7f11949"
+  },
+  "packShop": {
+    "address": "0x3E39be64A4dE8752E45067d6Bbe4787b4D272B0c",
+    "tx": "0x6f28f35715363b992fd52e07cb0a99cdc7b0059fcec7a208d8f597fa7e35dd46",
+    "deployedAt": "2026-10-01T18:06:42.235Z",
+    "owner": "0x869790B388299FA1E73B8Ad3f188d1f10d4087b5"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "contract": "contracts/PackShop.sol:PackShop",
+  "address": "0x3E39be64A4dE8752E45067d6Bbe4787b4D272B0c",
+  "chainId": 4441,
+  "compiler": "v0.8.28+commit.7893614a",
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "viaIR": true,
+    "evmVersion": "shanghai",
+    "metadata": null
+  },
+  "license": "Apache-2.0",
+  "files": [
+    {
+      "path": "@openzeppelin/contracts/access/Ownable.sol",
+      "bytes": 3102
+    },
+    {
+      "path": "@openzeppelin/contracts/access/Ownable2Step.sol",
+      "bytes": 1993
+    },
+    {
+      "path": "@openzeppelin/contracts/utils/Context.sol",
+      "bytes": 963
+    },
+    {
+      "path": "@openzeppelin/contracts/utils/Pausable.sol",
+      "bytes": 2830
+    },
+    {
+      "path": "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+      "bytes": 3240
+    },
+    {
+      "path": "contracts/PackShop.sol",
+      "bytes": 21053
+    },
+    {
+      "path": "contracts/vendor/rapture/interfaces/Rapture.sol",
+      "bytes": 5934
+    }
+  ],
+  "bytecode": {
+    "runtimeBytes": 13108,
+    "matchesCompiled": "exact (immutables masked, metadata hash included)",
+    "immutables": {
+      "570": "0x00000000000000000000000052ad7703db1dab3cc75f29d5281b5b815d493b94",
+      "573": "0x0000000000000000000000000000000000000000000000000000000000000005"
+    }
+  },
+  "constructorArgs": {
+    "hex": "00000000000000000000000052ad7703db1dab3cc75f29d5281b5b815d493b94000000000000000000000000869790b388299fa1e73b8ad3f188d1f10d4087b500000000000000000000000000000000000000000000000000038d7ea4c680000000000000000000000000000000000000000000000000000000000000000005000000000000000000000000000000000000000000000000000000000000001e00000000000000000000000000000000000000000000000000000000000000190000000000000000000000000000000000000000000000000000000000000014000000000000000000000000000000000000000000000000000000000000000f000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000003",
+    "matchesCreationTransactionInput": true
+  },
+  "checkedAt": "2026-10-01T19:19:04.796Z"
+}
