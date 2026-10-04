@@ -26,6 +26,18 @@
       "port": 8771
     },
     {
+      "name": "forge-release",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8774",
+        "--directory",
+        "web"
+      ],
+      "port": 8774
+    },
+    {
       "name": "aeris-web",
       "runtimeExecutable": "python",
       "runtimeArgs": [

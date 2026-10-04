@@ -50,9 +50,14 @@ sign-in button. (This first project has no database; the NPC deployment below do
   team, which added `forge.litvm.games` to its own `forge-hall` project (next section); it serves the site over HTTPS (DNS and TLS
   checked).
 
-**Last deployed 2026-10-04** to both projects (forge.litvm.games / forge-hall-theta.vercel.app and forge-hall.vercel.app): the p18
-hall (THE FORGE plaque, caduceus badge, live metals, night lighting, torches; painted mode removed), the title screen, and the
-folder's uncommitted card/shop edits at the time. `/archive/` is in `.vercelignore` (its blends/bakes broke the 100 MB file cap).
+**Last deployed 2026-10-05** to both projects (forge.litvm.games / forge-hall-theta.vercel.app and forge-hall.vercel.app) from
+git commit `c672202` on `main` (this folder is a git repo since 2026-10-04): live metals over Blender's bake, gilded cards and the
+legendary spotlight, the Open Pack cost line, frame stats hidden in production, the Oracle (terms + trial) and the title-screen
+frame fix. Checked live: new files served, `/test/` not deployed, `/api/health` db:true on the NPC hosts (db:false on the first
+project, which has no database). The NPC deploy used the persistent `newprontera` login in
+`C:/Users/strodano/AppData/Local/vercel-npc` (shared with the Pickle Brawl site: never log it out). Deploy from a clean tree
+(`git status`): the CLI uploads the working folder, not the commit. `/archive/` is in `.vercelignore` (its blends/bakes broke
+the 100 MB file cap).
 
 ## Second deployment: NPC team (2026-10-02)
 
