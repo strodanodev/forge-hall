@@ -45,6 +45,7 @@ export class CardPanel {
       <div class="cp-traits">
         <span class="cp-el"><i></i>${esc(card.element)}</span><span>${esc(card.alignment)}</span><span>${esc(card.faction)}</span>
         <span>${esc(card.frame)} frame</span>${card.kit ? `<span>${esc(card.kit)} kit</span>` : ""}
+        ${card.gilded ? `<span style="color:#3b2606;background:linear-gradient(135deg,#fbe8a6,#c9952f 45%,#ffe7a0);border-color:#ffe7a0;font-weight:700">\u2726 Gilded</span>` : ""}
       </div>
       <div class="cp-stats">${stat("STR", "str")}${stat("AGI", "agi")}${stat("RES", "res")}${stat("INT", "int")}</div>
       <div class="cp-lore">${lore || `<p>${esc(card.bio)}</p>`}</div>

@@ -17,6 +17,12 @@ const WEIGHTS = { common: 50, rare: 28, epic: 15, legendary: 7 };   // per slot;
 // neon = element (Art Direction); gold stays divinity-only, so it never colours an element
 export const ELEMENT = { Water: "#22E4FF", Lava: "#FF2E88", Earth: "#3DFFA2", Metal: "#B9A7FF" };
 export const PACK_SIZE = 5;
+// GILDED (mockup, not on chain yet): a rare cosmetic variant any Kind can roll, independent of tier. It is a FINISH
+// (gold filigree corners, gold-leaf flecks, a moving shimmer in the pack), never the gold frame, which stays the
+// legendary signal. Rolled per pull here, standing in for a roll at mint. ?gilded=all forces it, ?gilded=0 disables.
+export const GILD_ODDS = 0.03;
+const GILD_MODE = new URLSearchParams(globalThis.location?.search ?? "").get("gilded");
+const rollGilded = () => GILD_MODE === "all" ? true : GILD_MODE === "0" ? false : Math.random() < GILD_ODDS;
 
 /** Load the snapshot and shape each card for the pack (rarity/title/side are what the sequence and NPC read). */
 export async function loadCollection(url = "./assets/rapture/cards.json") {
@@ -51,7 +57,9 @@ export function rollPack(collection) {
     const opts = byRarity(r).filter((c) => !cards.includes(c));
     cards.push(opts[Math.floor(Math.random() * opts.length)]);
   }
-  return cards.sort((a, b) => RANK[a.rarity] - RANK[b.rarity]); // crescendo: best card flips last
+  // crescendo: best card flips last (a gilded card outranks its plain twin of the same tier)
+  return cards.map((c) => ({ ...c, gilded: rollGilded() }))
+    .sort((a, b) => RANK[a.rarity] - RANK[b.rarity] || a.gilded - b.gilded);
 }
 
 // ------------------------------------------------------------------ card face
@@ -195,15 +203,88 @@ export async function drawFace(card) {
     g.fillText(t, tx, 1245); tx += g.measureText(t).width;
   });
 
+  if (card.gilded) gild(g, card);
+
   // set line
   g.font = `600 22px ${SANS}`; g.fillStyle = "#7d8190";
-  g.fillText("RAPTURE  ·  ARC 1  ·  STUDIO TEST", 80, 1318);
-  g.textAlign = "right"; g.fillText(`#${String(card.serial + 1).padStart(3, "0")}`, 920, 1318);
+  const inset = card.gilded ? 34 : 0;                 // clear the filigree in the bottom corners
+  g.fillText("RAPTURE  ·  ARC 1  ·  STUDIO TEST", 80 + inset, 1318);
+  g.textAlign = "right"; g.fillText(`#${String(card.serial + 1).padStart(3, "0")}`, 920 - inset, 1318);
 
   const t = new THREE.CanvasTexture(c);
   t.colorSpace = THREE.SRGBColorSpace;
   t.anisotropy = 4;
   return t;
+}
+
+// ------------------------------------------------------------------ gilded finish
+function goldStroke(g, x0, y0, x1, y1) {
+  const gr = g.createLinearGradient(x0, y0, x1, y1);
+  for (const [t, col] of GOLD) gr.addColorStop(t, col);
+  return gr;
+}
+
+/** Gold-leaf flecks over the art, filigree on all four corners and a GILDED tag under the Kind pill. */
+function gild(g, card) {
+  const { x, y, w, h, r } = INNER;
+  // flecks: deterministic per card, denser toward the edges so the face stays clear
+  let seed = Number(BigInt(card.tokenId) % 2147483647n) || 7;
+  const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  g.save(); rr(g, x, y, w, h, r); g.clip();
+  for (let i = 0; i < 260; i++) {
+    const fx = x + rnd() * w, fy = y + rnd() * h;
+    const edge = Math.min(fx - x, x + w - fx, fy - y, y + h - fy) / 260;
+    if (rnd() < Math.min(0.85, edge)) continue;
+    const s = 1.5 + rnd() * 4.5;
+    g.fillStyle = `rgba(${235 + rnd() * 20 | 0},${185 + rnd() * 40 | 0},${90 + rnd() * 50 | 0},${0.35 + rnd() * 0.5})`;
+    g.save(); g.translate(fx, fy); g.rotate(rnd() * Math.PI);
+    g.fillRect(-s / 2, -s / 4, s, s / 2);            // leaf flakes are torn slivers, not dots
+    g.restore();
+  }
+  // a warm gold inner edge to the art
+  g.lineWidth = 26; g.strokeStyle = "rgba(214,160,60,.28)"; rr(g, x, y, w, h, r); g.stroke();
+  g.restore();
+  // filigree: one ornament, mirrored into each corner
+  for (const [sx, sy] of [[1, 1], [-1, 1], [1, -1], [-1, -1]]) {
+    g.save();
+    g.translate(sx > 0 ? x + 6 : x + w - 6, sy > 0 ? y + 6 : y + h - 6);
+    g.scale(sx, sy);
+    filigree(g);
+    g.restore();
+  }
+  // tag
+  g.font = `700 24px ${SANS}`;
+  const label = "\u2726  GILDED";
+  const tw = g.measureText(label).width + 40;
+  g.fillStyle = goldStroke(g, 72, 142, 72 + tw, 184); rr(g, 72, 142, tw, 42, 21); g.fill();
+  g.strokeStyle = "rgba(255,240,190,.9)"; g.lineWidth = 2; g.stroke();
+  g.fillStyle = "#3b2606"; g.textAlign = "left"; g.textBaseline = "middle"; g.fillText(label, 92, 164);
+}
+
+/** A corner ornament in local space (corner at the origin, arms along +x and +y). */
+function filigree(g) {
+  g.strokeStyle = goldStroke(g, 0, 0, 170, 170);
+  g.fillStyle = goldStroke(g, 0, 0, 60, 60);
+  g.lineCap = "round"; g.shadowColor = "rgba(0,0,0,.5)"; g.shadowBlur = 6;
+  // double rail along both edges
+  g.lineWidth = 5;
+  g.beginPath(); g.moveTo(0, 150); g.lineTo(0, 24); g.quadraticCurveTo(0, 0, 24, 0); g.lineTo(150, 0); g.stroke();
+  g.lineWidth = 2.5;
+  g.beginPath(); g.moveTo(14, 118); g.lineTo(14, 30); g.quadraticCurveTo(14, 14, 30, 14); g.lineTo(118, 14); g.stroke();
+  // scrolls curling off each rail
+  for (const flip of [false, true]) {
+    g.save(); if (flip) { g.rotate(Math.PI / 2); g.scale(1, -1); }
+    g.lineWidth = 3.5;
+    g.beginPath(); g.moveTo(150, 0); g.bezierCurveTo(172, 4, 176, 26, 158, 30); g.bezierCurveTo(146, 32, 142, 20, 152, 16); g.stroke();
+    g.lineWidth = 2.5;
+    g.beginPath(); g.moveTo(52, 14); g.bezierCurveTo(64, 34, 92, 34, 96, 22); g.stroke();
+    g.restore();
+  }
+  // a gem where the rails meet
+  g.beginPath(); g.moveTo(34, 20); g.lineTo(48, 34); g.lineTo(34, 48); g.lineTo(20, 34); g.closePath(); g.fill();
+  g.fillStyle = "rgba(255,248,215,.9)";
+  g.beginPath(); g.arc(31, 31, 3.5, 0, Math.PI * 2); g.fill();
+  g.shadowBlur = 0;
 }
 
 function hexA(hex, a) {

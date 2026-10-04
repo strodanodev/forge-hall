@@ -242,6 +242,7 @@ export class PackOpening {
     this.faceMats = Array.from({ length: PACK_SIZE }, () => new THREE.MeshStandardMaterial({
       map: this.blank, emissiveMap: this.blank, roughness: 0.55, metalness: 0.05, emissive: 0xffffff, emissiveIntensity: 0.3 }));
     this.sheenMats = Array.from({ length: PACK_SIZE }, () => sheenMaterial(0xffffff));
+    this.gildMats = Array.from({ length: PACK_SIZE }, (_, i) => gildMaterial(i * 0.37));
     this.glowMats = Array.from({ length: PACK_SIZE }, () => new THREE.SpriteMaterial({
       map: T.glow, transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending }));
     this.faceGeo = faceGeometry();
@@ -304,7 +305,8 @@ export class PackOpening {
       .finally(() => { v.muted = false; });
     this.showcase = new AvatarShowcase({ parent: this.rig, scene: this.scene, renderer, getCamera: this.getCamera, glowMap: this.T.glow });
     const cam = this.getCamera();
-    const tmp = rollPackCards(this, [this.collection.cards[0]]);
+    // gilded, so the gold-leaf shimmer's program is compiled here too, not on the first gilded pull
+    const tmp = rollPackCards(this, [{ ...this.collection.cards[0], gilded: true }]);
     tmp.forEach((c) => { c.outer.visible = true; });
     this.rig.visible = true;
     for (const p of this.systems) p.points.visible = true;
@@ -473,6 +475,8 @@ export class PackOpening {
     for (const p of this.systems) p.clear();
     this.keyLight.intensity = 0; this.flashLight.intensity = 0;
     for (const r of this.rings) r.visible = false;
+    this.focus = null;
+    for (const m of this.faceMats) m.emissiveIntensity = 0.3;
   }
 
   newPack() { return this.prepare(rollPack(this.collection)); }
@@ -559,6 +563,8 @@ export class PackOpening {
       requestAnimationFrame(() => { this.flash.style.transition = "opacity .7s ease-out"; this.flash.style.opacity = "0"; });
     }
     this.shake = 0.45; this.bloomKick = lite ? 0.4 : 0.8; this.hallFlash = 0.4;
+    this.flashLight.position.copy(this.rig.localToWorld(new THREE.Vector3(0, 0.1, 0.4)));
+    this.flashLight.distance = 10;
     this.flashLight.intensity = 60;
     const cols = [[1, 1, 1], [0.75, 0.9, 1], [0.56, 0.82, 1], [1, 0.89, 0.63]];
     for (let i = 0; i < (lite ? 220 : 450); i++) {
@@ -695,15 +701,37 @@ export class PackOpening {
       .then(() => { ring.visible = false; });
     this.sfx.chime(CHIMES[c.data.rarity], 0.1);
     if (RANK[c.data.rarity] >= 3) {
-      this.bloomKick = 0.9; this.hallFlash = 0.45; this.shake = 0.3;
-      this.flashLight.color.setHex(R.glow); this.flashLight.intensity = 45;
+      // The moment belongs to this card. Hall-wide boosts (bloom, hall flash, a light at the centre of the rig, a
+      // screen-centred flash) lit the MIDDLE card of the fan instead, so each effect is now aimed at the legendary
+      // card: a short-reach light just in front of it, a flash centred on it with the rest of the screen vignetted,
+      // and the other cards stepping back (see spotlight).
+      this.bloomKick = 0.3; this.hallFlash = 0.1; this.shake = 0.3;
+      this.flashLight.color.setHex(R.glow);
+      this.flashLight.position.copy(this.rig.localToWorld(p.clone().add(LEGEND_LIGHT)));
+      this.flashLight.distance = 0.95;          // reaches this card, not its neighbours (~0.8 m apart)
+      this.flashLight.intensity = 38;
       this.rays.material.color.setHex(R.glow);
       this.rays.position.copy(p).setZ(p.z - 0.45);
-      this.tween(1.8, (k) => { this.rays.material.opacity = Math.pow(1 - k, 2) * 0.5; this.rays.scale.setScalar(1.8 + 1.4 * ease.out(k)); }, (k) => k);
-      this.flash.style.transition = "none"; this.flash.style.background = "radial-gradient(circle, rgba(255,214,120,.8), rgba(255,160,40,.25))";
-      this.flash.style.opacity = "0.7";
-      requestAnimationFrame(() => { this.flash.style.transition = "opacity .9s ease-out"; this.flash.style.opacity = "0"; });
+      this.tween(2.2, (k) => {
+        this.rays.material.opacity = (k < 0.08 ? k / 0.08 : Math.pow(1 - (k - 0.08) / 0.92, 2)) * 0.6;
+        this.rays.scale.setScalar(1.6 + 1.6 * ease.out(k));
+      }, (k) => k);
+      this.spotlight(c);
+      const s = c.outer.getWorldPosition(new THREE.Vector3()).project(this.getCamera());
+      const sx = (((s.x + 1) / 2) * 100).toFixed(1), sy = (((1 - s.y) / 2) * 100).toFixed(1);
+      this.flash.style.transition = "none";
+      this.flash.style.background = `radial-gradient(circle at ${sx}% ${sy}%, rgba(255,218,130,.8) 0, ` +
+        `rgba(255,170,50,.3) 11vmin, rgba(0,0,0,0) 22vmin, rgba(0,0,0,.5) 70vmin)`;
+      this.flash.style.opacity = "0.75";
+      requestAnimationFrame(() => { this.flash.style.transition = "opacity 1.2s ease-out"; this.flash.style.opacity = "0"; });
     }
+  }
+
+  /** A legendary card takes the stage: it lifts toward the camera and brightens while the rest of the fan dims. */
+  spotlight(c) {
+    this.focus = { card: c, age: 0, k: 1 };
+    const z0 = c.home.pos.z;
+    this.tween(1.6, (k) => { c.outer.position.z = z0 + 0.12 * Math.sin(Math.PI * Math.min(1, k * 1.25)) ** 2; }, (k) => k);
   }
 
   // -------------------------------------------------------------- inspect
@@ -791,6 +819,12 @@ export class PackOpening {
     this.bloomKick = Math.max(0, this.bloomKick - dt * 1.4);
     this.bloom.strength = this.bloomBase * this.bloomScale + this.bloomKick;
     this.flashLight.intensity *= Math.exp(-dt * 3.5);
+    if (this.focus) {
+      const f = this.focus;
+      f.age += dt;
+      f.k = f.age < 1.0 ? 1 : Math.max(0, 1 - (f.age - 1.0) / 1.4);
+      if (f.k <= 0) { this.focus = null; for (const m of this.faceMats) m.emissiveIntensity = 0.3; }
+    }
 
     // Sequence time. Follows the video while it plays; if the video stalls (slow network, decoder hiccup, a seek that
     // never lands) an internal clock carries the effects and the reveal on regardless. debugVT: frame-stepped tests.
@@ -881,6 +915,16 @@ export class PackOpening {
       this.canvas.style.cursor = this.state === "done" && (this.inspected || this.hovered?.revealed) ? "pointer" : "";
       for (const c of this.cards) {
         c.glow.material.opacity = c.revealed ? 0.35 + 0.2 * Math.sin(t * 2.4 + c.i) : c.glow.material.opacity * 0.95;
+        const f = this.focus;
+        if (f) {
+          if (c === f.card) {
+            c.glow.material.opacity = Math.min(1, c.glow.material.opacity + 0.5 * f.k);
+            c.faceMat.emissiveIntensity = 0.3 + 0.1 * f.k;   // more and the art washes out under the flash
+          } else {
+            c.glow.material.opacity *= 1 - 0.85 * f.k;
+            c.faceMat.emissiveIntensity = 0.3 * (1 - 0.6 * f.k);
+          }
+        }
         if (this.state === "done" && c !== this.inspected && !c.returning) {
           const hov = c === this.hovered && !this.inspected ? 1 : 0;
           c.hover += (hov - c.hover) * Math.min(1, dt * 10);
@@ -891,6 +935,7 @@ export class PackOpening {
         }
         // a quick pass every ~7 s (staggered per card), off the art the rest of the time
         if (c.sheen) c.sheen.material.uniforms.phase.value = ((t * 0.8 + c.i * 1.3) % 6.0) - 0.3;
+        if (c.gild) c.gild.material.uniforms.time.value = t;
       }
       this.keyLight.intensity = 6 * (0.95 + 0.05 * Math.sin(t * 7));
     }
@@ -904,6 +949,8 @@ export class PackOpening {
   }
 }
 
+const LEGEND_LIGHT = new THREE.Vector3(0, 0.05, 0.32); // the legendary flash light: just in front of its card
+
 function sheenMaterial(color) {
   return new THREE.ShaderMaterial({
     uniforms: { phase: { value: 0 }, color: { value: new THREE.Color(color) } },
@@ -914,6 +961,30 @@ function sheenMaterial(color) {
       // one hairline glint (~3% of the card wide) — a wide band read as a light wash over the art
       void main(){ float x = vUv.x*0.7 + vUv.y*0.5 - phase; float a = exp(-x*x*1100.0)*0.14;
         gl_FragColor = vec4(mix(color, vec3(1.0), 0.6), a); }`,
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+  });
+}
+
+// Gilded finish: a broad, slow gold band drifting across the card and gold-leaf flecks that twinkle on their own phase
+// (and flare as the band passes). Gold, not white, and faint outside the flecks: additive + bloom turns anything wider
+// or brighter into a wash over the art.
+function gildMaterial(seed) {
+  return new THREE.ShaderMaterial({
+    uniforms: { time: { value: 0 }, seed: { value: seed } },
+    vertexShader: `varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
+    fragmentShader: `uniform float time, seed; varying vec2 vUv;
+      float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+      void main(){
+        float x = vUv.x*0.8 + vUv.y*0.6 - (fract(time*0.11 + seed)*2.8 - 0.7);
+        float band = exp(-x*x*16.0);
+        vec2 g = vUv*vec2(46.0, 64.0), cell = floor(g), f = fract(g) - 0.5;
+        float h = hash(cell + seed*17.0);
+        float tw = pow(max(0.0, sin(time*2.1 + h*40.0)), 10.0);
+        // falling edge written as 1 - smoothstep: reversed edges are undefined, ANGLE/D3D returns 1 past them (square flecks)
+        float fleck = step(0.87, h) * tw * (1.0 - smoothstep(0.0, 0.34, length(f)));
+        float a = band*0.08 + fleck*(0.22 + 0.5*band);
+        gl_FragColor = vec4(1.0, 0.78, 0.38, a);
+      }`,
     transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
   });
 }
@@ -944,6 +1015,13 @@ function rollPackCards(self, picks) {
       sheen.renderOrder = 11;
       inner.add(sheen);
     }
+    let gild = null;
+    if (data.gilded) {
+      gild = new THREE.Mesh(self.faceGeo, self.gildMats[i]);
+      gild.position.z = CARD.t / 2 + 0.0016;
+      gild.renderOrder = 12;
+      inner.add(gild);
+    }
     inner.rotation.y = Math.PI; // back toward the camera until flipped
     const glow = new THREE.Sprite(self.glowMats[i]);
     glow.material.color.setHex(RARITY[data.rarity].glow); glow.material.opacity = 0;
@@ -955,6 +1033,6 @@ function rollPackCards(self, picks) {
     outer.add(glow);
     outer.visible = false;
     self.rig.add(outer);
-    return Object.assign(card, { outer, inner, faceMat, glow, sheen, hit: front, i, hover: 0, revealed: false, home: null });
+    return Object.assign(card, { outer, inner, faceMat, glow, sheen, gild, hit: front, i, hover: 0, revealed: false, home: null });
   });
 }
