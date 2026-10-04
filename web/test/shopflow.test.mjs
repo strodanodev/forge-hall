@@ -61,6 +61,7 @@ test("no config file: the hall stays in preview, the wallet layer still exists",
   assert.equal(shop.live, false);
   assert.equal(shop.cfg, null);
   assert.equal(shop.label(), "Open Pack");
+  assert.equal(shop.subLabel(), "");
   assert.equal(typeof shop.wallet.connect, "function", "connect and sign-in do not need a deployed shop");
   await assert.rejects(shop.buy(), /not open yet/);
   const c = collection();
@@ -93,13 +94,16 @@ test("the button label follows the wallet and the shop", async () => {
   const { shop, chain } = await boot();
   assert.equal(shop.info.price, ETH / 10n);
   assert.equal(shop.priceText(), "0.1 zkLTC");
-  assert.equal(shop.label(), "Connect & Open · 0.1 zkLTC");
+  assert.equal(shop.label(), "Connect & Open");
+  assert.equal(shop.subLabel(), "0.1 zkLTC");
   await shop.wallet.connect();
   await shop.refresh();
-  assert.equal(shop.label(), "Buy & Open · 0.1 zkLTC");
+  assert.equal(shop.label(), "Open Pack");
+  assert.equal(shop.subLabel(), "0.1 zkLTC");
   chain.st.cfg.paused = true;
   await shop.refresh();
   assert.equal(shop.label(), "Shop Paused");
+  assert.equal(shop.subLabel(), "");
 });
 
 test("buy -> wait -> open: minted cards carry their own token ids, best card last", async () => {
@@ -109,6 +113,7 @@ test("buy -> wait -> open: minted cards carry their own token ids, best card las
   assert.equal(pending.packId, "1");
   assert.equal(shop.pending.packId, "1");
   assert.equal(shop.label(), "Open Sealed Pack");
+  assert.equal(shop.subLabel(), "", "the sealed pack is already paid for");
   assert.match(stages.join(" | "), /Confirm the purchase.*sealed/s);
 
   chain.mineL1(3);                                       // two block numbers later the pack is openable
@@ -134,7 +139,8 @@ test("buy -> wait -> open: minted cards carry their own token ids, best card las
 
   shop.spent();
   assert.equal(shop.pending, null);
-  assert.equal(shop.label(), "Buy & Open · 0.1 zkLTC");
+  assert.equal(shop.label(), "Open Pack");
+  assert.equal(shop.subLabel(), "0.1 zkLTC");
 });
 
 test("a minted template the page does not know is an error, not a blank card", async () => {
@@ -174,7 +180,8 @@ test("a dead pack is dropped and its price can be refunded", async () => {
   await shop.refresh();
   assert.equal(shop.pending, null, "an expired pack is no longer 'waiting to be opened'");
   assert.equal(shop.expired.length, 1);
-  assert.equal(shop.label(), "Buy & Open · 0.1 zkLTC");
+  assert.equal(shop.label(), "Open Pack");
+  assert.equal(shop.subLabel(), "0.1 zkLTC");
   const r = await shop.refundOne({});
   assert.equal(r.amount, ETH / 10n);
   assert.equal(shop.expired.length, 0);

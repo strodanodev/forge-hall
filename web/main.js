@@ -193,7 +193,8 @@ glbBytes(SCENE_URL, (f) => loadProgress(0.8 * f)).then((buf) => { bytes = buf.by
   } catch (e) { console.error("[library] could not start; the hall carries on without it", e); }
   const syncOpen = () => {
     if (pack.state !== "idle" && pack.state !== "sealed") return;
-    openBtn.textContent = shop.label();
+    const sub = shop.subLabel();
+    openBtn.replaceChildren(shop.label(), ...(sub ? [Object.assign(document.createElement("small"), { className: "btn-sub", textContent: sub })] : []));
     openBtn.disabled = shop.live && !!shop.info?.paused && !shop.pending;
   };
   // after a live pull the next one is another purchase: say so on the button
@@ -221,7 +222,9 @@ glbBytes(SCENE_URL, (f) => loadProgress(0.8 * f)).then((buf) => { bytes = buf.by
 });
 
 // ---------------------------------------------------------------- loop
+// frame stats are a dev tool: shown on localhost or with ?debug, never on the deployed hall
 const hud = document.getElementById("hud");
+hud.hidden = !/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) && !new URLSearchParams(location.search).has("debug");
 const clock = new THREE.Clock();
 let frames = 0, acc = 0, fps = 0;
 
@@ -250,6 +253,7 @@ const frame = () => {
   if (pack) hallDrawn = true;
   tick(dt, t);
 
+  if (hud.hidden) return;
   frames++; acc += dt;
   if (acc > 0.5) {
     fps = Math.round(frames / acc); frames = 0; acc = 0;

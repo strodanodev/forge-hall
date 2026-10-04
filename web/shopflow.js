@@ -82,8 +82,11 @@ export async function createShop({ collection }) {
       if (!cfg) return "Open Pack";
       if (shop.pending) return "Open Sealed Pack";
       if (shop.info?.paused) return "Shop Paused";
-      return wallet.connected ? `Buy & Open · ${shop.priceText()}` : `Connect & Open · ${shop.priceText()}`;
+      return wallet.connected ? "Open Pack" : "Connect & Open";
     },
+
+    /** Smaller second line under label(): what the click will cost, or "" when it buys nothing. */
+    subLabel() { return cfg && !shop.pending && !shop.info?.paused ? shop.priceText() : ""; },
 
     /** Re-read the shop and this wallet's packs. Never throws: a flaky RPC only means stale labels. */
     async refresh() {
