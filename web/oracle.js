@@ -7,11 +7,7 @@ import { COVENANT, SLOTS, makeTrial, aligned, solved, atGate, turnToGate, glyphT
 
 const KEY = "forge.covenant";
 const Q = new URLSearchParams(location.search);
-const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const store = {
-  get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
-  set: (k, v) => { try { localStorage.setItem(k, v); } catch { /* private mode: they will swear again next time */ } },
-};
+import { store, REDUCED_MOTION as REDUCED } from "./util.js";
 
 /** Whether this browser still has to swear to the current covenant. */
 export function oracleNeeded() {

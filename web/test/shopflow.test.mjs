@@ -223,3 +223,15 @@ test("no wallet extension: buying explains what to do instead of failing silentl
   const { shop } = await boot({ wallets: false });
   await assert.rejects(shop.buy(), (e) => e.code === "no_wallet" && /wallet/i.test(e.message));
 });
+
+test("refresh() calls overlap safely: one read at a time, one more queued, the newest state wins", async () => {
+  const { shop, chain } = await connected();
+  const configReads = () => chain.methods("eth_call").filter((c) => c.params[0].data.startsWith("0x79502c55")).length;   // config()
+  const n0 = configReads();
+  const a = shop.refresh(), b = shop.refresh(), c = shop.refresh();
+  assert.equal(b, a, "a refresh asked for during a read waits on that read");
+  assert.equal(c, a);
+  await Promise.all([a, b, c]);
+  assert.equal(configReads() - n0, 2, "the running read, then exactly one more for the calls made meanwhile");
+  assert.equal(shop.info?.packSize, 5);
+});

@@ -3,14 +3,13 @@
 // the hall (click-through intro) and narrates the pack sequence from its story beats (auto-advancing "comms" mode).
 // Pure DOM/CSS, transform/opacity only, so it costs the WebGL frame nothing. Lines live in npc_script.js.
 import { NPC, SCRIPT } from "./npc_script.js";
+import { RANK, RARITY } from "./tiers.js";
+import { REDUCED_MOTION as reduceMotion } from "./util.js";
 
 const POSES = ["idle", "talking", "talking_closed", "happy", "thinking"];
 const CPS = 44;                                   // typing speed, characters per second
 const PAUSE = { ",": 0.1, ";": 0.12, ":": 0.12, ".": 0.26, "!": 0.26, "?": 0.26, "…": 0.34, "—": 0.16 };
-const ACCENT = { legendary: "#ffbf3f", epic: "#c68bff", rare: "#5bb2ff", common: "#dfe6ee" };
-const RANK = { common: 0, rare: 1, epic: 2, legendary: 3 };
 const pick = (a) => a[Math.floor(Math.random() * a.length)];
-const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export class ForgeNPC {
   /** @param {HTMLElement} root  empty #npc container   @param {import("./pack.js").PackOpening} pack */
@@ -60,7 +59,7 @@ export class ForgeNPC {
 
   /** Queue lines. interrupt: drop whatever is playing. auto: advance on a timer instead of waiting for a click. */
   say(lines, { auto = true, interrupt = true, card = null } = {}) {
-    const items = lines.map(([emotion, text]) => ({ emotion, text: fill(text, card), auto, accent: card ? ACCENT[card.rarity] : null }));
+    const items = lines.map(([emotion, text]) => ({ emotion, text: fill(text, card), auto, accent: card ? RARITY[card.rarity].css : null }));
     if (interrupt) { this.queue = items; this.next(); }
     else { this.queue.push(...items); if (!this.line) this.next(); }
   }
@@ -92,7 +91,7 @@ export class ForgeNPC {
   poke() {
     if (this.root.dataset.mode !== "host") return;
     if (this.line?.waiting || this.line?.typing) return this.advance();
-    this.say(pick(SCRIPT.hall.chatter));
+    this.say(pick(this.pack.shop?.live ? SCRIPT.hall.chatterLive : SCRIPT.hall.chatter));
   }
 
   // -------------------------------------------------------------- dialogue

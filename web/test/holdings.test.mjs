@@ -288,6 +288,16 @@ test("an ownerOf that fails transiently makes the answer partial instead of thro
   assert.equal(r.complete, false);
 });
 
+test("a remembered token whose ownerOf fails transiently is kept for the next read, not forgotten", async () => {
+  const owners = ownersOf([[tid(0), ALICE], [tid(1), ALICE], [tid(2), ALICE]]);
+  const { h } = mk(owners, { failOwnerOf: new Set([tid(2)]) }, { explorer: fakeExplorer(() => [tid(0), tid(1)]) });
+  h.remember(ALICE, [tid(2)]);                        // a pack minted it here; the explorer has not indexed it yet
+  const r = await h.read(ALICE);
+  assert.deepEqual(r.tokens, [tid(0), tid(1)]);
+  assert.equal(r.partial, true);
+  assert.deepEqual([...h.remembered(ALICE)].sort(), [tid(0), tid(1), tid(2)], "still remembered: the chain never said it was gone");
+});
+
 test("an aborted read rejects with AbortError", async () => {
   const { h } = mk(ownersOf([[tid(0), ALICE]]), {}, { explorer: fakeExplorer(() => [tid(0)]) });
   const ctl = new AbortController();

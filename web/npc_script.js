@@ -19,7 +19,7 @@ export const SCRIPT = {
     intro: [
       ["happy", "Welcome to the Forge, traveler!"],
       ["talking", "I'm AERIS. This anvil strikes the *Rapture*, the first fifty souls of ARC 1, fresh off the chain."],
-      ["thinking", "Every pack holds *five cards*: Mortals, Kings, Demigods, Gods and Titans. At least one is a *Demigod* or better… and the rarest always turns last."],
+      ["thinking", "Every pack holds *five cards*: Mortals, Kings, Demigods, Titans and Gods. The rarest always turns last."],
       ["talking", "Press *Open Pack* whenever you're ready. Tap any card afterwards and I'll show you its soul, and its body."],
       ["happy", "Go on. The forge is waiting."],
     ],
@@ -33,10 +33,18 @@ export const SCRIPT = {
     ],
     // clicking AERIS while she's idle in the hall
     chatter: [
-      [["thinking", "Gods and Titans are the rarest strikes. Seven packs in a hundred, give or take."]],
+      [["thinking", "Gods are the rarest strikes: one card in ten, give or take. Titans come next."]],
       [["talking", "Kind is everything here. A Mortal is glass waiting for light; a God wears the whole halo."]],
       [["happy", "Another pack? I never say no to that."]],
       [["thinking", "This is a *testnet preview*. Nothing you pull here is minted, so pull freely."]],
+      [["talking", "Water, Lava, Earth, Metal. The neon tells you the element; the gold is only ever for divinity."]],
+    ],
+    // the same chatter when a live shop is configured: bought packs are minted, only Free Preview is not
+    chatterLive: [
+      [["thinking", "Gods are the rarest strikes: one card in ten, give or take. Titans come next."]],
+      [["talking", "Kind is everything here. A Mortal is glass waiting for light; a God wears the whole halo."]],
+      [["happy", "Another pack? I never say no to that."]],
+      [["thinking", "This is the *testnet*. A bought pack is minted to your wallet; *Free Preview* mints nothing."]],
       [["talking", "Water, Lava, Earth, Metal. The neon tells you the element; the gold is only ever for divinity."]],
     ],
     welcomeBack: [

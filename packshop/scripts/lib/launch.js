@@ -8,16 +8,31 @@ const MINTER_ABI = [
   "function setMinter(address who, bool on)",
 ];
 
-/** Deploy PackShop unless `record.packShop` already has code. Returns the contract. */
-async function deployShop(ethers, { minter, owner, record, price = PRICE, packSize = 5, weights = WEIGHTS, dailyLimit = 3, log = console.log }) {
+/**
+ * Deploy PackShop unless `record.packShop` already has code. Returns the contract.
+ * The address a deploy will get follows from the signer's nonce, so it is written to the record (`save`) BEFORE the
+ * transaction is sent: a receipt lost to an RPC drop then leaves a `packShopPending` address to pick up instead of a
+ * second shop.
+ */
+async function deployShop(ethers, { minter, owner, record, price = PRICE, packSize = 5, weights = WEIGHTS, dailyLimit = 3, save = () => {}, log = console.log }) {
   if (record.packShop && (await ethers.provider.getCode(record.packShop)) !== "0x") {
     log(`PackShop already deployed at ${record.packShop}`);
     return ethers.getContractAt("PackShop", record.packShop);
   }
+  if (record.packShopPending && (await ethers.provider.getCode(record.packShopPending)) !== "0x") {
+    record.packShop = record.packShopPending;
+    delete record.packShopPending;
+    log(`PackShop found at ${record.packShop}: a previous run deployed it and lost the receipt`);
+    return ethers.getContractAt("PackShop", record.packShop);
+  }
+  const [signer] = await ethers.getSigners();
+  record.packShopPending = ethers.getCreateAddress({ from: signer.address, nonce: await ethers.provider.getTransactionCount(signer.address, "pending") });
+  save(record);
   const f = await ethers.getContractFactory("PackShop");
   const shop = await f.deploy(minter, owner, price, packSize, weights, dailyLimit);
   await shop.waitForDeployment();
   record.packShop = await shop.getAddress();
+  delete record.packShopPending;
   record.packShopTx = shop.deploymentTransaction().hash;
   log(`PackShop deployed ${record.packShop} (tx ${record.packShopTx})`);
   return shop;

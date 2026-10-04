@@ -13,23 +13,6 @@ for img in bpy.data.images:
         img.reload()
         print("reloaded", img.name)
 
-live = bpy.data.objects.get("BK_Live")
-if live:  # bakes made before the fallback became emissive used an unlit Background shader: convert it
-    nt = live.data.materials[0].node_tree
-    bg = next((n for n in nt.nodes if n.type == "BACKGROUND"), None)
-    if bg:
-        tex = next(n for n in nt.nodes if n.type == "TEX_IMAGE")
-        out = next(n for n in nt.nodes if n.type == "OUTPUT_MATERIAL")
-        nt.nodes.remove(bg)
-        b = nt.nodes.new("ShaderNodeBsdfPrincipled")
-        b.inputs["Base Color"].default_value = (0, 0, 0, 1)
-        b.inputs["Roughness"].default_value = 1.0
-        b.inputs["Specular IOR Level"].default_value = 0.0
-        b.inputs["Emission Strength"].default_value = 1.0
-        nt.links.new(tex.outputs[0], b.inputs["Emission Color"])
-        nt.links.new(b.outputs[0], out.inputs[0])
-        print("BK_Live fallback -> emissive")
-
 exp = [o for o in bpy.data.objects if o.name.startswith(("BK_", "FX_", "FXM_")) or o.name == "Cam_Hall"]
 for o in bpy.context.view_layer.objects:
     o.select_set(o in exp)

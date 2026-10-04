@@ -34,6 +34,9 @@ const gltf = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(
 
 ## Rebuild
 
+> `forge_hall.blend`, `forge_hall_web.blend` and `bake/` are not in the repo (hundreds of MB; see `.gitignore`): the steps below
+> need the author's working folder. What ships, and what a clone has, is the finished output in `web/assets`.
+
 1. Author in `forge_hall.blend`.
 2. Export and bake headless, on the GPU (CUDA):
    ```bash
@@ -97,9 +100,9 @@ stack replaces the video's card (same size, position and tilt), fans out and fli
   76% of the frame (`CROP`), which is where the pack and its flaps sit.
 - **Card back** `assets/pack/card_back.jpg` is the final card-back art (1024x1434). The video's card still shows the
   generator's older art, so the 3D stack replaces it on the hand-off frame under a sparkle + small pulse.
-- **Card faces** are drawn at runtime from `POOL` (placeholder gods and titans, emoji art). Add
-  `art: "./assets/cards/<name>.webp"` to an entry to use real art. Rarity weights: `WEIGHTS`. Five cards per
-  pack, at least one rare, sorted so the best flips last.
+- **Card faces** are drawn at runtime by `rapture.js` (`drawFace`) from the ARC 1 snapshot (next section). The free
+  preview draws like the shop (`rollPack`: a Kind by weight, any card of it, duplicates allowed) and sorts the pack so
+  the best card flips last.
 - **Robustness**: the sequence follows the video while it plays, but an internal clock carries it on if the
   video stalls; Skip triggers the reveal directly; the plane stays hidden until a decoded frame is on screen
   (no black flashes on start, seek or replay).
@@ -131,17 +134,17 @@ The pack draws from the 50 minted **Rapture ARC 1** cards (Liteforge testnet, co
 
 - **Snapshot**: current deployment (RaptureCards `0x138F…2721`, chain 4441) is regenerated with
   `node scripts/rapture_snapshot.mjs --deployment <rapture>/studio/out/deployment.liteforge.json --plates <rapture>/studio/out/assets`.
-  A bare run also targets the current collection but takes paintings from the stale 22 GODS pack art, so pass
-  `--plates`. `--local` snapshots the Studio's local
+  A bare run targets the current collection; pass `--plates` (or `--paintings`) for the art. `--local` snapshots the Studio's local
   chain (localhost links, never publish). The script enumerates the set on chain
   (`setId << 32 | n` until `tokenURI` reverts; read-only `eth_call`), decodes each token's inline character.json, and
   writes `assets/rapture/cards.json`. It downloads each web avatar (`animation_url`) and `SOUL.md` from IPFS (Filebase
   gateway) and refuses any bytes that don't match the token's sha256 / keccak256. Paintings are the Studio pack's
-  768 px plate crops (default source: the 22 GODS import at `GODSgame/assets/cards/art/rapture`). Re-run after any
+  768 px plate crops (`--plates`, the Studio's `out/assets`; or `--paintings`, a folder of its pack art). Re-run after any
   redeploy; it is idempotent and skips avatars already on disk with the right hash. ~36 MB total, avatars ~0.7 MB
   each, loaded only when a card is inspected.
-- **Tiers**: Kind is the only tier. Mortal = common, King = rare, Demigod = epic, God / Titan = legendary; odds
-  50/28/15/7 per slot, one Demigod or better guaranteed, best card flips last.
+- **Tiers**: Kind is the only tier. Mortal = common, King = rare, Demigod = epic, God / Titan = legendary. The preview's
+  per-slot odds are the shop's (`KIND_ODDS`: Mortal 30 · King 25 · Demigod 20 · Titan 15 · God 10, or a live shop's own
+  weights); best card flips last.
 - **Face** (`drawFace`): one slate bezel on every card (the Studio tints it per Frame; in a fan that read as
   inconsistent, so Frame is in the trait line only); faction sigils as the Studio draws them. Follows the Studio's own card face (the token `image`), minus stats so the art leads:
   full-bleed painting in a device bezel tinted by the Frame trait (Smoke / Obsidian / Pearl / Glass), Kind · Path pill
@@ -199,14 +202,6 @@ is one edition) and the same inspect panel the pack uses. Escape closes the card
 - **Wiring** (three small edits in `main.js`): the two imports, `mountLibrary(...)` after `mountWalletUI(...)`, and the
   pause/resume of the render loop. No edit to `index.html`: `library.js` injects `library.css` and its own elements.
 - Tests: `web/test/holdings.test.mjs`, `web/test/library.test.mjs` (`node --test "web/test/*.test.mjs"`).
-
-## Hosted preview (claude.ai artifact)
-
-Private artifact: https://claude.ai/artifact/QeGET97GyjG2mUJe3Ln4Mi (share from the page's Share menu).
-The host serves no `model/gltf-binary`, so every `.glb` path is published as base64 `text/plain`; `glbBytes()` in
-fx.js takes either form (binary locally, base64 hosted). The page drops its own doctype/head/body (the host wraps it),
-query strings don't reach it (`?debug`, `?npc=0`, `?pack=fx` are local-only), and the build
-excludes `*_raw.glb`, `pack_fx.mp4` and `pack_physics_60.mp4` (~61 MB of the 64 MB cap, 123 files).
 
 ### Light layering rules (pack + cards)
 
@@ -287,8 +282,7 @@ these modules (plain ES modules, no bundler, no npm packages in the browser):
 **Flow** (`PackOpening.startLive` in `pack.js`): connect → buy (0.001 zkLTC, signature 1) → the sealed pack idles in front of
 the hearth while the chain settles (~12–24 s: two block numbers on Nitro) → break the seal (signature 2) → the five minted
 cards fan out with the usual tear/burst. A refused second signature keeps the pack ("Open Sealed Pack"); closing the page
-does too (`findMyPacks` finds it). **Free Preview** keeps the old client-side pull (no wallet, nothing minted; its odds are
-the old tier weights, not the shop's 30/25/20/15/10 Kind odds).
+does too (`findMyPacks` finds it). **Free Preview** keeps the client-side pull (no wallet, nothing minted) with the live shop's own odds.
 
 **Config**: `assets/rapture/packshop.json` (written by `packshop/scripts/write-web-config.mjs` after a launch) names the
 chain, the PackShop and the template→card map. Without it the hall is preview-only and the wallet button still works.

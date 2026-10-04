@@ -80,6 +80,15 @@ describe('dev server: static files', () => {
     assert.match(await res.text(), /<!doctype html>/i);
   });
 
+  it('sends the production headers from vercel.json, so a CSP problem shows up locally', async () => {
+    const page = await fetch(`${base}/`);
+    assert.match(page.headers.get('content-security-policy') ?? '', /script-src 'self'/);
+    assert.equal(page.headers.get('x-frame-options'), 'DENY');
+    const api = await fetch(`${base}/api/health`);
+    assert.equal(api.headers.get('cache-control'), 'no-store');
+    assert.match(api.headers.get('content-security-policy') ?? '', /default-src 'self'/);
+  });
+
   it('serves the same page at /index.html and 404s unknown files', async () => {
     assert.equal((await fetch(`${base}/index.html`)).status, 200);
     assert.equal((await fetch(`${base}/definitely-not-here.png`)).status, 404);

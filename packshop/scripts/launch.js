@@ -38,14 +38,18 @@ async function main() {
   }
   if (bal < ethers.parseEther("0.02")) throw new Error("fund the signer with at least 0.02 zkLTC first (https://liteforge.hub.caldera.xyz)");
 
-  const record = dep.packShop ? { packShop: dep.packShop.address } : {};
+  const record = dep.packShop ? { packShop: dep.packShop.address } : dep.packShopPending ? { packShopPending: dep.packShopPending } : {};
   const run = (s) => stage === "all" || stage === s;
+  const persist = () => fs.writeFileSync(file, JSON.stringify(dep, null, 2) + "\n");
+  if (!run("deploy") && !record.packShop) throw new Error(`STAGE=${stage} needs a deployed shop: run the deploy stage first`);
   const shop = run("deploy")
-    ? await L.deployShop(ethers, { minter: dep.collection.StudioMinter, owner: signer.address, record })
+    ? await L.deployShop(ethers, { minter: dep.collection.StudioMinter, owner: signer.address, record,
+        save: (r) => { dep.packShopPending = r.packShopPending; persist(); } })   // before the deploy is sent
     : await ethers.getContractAt("PackShop", record.packShop);
-  if (record.packShopTx) {
-    dep.packShop = { address: record.packShop, tx: record.packShopTx, deployedAt: new Date().toISOString(), owner: signer.address };
-    fs.writeFileSync(file, JSON.stringify(dep, null, 2) + "\n");
+  if (record.packShop && !dep.packShop) {
+    dep.packShop = { address: record.packShop, ...(record.packShopTx ? { tx: record.packShopTx } : {}), deployedAt: new Date().toISOString(), owner: signer.address };
+    delete dep.packShopPending;
+    persist();
   }
   if (run("grant")) await L.grantMinter(ethers, { minter: dep.collection.StudioMinter, shop });
   if (run("stock")) await L.stock(ethers, { shop, templates });

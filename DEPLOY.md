@@ -159,7 +159,7 @@ Optional variables (add them the same way):
 | Variable | Meaning |
 | --- | --- |
 | `SIWE_CHAIN_ID` | Chain the sign-in message is bound to. Default `4441` (Liteforge testnet). |
-| `ALLOWED_HOSTS` | Comma-separated hosts allowed to sign in, exactly as in the browser address bar, for example `forge.example.com,my-forge.vercel.app`. Unset = any host. Set it in production: it pins the sign-in domain to hosts you chose. |
+| `ALLOWED_HOSTS` | Comma-separated hosts allowed to sign in, exactly as in the browser address bar, for example `forge.example.com,my-forge.vercel.app`. **Required on Vercel, for every environment you deploy** (Production and Preview): without it the API answers 503 to sign-in there. Off Vercel (`npm run dev`) unset means any host. |
 
 There is no `SESSION_SECRET`: sessions are random tokens stored hashed in the database.
 
@@ -253,6 +253,19 @@ Zealy-style "status code means pass/fail" APIs are not supported: a non-holder i
 A campaign can drive traffic: add a Vercel Firewall rate-limit rule for `/api/rapture/*` (per IP, e.g. 60 requests/minute)
 before launch.
 
-Hardening worth doing in the Vercel dashboard: a Firewall rate-limit rule for `/api/auth/*`
-(nonces are cheap to request, and expired ones are purged automatically).
 Smart-contract wallets (EIP-1271) are not supported; ordinary wallets such as MetaMask are.
+
+## Production checklist (from the 2026-10-05 audit, `AUDIT.md`)
+
+Done in the code: three.js is vendored (`web/vendor/three`, nothing loads from a CDN), `vercel.json` sends a
+Content-Security-Policy and the other security headers to every route (the dev server sends the same ones, so a CSP
+problem shows up locally), sign-out works, SIWE refuses messages the server never wrote, and on Vercel sign-in is off
+until `ALLOWED_HOSTS` is set. Still to do in the dashboards, per project:
+
+1. `ALLOWED_HOSTS` for **Preview** as well as Production (preview deployments share the production database).
+2. A Firewall rate-limit rule for `/api/auth/*` (and `/api/rapture/*` before a campaign): per IP, e.g. 60 requests/minute.
+3. Retire the first project (`forge-hall.vercel.app`, no database, flagged by wallet scanners): redirect it to
+   `forge.litvm.games` or delete it, so there is one origin to trust.
+4. Node version: `package.json` pins `engines.node` to 22.x; check both projects build with it.
+5. Before anything carries real value: the PackShop items in `packshop/README.md` (VRF seed, multisig owner, an
+   opening pause, a dead-liability sweep), and a Neon branch for Preview instead of the production tables.

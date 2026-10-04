@@ -9,7 +9,7 @@
 // The shop is "live" only when web/assets/rapture/packshop.json exists and names a PackShop. Without it (not deployed,
 // or ?shop=off) the hall keeps its free preview and the wallet button still lets a player connect and sign in.
 import { LITEFORGE, WalletError, createWallet } from "./wallet.js";
-import { PHASE, buyPack, chainFromConfig, findMyPacks, formatZkltc, loadShopConfig, openPack, packsLeftToday, readShop, refundExpired, txUrl, waitUntilOpenable } from "./packshop.js";
+import { PHASE, buyPack, chainFromConfig, findMyPacks, formatZkltc, loadShopConfig, openPack, packsLeftToday, readShop, refundExpired, waitUntilOpenable } from "./packshop.js";
 import { RANK } from "./tiers.js";
 
 const LOCAL_HOSTS = /^(localhost|127\.0\.0\.1|\[::1\])$/;
@@ -51,8 +51,28 @@ export async function createShop({ collection }) {
   }
 
   const listeners = new Set();
-  // packs opened in this page: the public RPC is load balanced, so a lagging node can still call one "Openable"
-  const opened = new Set();
+  // packs opened or refunded in this page: the public RPC is load balanced, so a lagging node can still report the
+  // phase they had before
+  const opened = new Set(), refunded = new Set();
+  // one chain read at a time; a refresh asked for while one runs queues exactly one more, so a stale answer never
+  // lands after a newer one (refresh() was fired unawaited from five places)
+  let reading = null, readAgain = false;
+  async function readOnce() {
+    try { shop.info = await readShop(cfg, wallet.address ?? undefined); }
+    catch (e) { console.warn("[shop] could not read the shop", e); }
+    if (wallet.connected) {
+      try {
+        const mine = await findMyPacks(cfg, wallet.address);
+        const waiting = mine.filter((p) => (p.phase === PHASE.Waiting || p.phase === PHASE.Openable) && !opened.has(p.packId));
+        if (!shop.pending && waiting.length) shop.pending = { packId: waiting.at(-1).packId };   // resume after a reload
+        shop.expired = mine.filter((p) => p.phase === PHASE.Expired && !refunded.has(p.packId));
+        // the pack we were holding can no longer be opened (expired, opened from another tab, refunded): drop it
+        const held = shop.pending && mine.find((p) => p.packId === String(shop.pending.packId));
+        if (held && held.phase !== PHASE.Waiting && held.phase !== PHASE.Openable) shop.pending = null;
+      } catch (e) { console.warn("[shop] could not look up your packs", e); }
+    } else { shop.pending = null; shop.expired = []; }
+    shop.changed();
+  }
   const shop = {
     live: !!cfg,
     cfg,
@@ -88,23 +108,13 @@ export async function createShop({ collection }) {
     /** Smaller second line under label(): what the click will cost, or "" when it buys nothing. */
     subLabel() { return cfg && !shop.pending && !shop.info?.paused ? shop.priceText() : ""; },
 
-    /** Re-read the shop and this wallet's packs. Never throws: a flaky RPC only means stale labels. */
-    async refresh() {
-      if (!cfg) return shop.changed();
-      try { shop.info = await readShop(cfg, wallet.address ?? undefined); }
-      catch (e) { console.warn("[shop] could not read the shop", e); }
-      if (wallet.connected) {
-        try {
-          const mine = await findMyPacks(cfg, wallet.address);
-          const waiting = mine.filter((p) => (p.phase === PHASE.Waiting || p.phase === PHASE.Openable) && !opened.has(p.packId));
-          if (!shop.pending && waiting.length) shop.pending = { packId: waiting.at(-1).packId };   // resume after a reload
-          shop.expired = mine.filter((p) => p.phase === PHASE.Expired);
-          // the pack we were holding can no longer be opened (expired, opened from another tab, refunded): drop it
-          const held = shop.pending && mine.find((p) => p.packId === String(shop.pending.packId));
-          if (held && held.phase !== PHASE.Waiting && held.phase !== PHASE.Openable) shop.pending = null;
-        } catch (e) { console.warn("[shop] could not look up your packs", e); }
-      } else { shop.pending = null; shop.expired = []; }
-      shop.changed();
+    /** Re-read the shop and this wallet's packs. Never throws: a flaky RPC only means stale labels. Overlapping calls
+     *  are merged; the promise resolves once the newest requested read has landed. */
+    refresh() {
+      if (!cfg) { shop.changed(); return Promise.resolve(); }
+      if (reading) { readAgain = true; return reading; }
+      reading = (async () => { do { readAgain = false; await readOnce(); } while (readAgain); })().finally(() => { reading = null; });
+      return reading;
     },
 
     /** Connect (in the click that asked), make sure the wallet is on the shop's chain, buy one pack. Sets `pending`. */
@@ -156,12 +166,12 @@ export async function createShop({ collection }) {
       const p = shop.expired[0];
       if (!p) return null;
       const r = await refundExpired(wallet, cfg, p.packId, { onStage: (s) => onStage?.(s) });
+      refunded.add(String(p.packId));                  // a lagging node must not offer this refund again
       await shop.refresh();
       return r;
     },
 
     async packsLeft() { return wallet.address && cfg ? packsLeftToday(cfg, wallet.address) : null; },
-    txUrl: (hash) => (cfg ? txUrl(cfg, hash) : null),
   };
 
   wallet.subscribe(() => shop.refresh());

@@ -8,10 +8,12 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 NAME=forge_hall
 SIZE="${1:-2048}"
+# the bake folder and the raw export are not in the repo (hundreds of MB): export_web.py writes them
+[ -f bake/sky.png ] && [ -f "web/assets/${NAME}_raw.glb" ] || { echo "bake/ or web/assets/${NAME}_raw.glb is missing: run scripts/export_web.py first" >&2; exit 1; }
 OPTS=(--compress meshopt --texture-compress webp --simplify false --flatten false --join false --instance false --palette false)
 npx -y @gltf-transform/cli@4 optimize "web/assets/${NAME}_raw.glb" "web/assets/${NAME}.glb" --texture-size "$SIZE" "${OPTS[@]}"
 npx -y @gltf-transform/cli@4 optimize "web/assets/${NAME}_raw.glb" "web/assets/${NAME}_1k.glb" --texture-size 1024 "${OPTS[@]}"
-"$HOME/.local/bin/uv" run --quiet --with pillow python - <<'EOF'
+"${UV:-$(command -v uv || echo "$HOME/.local/bin/uv")}" run --quiet --with pillow python - <<'EOF'
 from PIL import Image
 Image.open("bake/sky.png").convert("RGB").save("web/assets/sky.webp", "WEBP", quality=82, method=6)
 # colour lossy; data maps (occlusion/roughness/metalness, normals) near-lossless so shading stays smooth

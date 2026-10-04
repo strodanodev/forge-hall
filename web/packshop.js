@@ -180,10 +180,6 @@ export function rpcFor(cfg) {
   return c;
 }
 
-/** Explorer links, or null when the chain has no explorer (a local dev chain): hide the link then. */
-export const txUrl = (cfg, hash) => (cfg?.explorer ? `${cfg.explorer}/tx/${hash}` : null);
-export const addressUrl = (cfg, address) => (cfg?.explorer ? `${cfg.explorer}/address/${address}` : null);
-
 // ------------------------------------------------------------------ reads
 /** One eth_call to the shop -> the raw return data. Empty data means there is no contract at that address. */
 async function readRaw(cfg, selector, types, values, o) {
@@ -242,15 +238,6 @@ export async function phaseOf(cfg, packId, o) {
   const phase = Number(decoding(() => uintAt(ws, 0)));
   if (!(phase >= 0 && phase < PHASE_NAMES.length)) throw new ShopError("bad_response", `The shop reported an unknown pack state (${phase}).`);
   return phase;
-}
-
-/** packOf(packId): { buyer, commitBlock (parent-chain number), phase, phaseName, paid (bigint wei) }. */
-export async function readPack(cfg, packId, o) {
-  const ws = await readWords(cfg, SELECTORS.packOf, ["uint256"], [packId], o);
-  return decoding(() => {
-    const phase = Number(uintAt(ws, 2));
-    return { buyer: "0x" + ws[0].slice(24), commitBlock: Number(uintAt(ws, 1)), phase, phaseName: PHASE_NAMES[phase] ?? "None", paid: uintAt(ws, 3) };
-  });
 }
 
 // ------------------------------------------------------------------ transactions
@@ -470,8 +457,8 @@ export async function refundExpired(wallet, cfg, packId, opts = {}) {
  * The address's most recent packs (at most 16: the contract's cap), oldest first, from ONE eth_call to
  * recentPacks(address, 16): [{ packId (decimal string), phase (PHASE number), phaseName, commitBlock }]. The contract
  * keeps a per-buyer index, so nothing is scanned and no pack is missed inside the 16; filter on phase to find what to
- * resume (Waiting / Openable) or refund (Expired). A buyer with more than 16 packs sees only the newest 16
- * (packCountOf says how many there are). `o` is passed to the RPC call (e.g. { signal }).
+ * resume (Waiting / Openable) or refund (Expired). A buyer with more than 16 packs sees only the newest 16.
+ * `o` is passed to the RPC call (e.g. { signal }).
  */
 export async function findMyPacks(cfg, address, o) {
   if (!isAddress(address)) throw new TypeError("findMyPacks needs the buyer's 0x address");
@@ -490,13 +477,6 @@ export async function findMyPacks(cfg, address, o) {
     if (phase >= PHASE_NAMES.length) throw new ShopError("bad_response", `The shop reported an unknown pack state (${phase}).`);
     return { packId: id.toString(), phase, phaseName: PHASE_NAMES[phase], commitBlock: Number(commitBlocks[i]) };
   });
-}
-
-/** How many packs the address has ever bought (a number). More than 16 means findMyPacks shows only the newest 16. */
-export async function packCountOf(cfg, address, o) {
-  if (!isAddress(address)) throw new TypeError("packCountOf needs the buyer's 0x address");
-  const ws = await readWords(cfg, SELECTORS.packCountOf, ["address"], [address], o);
-  return Number(decoding(() => uintAt(ws, 0)));
 }
 
 // ------------------------------------------------------------------ display

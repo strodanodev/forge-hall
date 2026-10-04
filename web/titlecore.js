@@ -163,18 +163,3 @@ export function spaceAlong(loop, spacing) {
   }
   return out;
 }
-
-/** Does a closed outline cross itself? (what a folded offset looks like; O(n²), for build checks and tests) */
-export function selfIntersects(loop) {
-  const n = loop.length;
-  const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
-  for (let i = 0; i < n; i++) {
-    const a = loop[i], b = loop[(i + 1) % n];
-    for (let j = i + 2; j < n; j++) {
-      if (i === 0 && j === n - 1) continue; // neighbours through the closing edge
-      const c = loop[j], d = loop[(j + 1) % n];
-      if (cross(a, b, c) * cross(a, b, d) < 0 && cross(c, d, a) * cross(c, d, b) < 0) return true;
-    }
-  }
-  return false;
-}

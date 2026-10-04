@@ -48,7 +48,7 @@ export function sleep(ms, signal) {
 
 const TRANSIENT_MESSAGE = /rate.?limit|too many requests|throttl|timeout|timed out|temporar|try again|overloaded|server busy/i;
 
-// eth_getLogs and friends accept a number, a bigint, a hex string or a tag; normalise to what the wire wants.
+// Block tags (eth_call, eth_getBalance) accept a number, a bigint, a hex string or a tag; normalise to what the wire wants.
 const TAGS = new Set(["latest", "earliest", "pending", "safe", "finalized"]);
 function blockTag(t) {
   if (t == null) return "latest";
@@ -187,15 +187,6 @@ export function createChain(rpc, opts = {}) {
     /** eth_call -> raw return data. Reverts reject with RpcError (rpcCode 3, .data = revert bytes). */
     async call({ blockTag: tag, ...tx }, o) { return hexResult(await request("eth_call", [txParams(tx), blockTag(tag)], o), "eth_call"); },
     async estimateGas(tx, o) { return fromQuantity(await request("eth_estimateGas", [txParams(tx)], o)); },
-    /** filter: { address, topics, fromBlock, toBlock } (blocks: number | bigint | hex | tag). Raw logs. */
-    async getLogs({ address, topics, fromBlock, toBlock }, o) {
-      const f = { fromBlock: blockTag(fromBlock), toBlock: blockTag(toBlock) };
-      if (address != null) f.address = address;
-      if (topics != null) f.topics = topics;
-      const logs = await request("eth_getLogs", [f], { timeoutMs: 15000, ...o });
-      if (!Array.isArray(logs)) throw new RpcError("Unexpected eth_getLogs result", { method: "eth_getLogs" });
-      return logs;
-    },
     getReceipt,
     waitForReceipt,
   };

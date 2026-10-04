@@ -4,8 +4,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
-  PHASE, PHASE_NAMES, ShopError, chainFromConfig, loadShopConfig, rpcFor, readShop, packsLeftToday, phaseOf, readPack, buyPack,
-  waitUntilOpenable, openPack, refundExpired, findMyPacks, packCountOf, formatZkltc, txUrl, addressUrl,
+  PHASE, PHASE_NAMES, ShopError, chainFromConfig, loadShopConfig, rpcFor, readShop, packsLeftToday, phaseOf, buyPack,
+  waitUntilOpenable, openPack, refundExpired, findMyPacks, formatZkltc,
 } from "../packshop.js";
 import { createWallet, WalletError, LITEFORGE, chainParams } from "../wallet.js";
 import { createChain } from "../chain.js";
@@ -148,14 +148,6 @@ test("rpcFor: refuses an unusable config, caches one client per RPC url, honours
   assert.equal(rpcFor({ packShop: SHOP, rpc: RPC, client: mine }), mine);
 });
 
-test("explorer links exist only when the chain has an explorer", () => {
-  assert.equal(txUrl({ explorer: "https://x.example" }, "0xabc"), "https://x.example/tx/0xabc");
-  assert.equal(addressUrl({ explorer: "https://x.example" }, ALICE), `https://x.example/address/${ALICE}`);
-  for (const cfg of [{}, { explorer: null }, { explorer: "" }, null, undefined]) {
-    assert.equal(txUrl(cfg, "0xabc"), null);
-    assert.equal(addressUrl(cfg, ALICE), null);
-  }
-});
 
 // ------------------------------------------------------------------ reads
 test("readShop decodes config(): bigint price, numbers, weights, flags; packsLeft with an address", async () => {
@@ -204,19 +196,16 @@ test("reads say plainly when the contract is missing, the network is down, or th
   await assert.rejects(phaseOf(down, 1), shopErr("rpc"));
 });
 
-test("phaseOf and readPack follow a pack through its life (Nitro: the contract's own block numbers decide)", async () => {
+test("phaseOf follows a pack through its life (Nitro: the contract's own block numbers decide)", async () => {
   const ctx = await setup();
   const { chain, cfg } = ctx;
   assert.equal(await phaseOf(cfg, 1), PHASE.None);
-  const { packId, commitBlock } = await buy(ctx);
+  const { packId } = await buy(ctx);
   assert.equal(await phaseOf(cfg, packId), PHASE.Waiting);
   chain.mineL1(1);
   assert.equal(await phaseOf(cfg, packId), PHASE.Waiting, "commit + 1 is not enough: the reveal block must be strictly older");
   chain.mineL1(1);
   assert.equal(await phaseOf(cfg, packId), PHASE.Openable);
-  const pack = await readPack(cfg, packId);
-  assert.deepEqual(pack, { buyer: A, commitBlock, phase: PHASE.Openable, phaseName: "Openable", paid: PRICE });
-  assert.equal(typeof pack.paid, "bigint");
   chain.mineL1(254);                                   // block.number is now reveal + 255: the last openable one
   assert.equal(await phaseOf(cfg, packId), PHASE.Openable, "the last openable block number");
   chain.mineL1(1);
@@ -225,7 +214,6 @@ test("phaseOf and readPack follow a pack through its life (Nitro: the contract's
   assert.deepEqual({ ...PHASE }, { None: 0, Waiting: 1, Openable: 2, Expired: 3, Opened: 4, Refunded: 5 });
   chain.st.hooks.eth_call = () => "0x" + "00".repeat(31) + "09";
   await assert.rejects(phaseOf(cfg, packId), shopErr("bad_response", (e) => /unknown pack state \(9\)/.test(e.message)));
-  await assert.rejects(readPack(cfg, packId).then(() => { throw new Error("should not decode"); }), () => true);
 });
 
 // ------------------------------------------------------------------ buyPack
@@ -897,24 +885,18 @@ test("findMyPacks reports every phase the contract has", async () => {
   assert.deepEqual(packs.filter((p) => p.phase === PHASE.Waiting || p.phase === PHASE.Openable).map((p) => p.packId), ["4", "5"], "packs to resume");
 });
 
-test("findMyPacks: none, exactly 16, and more than 16 (the newest 16, oldest first; packCountOf says how many exist)", async () => {
+test("findMyPacks: none, exactly 16, and more than 16 (the newest 16, oldest first)", async () => {
   const ctx = await setup();
   const { chain, cfg } = ctx;
   chain.st.cfg.dailyLimit = 0;
   assert.deepEqual(await findMyPacks(cfg, ALICE), [], "a buyer with no packs");
-  assert.equal(await packCountOf(cfg, ALICE), 0);
   for (let i = 0; i < 16; i++) await buy(ctx);
   let packs = await findMyPacks(cfg, ALICE);
   assert.deepEqual(packs.map((p) => p.packId), Array.from({ length: 16 }, (_, i) => String(i + 1)));
-  assert.equal(await packCountOf(cfg, ALICE), 16);
   for (let i = 0; i < 4; i++) await buy(ctx);
   packs = await findMyPacks(cfg, ALICE);
   assert.equal(packs.length, 16);
   assert.deepEqual(packs.map((p) => p.packId), Array.from({ length: 16 }, (_, i) => String(i + 5)), "the newest 16 (5..20), oldest first");
-  assert.equal(await packCountOf(cfg, ALICE), 20, "the count is not capped");
-  assert.equal(await packCountOf(cfg, BOB), 0);
-  assert.equal(await packCountOf(cfg, ALICE.toLowerCase()), 20, "any address casing");
-  assert.equal(chain.methods("eth_call").filter((c) => c.params[0].data.startsWith("0x91675f42")).length, 5, "packCountOf is its own call");
 });
 
 test("findMyPacks: every failure is reported, never a partial answer", async () => {
@@ -948,17 +930,14 @@ test("findMyPacks: every failure is reported, never a partial answer", async () 
 
   const down = { ...cfg, client: createChain(RPC, { fetch: async () => { throw new TypeError("Failed to fetch"); }, backoffMs: 1, retries: 1 }) };
   await assert.rejects(findMyPacks(down, ALICE), shopErr("rpc", (e) => /Could not reach the LitVM Liteforge network/.test(e.message)));
-  await assert.rejects(packCountOf(down, ALICE), shopErr("rpc"));
-  await assert.rejects(packCountOf({ ...cfg, packShop: BOB }, ALICE), shopErr("not_configured"));
 });
 
-test("findMyPacks / packCountOf validate their input and pass call options (the abort signal) through", async () => {
+test("findMyPacks validates its input and passes call options (the abort signal) through", async () => {
   const ctx = await setup();
   const { chain, cfg } = ctx;
   chain.st.calls.length = 0;
   for (const bad of ["nope", "0x1234", undefined, null, 5]) {
     await assert.rejects(findMyPacks(cfg, bad), TypeError, String(bad));
-    await assert.rejects(packCountOf(cfg, bad), TypeError, String(bad));
   }
   await assert.rejects(findMyPacks(null, ALICE), shopErr("not_configured"));
   await assert.rejects(findMyPacks({ ...cfg, packShop: undefined }, ALICE), shopErr("not_configured"));
@@ -967,9 +946,6 @@ test("findMyPacks / packCountOf validate their input and pass call options (the 
   ctl.abort();
   await assert.rejects(findMyPacks(cfg, ALICE, { signal: ctl.signal }), shopErr("aborted"));
   assert.equal(chain.st.calls.length, 0, "an aborted call never leaves");
-  // the lookback option of the old log scan is gone: passing it is harmless
-  await buy(ctx);
-  assert.equal((await findMyPacks(cfg, ALICE, { lookbackL2Blocks: 5 })).length, 1);
 });
 
 // ------------------------------------------------------------------ formatZkltc
@@ -1028,14 +1004,6 @@ test("formatZkltc: floor never overstates, ceil never understates, nearest is wi
     if (hi !== null) assert.ok(hi >= wei && hi - wei < unit, `ceil ${wei} ${digits}`);
     if (mid !== null) assert.ok((mid > wei ? mid - wei : wei - mid) * 2n <= unit, `nearest ${wei} ${digits}`);
   }
-});
-
-test("ShopError is a WalletError, so one catch handles both layers", () => {
-  const e = new ShopError("low_balance", "no", { have: 1n });
-  assert.ok(e instanceof WalletError && e instanceof Error);
-  assert.equal(e.name, "ShopError");
-  assert.equal(e.code, "low_balance");
-  assert.equal(e.have, 1n);
 });
 
 // ------------------------------------------------------------------ network fee caps (live bug, Liteforge 2026-10-02)

@@ -1,7 +1,9 @@
 # FORGE wallet layer tests
 
-Tests for `web/abi.js`, `web/chain.js`, `web/wallet.js`, `web/packshop.js`, `web/auth.js`, `web/shopflow.js` and the Card Library (`web/holdings.js`, `web/librarymodel.js`, `web/collections.js`). They run on Node's built-in
-test runner (Node 22+; developed on v25) with no browser, no network and no npm install of their own.
+Tests for `web/abi.js`, `web/chain.js`, `web/wallet.js`, `web/packshop.js`, `web/auth.js`, `web/shopflow.js`, the Card Library
+(`web/holdings.js`, `web/librarymodel.js`, `web/collections.js`), the title screen's pure parts (`web/titlecore.js`) and the
+Oracle's puzzle (`web/oraclecore.js`). They run on Node's built-in test runner (Node 22+; developed on v25) with no browser and
+no network; the only dependency they borrow is ethers from `packshop/node_modules` (below).
 
 ## Run
 
@@ -13,11 +15,11 @@ node --test web/test/                  # same tests, one process (web/test/index
 node --test web/test/wallet.test.mjs   # one suite
 ```
 
-Expect `tests 146 / pass 146 / fail 0` in a few seconds. `node --test web/test/` needs `index.js` because Node 21+ no longer
+Expect `tests 231 / pass 231 / fail 0` in a few seconds. `node --test web/test/` needs `index.js` because Node 21+ no longer
 scans a directory argument; on older Node it scans the directory and runs `index.js` and the suites (twice, harmlessly).
 
-A `MODULE_TYPELESS_PACKAGE_JSON` warning at the top of the output is expected and harmless: the browser modules are plain
-`.js` with `import` syntax and there is no `package.json` marking them as ESM, so Node detects it.
+On Node 25 a `--localstorage-file was provided without a valid path` warning appears once per process that touches
+`localStorage`; it is Node's own localStorage stub speaking, and harmless.
 
 ## Prerequisites
 
@@ -37,6 +39,8 @@ A `MODULE_TYPELESS_PACKAGE_JSON` warning at the top of the output is expected an
 | `auth.test.mjs` | the `/api/auth/*` contract against a mock `fetch` and a mock wallet |
 | `holdings.test.mjs` | the Card Library's data layer (`web/holdings.js`) on a fake ERC-721 (`ownerOf` / `balanceOf` / `totalSupply` / `tokenURI`) and a fake Blockscout: explorer paging, a lagging index completed by a newest-first `ownerOf` scan that stops at the `balanceOf` count, stale rows dropped, the explorer or balance being down, the scan cap, aborts, remembered pack mints verified before trusted, the NEW baseline (marking one token seen must not flag the rest), edition matching by design hash / design doc / image / name, hostile ABI strings and token URIs, and a blocked `localStorage` |
 | `library.test.mjs` | the library's view model (`web/librarymodel.js`: rows, set progress, filters, search that cannot reveal a locked card's name, sort modes) and the set registry (`web/collections.js`) |
+| `title.test.mjs` | the title screen's pure parts (`web/titlecore.js`): the prologue's shape and markup, tweens, even-odd nesting of the real caduceus trace, badge outlines that must not self-intersect, rivet spacing, emblem placement on every screen shape, the asset references and the DOM-event contract with `main.js` |
+| `oracle.test.mjs` | the Oracle's puzzle (`web/oraclecore.js`): every trial is solvable and never starts within one turn of solved (500 seeds), ring maths |
 | `shopflow.test.mjs` | the page-facing adapter (`web/shopflow.js`) on the fake chain: preview vs live, `?shop=` switches, template-to-card mapping, buy -> wait -> open returning minted cards (own token ids, best last), resume after a reload with no second purchase, dead/expired packs and refunds, a lagging node cannot resurrect an opened pack, the local dev chain's collection |
 
 ## Fixtures (`helpers.mjs`, not a test file)

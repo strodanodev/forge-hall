@@ -47,7 +47,6 @@ test("typed helpers build the right params and parse the results", async () => {
       case "eth_getBalance": return q(10n ** 18n);
       case "eth_call": return "0x" + "00".repeat(31) + "02";
       case "eth_estimateGas": return q(7_400_000);
-      case "eth_getLogs": return [{ data: "0x" }];
       case "eth_getTransactionReceipt": return null;
     }
   });
@@ -60,7 +59,6 @@ test("typed helpers build the right params and parse the results", async () => {
   assert.equal(await chain.call({ to: SHOP, data: "0x9a243ebf" }), "0x" + "00".repeat(31) + "02");
   assert.equal(await chain.call({ to: SHOP, data: "0x", from: ALICE, value: 5n, blockTag: 99n }), "0x" + "00".repeat(31) + "02");
   assert.equal(await chain.estimateGas({ from: ALICE, to: SHOP, data: "0xc37b9bcd", value: 10n ** 17n }), 7_400_000n);
-  assert.deepEqual(await chain.getLogs({ address: SHOP, topics: ["0xaa", null, "0xbb"], fromBlock: 1000, toBlock: "latest" }), [{ data: "0x" }]);
   assert.equal(await chain.getReceipt(HASH), null);
 
   const by = (name) => seen.filter(([m]) => m === name).map(([, p]) => p);
@@ -70,15 +68,13 @@ test("typed helpers build the right params and parse the results", async () => {
     [{ to: SHOP, data: "0x", from: ALICE, value: "0x5" }, "0x63"],
   ]);
   assert.deepEqual(by("eth_estimateGas"), [[{ from: ALICE, to: SHOP, data: "0xc37b9bcd", value: "0x16345785d8a0000" }]]);
-  assert.deepEqual(by("eth_getLogs"), [[{ fromBlock: "0x3e8", toBlock: "latest", address: SHOP, topics: ["0xaa", null, "0xbb"] }]]);
   assert.deepEqual(by("eth_getTransactionReceipt"), [[HASH]]);
 });
 
 test("helpers refuse malformed input and unexpected results instead of guessing", async () => {
-  const { chain } = client(jsonRpcFetch((method) => (method === "eth_call" ? 5 : method === "eth_getLogs" ? "nope" : "not hex")));
+  const { chain } = client(jsonRpcFetch((method) => (method === "eth_call" ? 5 : "not hex")));
   await assert.rejects(chain.getReceipt("0x1234"), /Not a transaction hash/);
   await assert.rejects(chain.call({ to: SHOP, data: "0x" }), /Unexpected eth_call result/);
-  await assert.rejects(chain.getLogs({ address: SHOP, fromBlock: 1, toBlock: 2 }), /Unexpected eth_getLogs result/);
   await assert.rejects(chain.blockNumber(), /not a hex quantity/);
   await assert.rejects(chain.getBalance(ALICE, -1), /negative/);
 });

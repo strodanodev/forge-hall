@@ -18,9 +18,12 @@ const templates = readJson("data/templates.liteforge.json").templates;
 const p = provider(dep);
 const shop = new ethers.Contract(dep.packShop.address, [
   "function config() view returns (uint256 price, uint8 packSize, uint16 dailyLimit, bool paused, bool ready, uint16[5] weights, uint256 templateCount)",
+  "function activeTemplates(uint8 kind) view returns (uint16[])",
 ], p);
 const c = await shop.config();
-if (Number(c.templateCount) !== templates.length) throw new Error(`the shop holds ${c.templateCount} templates, the file has ${templates.length}`);
+// templateCount() counts retired templates too: compare the ACTIVE pool with the file, so a retire + re-add does not break this
+const active = (await Promise.all([0, 1, 2, 3, 4].map((k) => shop.activeTemplates(k)))).reduce((n, ids) => n + ids.length, 0);
+if (active !== templates.length) throw new Error(`the shop has ${active} active templates (${c.templateCount} ever loaded), the file has ${templates.length}`);
 if (!c.ready) throw new Error("the shop is not ready");
 console.log(`PackShop ${dep.packShop.address}: price ${ethers.formatEther(c.price)} zkLTC, ${c.packSize} cards, ${c.dailyLimit} packs/day, paused ${c.paused}`);
 

@@ -36,7 +36,7 @@
   <table>
     <tr><th>Connect</th><td>Shares your public address with this page. It cannot move funds or see your keys.</td></tr>
     <tr><th>Add / switch network</th><td>Adds "LitVM Liteforge" (chain 4441, RPC <code>liteforge.rpc.caldera.xyz</code>) to your wallet and switches to it, if it is not there already.</td></tr>
-    <tr><th>Buy a pack</th><td>One transaction to the PackShop contract: the price shown on the button (currently <b>0.001 zkLTC</b>) plus a small network fee. Function <code>buyPack()</code>.</td></tr>
+    <tr><th>Buy a pack</th><td>One transaction to the PackShop contract: the price shown on the button (<b>0.001 zkLTC</b> at launch; the button always shows the current price, read from the contract) plus a small network fee. Function <code>buyPack()</code>.</td></tr>
     <tr><th>Open the pack</th><td>A second transaction to the same contract (<code>openPack</code>), after a short wait. It mints 5 cards into your wallet. You pay only the network fee.</td></tr>
     <tr><th>Refund</th><td>Only if a bought pack was never opened in time: <code>refundExpired</code> returns exactly what you paid.</td></tr>
     <tr><th>Sign in (optional)</th><td>Signs a plain text message (EIP-4361, "Sign in to the FORGE"). It is free, it is not a transaction, and it only proves you control the address.</td></tr>

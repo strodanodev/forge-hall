@@ -191,7 +191,6 @@ export function createFakeChain({ chainId = 4441 } = {}) {
     receiptDelay: 0,
     txs: [],                     // every eth_sendTransaction the fake accepted
     calls: [],                   // every JSON-RPC request, in order
-    logQueries: [],
     hooks: {},
     estimate: (tx, result) => result.gas,
     failNext: null,
@@ -305,18 +304,6 @@ export function createFakeChain({ chainId = 4441 } = {}) {
     }
   }
 
-  function getLogs(filter) {
-    const from = parseInt(filter.fromBlock, 16);
-    const to = parseInt(filter.toBlock, 16);
-    st.logQueries.push({ from, to, filter });
-    if (to - from + 1 > 20000) throw rpcError(-32602, "query exceeds max block range 20000");
-    return st.logs.filter((l) => {
-      if (filter.address && lc(filter.address) !== lc(l.address)) return false;
-      if (l.blockNumberNum < from || l.blockNumberNum > to) return false;
-      return (filter.topics ?? []).every((t, i) => t == null || lc(t) === lc(l.topics[i]));
-    }).map(({ blockNumberNum, ...l }) => l);
-  }
-
   /** eth_sendTransaction as the wallet would submit it. Returns the tx hash; the receipt is served by eth_getTransactionReceipt. */
   function sendTransaction(tx) {
     st.txs.push(tx);
@@ -356,7 +343,6 @@ export function createFakeChain({ chainId = 4441 } = {}) {
         const r = simulate(params[0]);
         return q(st.estimate(params[0], r));
       }
-      case "eth_getLogs": return getLogs(params[0]);
       case "eth_getTransactionReceipt": {
         const hash = params[0];
         const n = (st.polls.get(hash) ?? 0) + 1;

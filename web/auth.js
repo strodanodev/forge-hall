@@ -38,7 +38,7 @@ async function send(path, { method = "GET", body, base = "", fetch: f } = {}) {
     res = await doFetch(base + path, {
       method,
       credentials: "same-origin",
-      headers: body === undefined ? { accept: "application/json" } : { accept: "application/json", "content-type": "application/json" },
+      headers: body === undefined && method === "GET" ? { accept: "application/json" } : { accept: "application/json", "content-type": "application/json" },
       body: body === undefined ? undefined : JSON.stringify(body),
     });
   } catch (e) {
@@ -93,10 +93,4 @@ export async function signOut(opts = {}) {
   const r = await send("/api/auth/logout", { ...opts, method: "POST" });
   if (!r.ok && r.status !== 401) throw failure(r);
   return true;
-}
-
-/** True unless the API is missing (see ApiUnavailable); a server that is there but failing still counts as available. */
-export async function apiAvailable(opts = {}) {
-  try { await me(opts); return true; }
-  catch (e) { if (e instanceof ApiUnavailable) return false; return true; }
 }

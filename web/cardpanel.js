@@ -2,8 +2,7 @@
 import { ELEMENT, RARITY } from "./rapture.js";
 
 const GATEWAY = "https://ipfs.filebase.io/ipfs/";
-const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-const short = (h) => `${h.slice(0, 6)}…${h.slice(-4)}`;
+import { esc, shortAddress as short } from "./util.js";
 const ipfsUrl = (uri) => uri?.replace(/^ipfs:\/\//, GATEWAY);
 
 export class CardPanel {

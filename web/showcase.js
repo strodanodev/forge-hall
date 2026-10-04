@@ -5,7 +5,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
-import { glbBytes, imageTextures } from "./fx.js";
+import { glbBytes } from "./fx.js";
 
 const SPIN = 0.55;                                   // rad/s
 
@@ -113,7 +113,7 @@ export class AvatarShowcase {
   /** @param {{parent: THREE.Object3D, scene: THREE.Scene, renderer: THREE.WebGLRenderer, getCamera: () => THREE.Camera, glowMap: THREE.Texture}} o */
   constructor(o) {
     Object.assign(this, o);
-    this.loader = imageTextures(new GLTFLoader().setMeshoptDecoder(MeshoptDecoder));
+    this.loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
     this.bytes = new Map();                          // url -> Promise<ArrayBuffer>
     this.group = new THREE.Group();
     this.group.visible = false;

@@ -11,7 +11,7 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { SMAAPass } from "three/addons/postprocessing/SMAAPass.js";
 import { PackOpening } from "./pack.js";
-import { glbBytes, imageTextures, viewportScale } from "./fx.js";
+import { glbBytes, viewportScale } from "./fx.js";
 import { ForgeAmbience } from "./forgefx.js";
 import { ForgeNPC } from "./npc.js";
 import { ForgeFire, TorchFires } from "./forgefire.js";
@@ -73,7 +73,7 @@ let bytes = 0;
 const collectionReady = loadCollection();
 // the live pack shop (wallet + PackShop contract) loads beside it; without a deployed shop it resolves a preview-only object
 const shopReady = collectionReady.then((collection) => createShop({ collection }));
-const loader = imageTextures(new GLTFLoader().setMeshoptDecoder(MeshoptDecoder));
+const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
 // the title screen (title.js) covers the hall while it loads: tell it how far along we are, and hold AERIS until the
 // player has entered (html[data-forge-title] is "on" while it shows)
 const loadProgress = (f) => document.dispatchEvent(new CustomEvent("forge:progress", { detail: f }));

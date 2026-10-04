@@ -1,6 +1,6 @@
 """Re-grade the cinematic bake without re-baking.
 
-export_web.py (cinematic mode) keeps each atlas's linear HDR bake in bake/BK_*_hdr.npz. This applies a
+export_web.py keeps each atlas's linear HDR bake in bake/BK_*_hdr.npz. This applies a
 small grade in scene-linear, then Blender's own AgX view + look through OpenColorIO (Blender's config),
 so neutral settings reproduce the bake exactly and changes take seconds.
 
@@ -15,7 +15,10 @@ import numpy as np
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BAKE = os.path.join(ROOT, "bake")
-OCIO_CONFIG = r"C:\Program Files\Blender Foundation\Blender 5.2\5.2\datafiles\colormanagement\config.ocio"
+# Blender's own OCIO config (<blender>/<version>/datafiles/colormanagement/config.ocio): set OCIO to yours
+OCIO_CONFIG = os.environ.get("OCIO", r"C:\Program Files\Blender Foundation\Blender 5.2\5.2\datafiles\colormanagement\config.ocio")
+if not os.path.exists(OCIO_CONFIG):
+    sys.exit(f"OCIO config not found at {OCIO_CONFIG}: set OCIO to Blender's datafiles/colormanagement/config.ocio")
 
 GRADE = dict(
     exposure=0.0,              # stops

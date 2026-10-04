@@ -259,11 +259,12 @@ export function createHoldings({ collection, rpc = collection.rpc, templates = [
       const explorer = !collection.explorer ? "none" : ex.status === "fulfilled" ? "ok" : "failed";
       if (ex.status === "rejected" && isAbort(ex.reason)) throw ex.reason;
       let partial = false, scanned = 0;
+      const unsure = new Set();                        // ids whose ownerOf failed transiently: neither trusted nor forgotten
 
       // an ownerOf that fails for a reason other than "no such token" only makes the answer partial
       const owns = async (id) => {
         try { return (await ownerOf(id, signal)) === w; }
-        catch (e) { if (isAbort(e)) throw e; partial = true; return null; }
+        catch (e) { if (isAbort(e)) throw e; partial = true; unsure.add(id); return null; }
       };
       const verify = async (ids) => {
         const ok = await pool(ids, RPC_CONCURRENCY, owns, signal);
@@ -284,7 +285,6 @@ export function createHoldings({ collection, rpc = collection.rpc, templates = [
           try { supply = await totalSupply(signal); } catch (e) { if (isAbort(e)) throw e; partial = true; }
           if (supply != null) {
             const top = Math.min(supply, SCAN_LIMIT);
-            if (supply > SCAN_LIMIT) partial = true;     // older ids are not scanned
             let n = supply - 1;                          // ids are set-local serials 0..supply-1; the newest are last
             const stop = () => have.size >= balance;
             await Promise.all(Array.from({ length: RPC_CONCURRENCY }, async () => {
@@ -296,13 +296,17 @@ export function createHoldings({ collection, rpc = collection.rpc, templates = [
                 if (await owns(id)) have.add(id);
               }
             }));
+            if (supply > SCAN_LIMIT && have.size < balance) partial = true;   // older ids were not scanned and the count was not met
           }
         }
       }
 
       const tokens = [...have].sort(byId);
-      // Every non-empty read is worth remembering; an empty one is too when the chain confirmed it (balance 0).
-      if (tokens.length || balance === 0) saveState(w, { ...state, ids: tokens });
+      // Every non-empty read is worth remembering; an empty one is too when the chain confirmed it (balance 0). A remembered
+      // id whose ownerOf failed transiently stays remembered: the next read re-checks it instead of forgetting a minted card.
+      const unsureKept = state.ids.filter((id) => unsure.has(id) && !have.has(id));
+      const remembered = unsureKept.length ? [...tokens, ...unsureKept].sort(byId) : tokens;
+      if (remembered.length || balance === 0) saveState(w, { ...state, ids: remembered });
       return { tokens, balance, complete: balance != null && tokens.length === balance, partial, explorer, scanned };
     },
 

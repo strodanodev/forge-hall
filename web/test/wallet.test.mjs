@@ -162,7 +162,7 @@ test("without any wallet the module still loads and every action fails with no_w
   assert.equal(wallet.chainId, null);
   assert.equal(wallet.onCorrectChain, false);
   assert.equal(wallet.info, null);
-  for (const action of [() => wallet.connect(), () => wallet.ensureChain(), () => wallet.request({ method: "eth_chainId" })]) {
+  for (const action of [() => wallet.connect(), () => wallet.ensureChain()]) {
     await assert.rejects(action(), (e) => e instanceof WalletError && e.code === "no_wallet" && /MetaMask/.test(e.message));
   }
   assert.equal(await wallet.restore(), null, "restore() is quiet when there is nothing to restore");
@@ -476,7 +476,7 @@ test("events before the player has connected change nothing", async () => {
   const sub = kinds();
   wallet.subscribe(sub.fn);
   provider.emit("accountsChanged", [ALICE]);       // listeners are only attached once the wallet is used
-  await wallet.request({ method: "eth_chainId" });   // now bound
+  await wallet.ensureChain();                          // any request binds the listeners
   provider.emit("accountsChanged", [ALICE]);
   assert.equal(wallet.connected, false);
   assert.equal(sub.seen.filter(([k]) => k === "accountsChanged").length, 0);
@@ -500,22 +500,23 @@ test("the provider's disconnect and connect events: not connected while it is of
   assert.ok(sub.seen.some(([k]) => k === "providerConnect"));
 });
 
-test("destroy() detaches every provider listener and silences subscribers", async () => {
+test("a disconnect during the reconnect's account refresh stays a disconnect", async () => {
   const { wallet, provider } = make();
   await wallet.connect();
+  provider.emit("disconnect", providerError(4900, "disconnected"));
+  provider.emit("connect", { chainId: "0x1159" });   // eth_accounts is now in flight
+  await wallet.disconnect();                          // the player leaves before it answers
+  await tick(5);
+  assert.equal(wallet.connected, false, "the late eth_accounts answer must not reconnect the player");
+  assert.equal(wallet.address, null);
+});
+
+test("provider listeners are attached exactly once, however often the wallet is used", async () => {
+  const { wallet, provider } = make();
+  await wallet.connect();
+  await wallet.connect();
+  await wallet.ensureChain();
   for (const evt of ["accountsChanged", "chainChanged", "disconnect", "connect"]) assert.equal(provider.listenerCount(evt), 1, evt);
-  const sub = kinds();
-  wallet.subscribe(sub.fn);
-  wallet.destroy();
-  for (const evt of ["accountsChanged", "chainChanged", "disconnect", "connect"]) assert.equal(provider.listenerCount(evt), 0, evt);
-  provider.emit("chainChanged", "0x1");
-  assert.equal(sub.seen.length, 0);
-  // a second wallet on the same provider attaches its own listeners exactly once, however often it is used
-  const w2 = createWallet({ provider, storage: memoryStorage() });
-  await w2.connect();
-  await w2.connect();
-  await w2.ensureChain();
-  assert.equal(provider.listenerCount("accountsChanged"), 1);
 });
 
 test("a throwing subscriber cannot break the others or the wallet", async () => {
@@ -655,17 +656,6 @@ test("balance() reads the connected account's balance through the wallet, as a b
   assert.deepEqual(provider.methods("eth_getBalance")[0].params, [A, "latest"]);
   provider.once("eth_getBalance", "0xzz");
   await assert.rejects(wallet.balance(), /not a hex quantity/);
-});
-
-test("request() passes calls through and normalises every failure", async () => {
-  const { wallet, provider } = make();
-  assert.equal(await wallet.request({ method: "eth_chainId" }), "0x1159");
-  assert.deepEqual(provider.calls.at(-1), { method: "eth_chainId", params: undefined });
-  await assert.rejects(wallet.request({ method: "eth_bogus" }), (e) => e instanceof WalletError && e.code === "rpc" && /eth_bogus/.test(e.message));
-  provider.once("eth_chainId", providerError(4001, "User rejected the request."));
-  await rejects(wallet.request({ method: "eth_chainId" }), "user_rejected");
-  provider.once("eth_chainId", new Error("boom"));
-  await assert.rejects(wallet.request({ method: "eth_chainId" }), (e) => e.code === "rpc" && /boom/.test(e.message) && e.cause instanceof Error);
 });
 
 // ------------------------------------------------------------------ error normalisation

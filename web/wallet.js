@@ -299,10 +299,9 @@ export function createWallet({ chain: chainArg = LITEFORGE, provider = null, inf
   };
   const onProviderConnect = (e) => {
     if (e?.chainId != null) chainId = parseChainId(e.chainId);
-    if (wantConnected) {
-      call("eth_accounts").then((a) => { account = firstAccount(a); emit("accountsChanged"); })
-        .catch((err) => console.warn("[wallet] could not refresh accounts after reconnect", err));
-    }
+    // re-read the account through onAccounts: it re-checks wantConnected when the answer lands (a disconnect made
+    // meanwhile stays a disconnect) and only announces a change
+    if (wantConnected) call("eth_accounts").then(onAccounts).catch((err) => console.warn("[wallet] could not refresh accounts after reconnect", err));
     emit("providerConnect");
   };
   function bind(p) {
@@ -441,11 +440,6 @@ export function createWallet({ chain: chainArg = LITEFORGE, provider = null, inf
     return fromQuantity(await call("eth_getBalance", [needAccount(), "latest"]));
   }
 
-  function destroy() {
-    unbind();
-    listeners.clear();
-  }
-
   return {
     get address() { return account; },
     get chainId() { return chainId; },
@@ -462,10 +456,8 @@ export function createWallet({ chain: chainArg = LITEFORGE, provider = null, inf
     restore,
     disconnect,
     ensureChain,
-    request: (args) => call(args.method, args.params),
     sendTransaction,
     personalSign,
     balance,
-    destroy,
   };
 }

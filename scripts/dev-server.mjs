@@ -21,6 +21,14 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const WEB_DIR = path.join(ROOT, 'web');
 const API_DIR = path.join(ROOT, 'api');
 
+// The response headers production sends (Content-Security-Policy and friends) live in vercel.json; apply the same
+// rules here so a CSP violation shows up on localhost, not after a deploy.
+const HEADER_RULES = (JSON.parse(fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8')).headers ?? [])
+  .map((rule) => ({ re: new RegExp(`^${rule.source}$`), headers: rule.headers }));
+function applyProductionHeaders(res, pathname) {
+  for (const rule of HEADER_RULES) if (rule.re.test(pathname)) for (const { key, value } of rule.headers) res.setHeader(key, value);
+}
+
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
@@ -161,6 +169,7 @@ async function handleStatic(req, res, pathname) {
 async function onRequest(req, res) {
   try {
     const pathname = (req.url ?? '/').split('?')[0].split('#')[0];
+    applyProductionHeaders(res, pathname);
     if (pathname === '/api' || pathname.startsWith('/api/')) await handleApi(req, res, pathname);
     else await handleStatic(req, res, pathname);
   } catch (err) {

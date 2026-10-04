@@ -9,7 +9,6 @@
 
 export const LIBRARY_SETS = Object.freeze([
   { id: "rapture-arc1", title: "Rapture · ARC 1", subtitle: "Studio Test set · LitVM Liteforge", snapshot: "./assets/rapture/cards.json", primary: true },
-  // { id: "rapture-arc2", title: "Rapture · ARC 2", subtitle: "...", snapshot: "./assets/rapture/arc2/cards.json" },
 ]);
 
 /**

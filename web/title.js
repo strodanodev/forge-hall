@@ -22,11 +22,7 @@ import { oracleNeeded, openOracle } from "./oracle.js";
 
 const Q = new URLSearchParams(location.search);
 const SEEN = "forge.title.seen", SOUND = "forge.title.sound";
-const store = {
-  get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
-  set: (k, v) => { try { localStorage.setItem(k, v); } catch { /* private mode: remember nothing */ } },
-};
-const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+import { store, REDUCED_MOTION as REDUCED } from "./util.js";
 const TOUCH = matchMedia("(pointer: coarse)").matches;
 const SMALL = TOUCH && Math.min(screen.width, screen.height) < 900;
 

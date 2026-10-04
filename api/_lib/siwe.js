@@ -17,7 +17,8 @@ export function newNonce() {
 }
 
 // `address` must already be EIP-55 checksummed. `info` comes from getRequestInfo().
-export function buildSiweMessage({ address, info, chainId, nonce, now = new Date() }) {
+export function buildSiweMessage({ address, info, chainId, nonce }) {
+  const now = new Date();
   const expiresAt = new Date(now.getTime() + NONCE_TTL_SECONDS * 1000);
   const message = new SiweMessage({
     domain: info.host,
@@ -50,7 +51,8 @@ const fail = (reason) => new HttpError(401, reason);
 //
 // (siwe's own SiweMessage#verify is not used: it keeps executing after a failed
 // check and logs raw errors. These checks are explicit and easy to audit.)
-export function checkSignedMessage({ message, signature, info, chainId, now = new Date() }) {
+export function checkSignedMessage({ message, signature, info, chainId }) {
+  const now = new Date();
   let siwe;
   try {
     siwe = new SiweMessage(message);
@@ -75,8 +77,11 @@ export function checkSignedMessage({ message, signature, info, chainId, now = ne
 
   if (siwe.chainId !== chainId) throw fail('wrong chain');
 
-  // We never issue Not Before; a message carrying one was not written by us.
+  // We never issue Not Before, a Request ID or Resources, and we write one fixed statement: a message
+  // carrying anything else was not written by us, however valid its signature.
   if (siwe.notBefore !== undefined) throw fail('invalid message');
+  if (siwe.statement !== SIWE_STATEMENT) throw fail('invalid message');
+  if (siwe.requestId !== undefined || siwe.resources?.length) throw fail('invalid message');
   const issuedAt = parseInstant(siwe.issuedAt);
   const expiresAt = parseInstant(siwe.expirationTime);
   if (Number.isNaN(issuedAt) || Number.isNaN(expiresAt) || expiresAt <= issuedAt) throw fail('invalid message');

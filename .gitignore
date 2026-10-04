@@ -14,7 +14,6 @@ web/assets/rapture/packshop.local.json
 # Blender's automatic backups
 *.blend1
 
-.vercel
 
 # Blender working material: scenes, bake caches, renders, archived builds and paid model sources (hundreds of MB).
 # What ships is the web build in web/assets; the scripts that make it are tracked in scripts/.
@@ -28,3 +27,6 @@ web/assets/rapture/packshop.local.json
 # Hardhat build output (packshop/.gitignore covers it too)
 /packshop/artifacts/
 /packshop/cache/
+
+# build intermediate written by scripts/export_web.py; scripts/optimize_web.sh turns it into forge_hall.glb / _1k.glb
+/web/assets/*_raw.glb

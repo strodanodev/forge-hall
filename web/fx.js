@@ -128,19 +128,11 @@ export class Particles {
   clear() { this.age.fill(1); this.col.fill(0); this.live = 0; this.points.visible = false; }
 }
 
-/**
- * GLB bytes from a URL that serves either the binary file (local dev) or the same bytes as base64 text: claude.ai
- * artifacts don't serve model/gltf-binary, so the hosted build publishes every .glb path as text/plain base64.
- */
+/** GLB bytes from a URL, reporting download progress when the server sends a length. */
 export async function glbBytes(url, onProgress) {
   const res = await fetch(url);
-  const buf = onProgress ? await readWithProgress(res, onProgress) : await res.arrayBuffer();
-  const h = new Uint8Array(buf, 0, 4);
-  if (h[0] === 0x67 && h[1] === 0x6c && h[2] === 0x54 && h[3] === 0x46) return buf; // "glTF" magic: binary as-is
-  const bin = atob(new TextDecoder().decode(buf).trim());
-  const out = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
-  return out.buffer;
+  if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
+  return onProgress ? readWithProgress(res, onProgress) : res.arrayBuffer();
 }
 
 /** A fetch body read in chunks, reporting the fraction received (0..1) when the server sends a length. */
@@ -159,17 +151,4 @@ async function readWithProgress(res, onProgress) {
   let at = 0;
   for (const p of parts) { out.set(p, at); at += p.length; }
   return out.buffer;
-}
-
-/**
- * Decode a GLB's embedded textures through <img> instead of fetch(). GLTFLoader's default ImageBitmapLoader
- * fetch()es each texture's blob: URL, and hosted artifacts' CSP refuses fetch of blob: (the hall rendered untextured
- * white there); an <img> may load blob:. TextureLoader is three's own path for Safari, so the textures are identical.
- */
-export function imageTextures(loader) {
-  return loader.register((parser) => {
-    parser.textureLoader = new THREE.TextureLoader(parser.options.manager);
-    parser.textureLoader.setCrossOrigin(parser.options.crossOrigin);
-    return { name: "forge_image_textures" };
-  });
 }

@@ -80,9 +80,6 @@ export function encodeCall(selector, types = [], values = []) {
   if (!isHex(selector, 4)) throw new AbiError("a selector is 4 bytes of 0x hex");
   return selector + encodeArgs(types, values);
 }
-/** An address as a 32-byte log topic (for eth_getLogs filters on indexed address params). */
-export const addressTopic = (a) => "0x" + encodeAddress(a);
-export const uintTopic = (v) => "0x" + encodeUint(v);
 
 // ------------------------------------------------------------------ decoding
 /** Split ABI data into 32-byte words (64 hex chars each, no 0x). */
@@ -144,11 +141,9 @@ export const SELECTORS = Object.freeze({
   openPack: "0x50a88c7e",         // openPack(uint256)
   refundExpired: "0x1402b17a",    // refundExpired(uint256)
   phaseOf: "0x9a243ebf",          // phaseOf(uint256) -> uint8 Phase
-  packOf: "0xafac6b21",           // packOf(uint256) -> (buyer, commitBlock, phase, paid)
   config: "0x79502c55",           // config() -> (price, packSize, dailyLimit, paused, ready, weights[5], templateCount)
   packsLeftToday: "0x9d3a3ee5",   // packsLeftToday(address) -> uint256
   recentPacks: "0xd3ee9e8d",      // recentPacks(address,uint256) -> (uint256[] ids, uint8[] phases, uint256[] commitBlocks)
-  packCountOf: "0x91675f42",      // packCountOf(address) -> uint256 (every pack the address ever bought)
 });
 export const TOPICS = Object.freeze({
   PackBought: "0x903fd5359768866b00d366f17280045a07752297ccbb24e26a6e2ebed4f00262",   // (uint256 indexed,address indexed,uint256,uint256)

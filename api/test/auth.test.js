@@ -275,6 +275,23 @@ describe('signature and message checks', () => {
     assert.equal(ok.status, 200);
   });
 
+  it('a re-signed message with another statement, a Request ID or Resources is refused', async () => {
+    const wallet = Wallet.createRandom();
+    const { message } = (await call(app, '/api/auth/nonce', { json: { address: wallet.address } })).json;
+    const variants = [
+      message.replace('FORGE', 'F0RGE'), // another statement, validly signed
+      `${message}\nRequest ID: abc`, // a Request ID: the server never writes one
+      `${message}\nResources:\n- https://evil.example/claim`, // Resources: never ours either
+    ];
+    for (const text of variants) {
+      const signature = await wallet.signMessage(text);
+      const res = await call(app, '/api/auth/verify', { json: { message: text, signature } });
+      assert.equal(res.status, 401, `re-signed variant accepted:\n${text}`);
+      assert.deepEqual(res.setCookie, []);
+    }
+    assert.equal((await rows('select * from sessions')).length, 0);
+  });
+
   it('a tampered message is refused', async () => {
     const wallet = Wallet.createRandom();
     const other = Wallet.createRandom();
@@ -539,27 +556,25 @@ describe('request host and ALLOWED_HOSTS', () => {
     assert.deepEqual(res.json, { error: 'host not allowed' });
   });
 
-  it('accepts any host when ALLOWED_HOSTS is unset', async () => {
+  it('accepts any host when ALLOWED_HOSTS is unset, off Vercel (npm run dev needs no configuration)', async () => {
     const wallet = Wallet.createRandom();
     const res = await call(app, '/api/auth/nonce', { host: 'anything.example.net', json: { address: wallet.address } });
     assert.equal(res.status, 200);
   });
 
-  it('warns once on Vercel production when ALLOWED_HOSTS is unset, and stays quiet otherwise', async (t) => {
-    const warn = t.mock.method(console, 'warn', () => {});
+  it('on Vercel (any environment) sign-in is off until ALLOWED_HOSTS is set, with a clear error', async () => {
     const wallet = Wallet.createRandom();
-
-    await call(app, '/api/auth/nonce', { json: { address: wallet.address } }); // not production: silent
-    assert.equal(warn.mock.calls.length, 0);
-
-    process.env.VERCEL_ENV = 'production';
+    const saved = process.env.VERCEL;
+    process.env.VERCEL = '1';
     try {
-      assert.equal((await call(app, '/api/auth/nonce', { json: { address: wallet.address } })).status, 200);
-      assert.equal((await call(app, '/api/auth/nonce', { json: { address: wallet.address } })).status, 200);
-      assert.equal(warn.mock.calls.length, 1, 'once, not on every request');
-      assert.match(String(warn.mock.calls[0].arguments[0]), /ALLOWED_HOSTS is not set/);
+      const res = await call(app, '/api/auth/nonce', { json: { address: wallet.address } });
+      assert.equal(res.status, 503);
+      assert.match(res.json.error, /ALLOWED_HOSTS/);
+      process.env.ALLOWED_HOSTS = HOST;
+      assert.equal((await call(app, '/api/auth/nonce', { json: { address: wallet.address } })).status, 200, 'set: sign-in works on the listed host');
     } finally {
-      delete process.env.VERCEL_ENV;
+      if (saved === undefined) delete process.env.VERCEL; else process.env.VERCEL = saved;
+      delete process.env.ALLOWED_HOSTS;
     }
   });
 });

@@ -479,7 +479,7 @@ export class PackOpening {
     for (const m of this.faceMats) m.emissiveIntensity = 0.3;
   }
 
-  newPack() { return this.prepare(rollPack(this.collection)); }
+  newPack() { return this.prepare(rollPack(this.collection, this.shop?.info?.weights)); }   // a live shop's own odds
 
   /** Warm everything a pull needs (paintings, avatar bytes) before the cards appear. */
   prepare(picks) {
@@ -995,7 +995,7 @@ function rollPackCards(self, picks) {
     outer.add(inner);
     const faceMat = self.faceMats[i];
     const card = { data, faceReady: false };
-    self.fontsReady.then(() => drawFace(data, self.collection)).then((tex) => {
+    self.fontsReady.then(() => drawFace(data)).then((tex) => {
       self.renderer?.initTexture(tex); // upload now (during the intro), not on the frame the card first shows
       faceMat.map = tex; faceMat.emissiveMap = tex; card.faceReady = true;
     });

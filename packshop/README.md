@@ -66,7 +66,8 @@ re-added). What remains, by design or accepted for a testnet:
 
 - **Skip-and-refund grinding** (above): needs a VRF/keeper before mainnet.
 - **The owner is trusted with the pool and the odds.** They are read when a pack is opened, not when it is bought, so an
-  owner can change what a sealed pack draws (retire a template, `setWeights`). Use a multisig and pause first on mainnet.
+  owner can change what a sealed pack draws (retire a template, `setWeights`, and `addTemplates`: a Kind's pool length is part
+  of the draw, so adding cards to a Kind re-rolls every sealed pack of that Kind). Use a multisig and pause first on mainnet.
 - A refund to a buyer *contract* that cannot receive ETH fails for good (its own funds; its `liability` is never released).
 - `recentPacks` returns the newest 16 packs; an older expired pack can still be refunded by id (`refundExpired`).
 - Price 0 with limit 0 (both owner settings) would mint unlimited cards for free. `MAX_TEMPLATES` counts retired templates.
@@ -137,7 +138,7 @@ contracts (RaptureCards, StudioMinter) are deliberately not published from here:
 
 ```bash
 npm install
-npm test                    # 27 contract tests against the real Rapture contracts (vendored copy)
+npm test                    # 28 contract tests against the real Rapture contracts (vendored copy)
 npm run export-templates    # read the 50 cards from Liteforge -> data/templates.liteforge.json (read-only)
 npm run simulate-live       # would every template mint on the live StudioMinter? gas? (read-only, no key)
 ```
@@ -171,7 +172,7 @@ Estimated cost: deploy ~2.9M gas, pool ~16M gas (5 batches), a few small calls: 
 contracts/PackShop.sol             the shop
 contracts/test/Harness.sol         test-only: draw statistics, a re-entrant buyer
 contracts/vendor/rapture/          copy of the Rapture contracts the tests run against (deployed versions)
-test/packshop.test.js              27 tests: stocking, buying, opening, odds, expiry/refund, money, re-entrancy
+test/packshop.test.js              28 tests: stocking, buying, opening, odds, expiry/refund, money, re-entrancy
 scripts/export-templates.mjs       chain -> data/templates.liteforge.json
 scripts/simulate-live.mjs          read-only rehearsal against the live StudioMinter
 scripts/launch.js                  Liteforge launch (idempotent stages, dry run by default)

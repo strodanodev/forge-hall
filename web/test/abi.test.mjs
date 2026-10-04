@@ -3,7 +3,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   AbiError, SELECTORS, TOPICS, ERROR_SELECTORS, ERROR_STRING, PANIC, isHex, isAddress, hexToBytes, bytesToHex, utf8ToHex,
-  toBigInt, toQuantity, fromQuantity, encodeUint, encodeAddress, encodeBool, encodeArgs, encodeCall, addressTopic, uintTopic,
+  toBigInt, toQuantity, fromQuantity, encodeUint, encodeAddress, encodeBool, encodeArgs, encodeCall,
   words, uintAt, addressAt, boolAt, uintArrayAt, decodePackBought, decodePackOpened, decodePackRefunded, decodeRecentPacks,
   decodeRevert, extractRevertData,
 } from "../abi.js";
@@ -18,16 +18,13 @@ test("function selectors equal ethers' for the compiled PackShop ABI", () => {
   for (const [name, selector] of Object.entries(SELECTORS)) {
     assert.equal(selector, shopIface.getFunction(name).selector, name);
   }
-  assert.deepEqual(Object.keys(SELECTORS).sort(), ["buyPack", "config", "openPack", "packCountOf", "packOf", "packsLeftToday", "phaseOf", "recentPacks", "refundExpired"]);
+  assert.deepEqual(Object.keys(SELECTORS).sort(), ["buyPack", "config", "openPack", "packsLeftToday", "phaseOf", "recentPacks", "refundExpired"]);
   assert.equal(SELECTORS.recentPacks, "0xd3ee9e8d");
-  assert.equal(SELECTORS.packCountOf, "0x91675f42");
   // the views the client leans on really are views, with the argument and result shapes it decodes
   assert.equal(shopIface.getFunction("recentPacks").format("sighash"), "recentPacks(address,uint256)");
-  assert.equal(shopIface.getFunction("packCountOf").format("sighash"), "packCountOf(address)");
   assert.deepEqual(shopIface.getFunction("recentPacks").outputs.map((o) => o.type), ["uint256[]", "uint8[]", "uint256[]"]);
   assert.deepEqual(shopIface.getFunction("recentPacks").outputs.map((o) => o.name), ["ids", "phases", "commitBlocks"]);
   assert.equal(shopIface.getFunction("recentPacks").stateMutability, "view");
-  assert.equal(shopIface.getFunction("packCountOf").stateMutability, "view");
 });
 
 test("event topic0 values equal ethers' for the compiled PackShop ABI", () => {
@@ -99,7 +96,7 @@ test("encoders: calldata is byte-identical to ethers.Interface.encodeFunctionDat
   const ids = [0n, 1n, 2n, 255n, 256n, 2n ** 32n, 2n ** 53n, 2n ** 64n - 1n, 2n ** 128n, 2n ** 255n, 2n ** 256n - 1n];
   for (let i = 0; i < 40; i++) ids.push(randBig(r, 256), randBig(r, 64), randBig(r, 20));
   for (const id of ids) {
-    for (const name of ["openPack", "phaseOf", "refundExpired", "packOf"]) {
+    for (const name of ["openPack", "phaseOf", "refundExpired"]) {
       assert.equal(encodeCall(SELECTORS[name], ["uint256"], [id]), shopIface.encodeFunctionData(name, [id]), `${name}(${id})`);
     }
   }
@@ -110,21 +107,18 @@ test("encoders: calldata is byte-identical to ethers.Interface.encodeFunctionDat
   for (const a of [ALICE, ALICE.toLowerCase(), "0x" + ALICE.slice(2).toUpperCase(), BOB, SHOP]) {
     assert.equal(encodeCall(SELECTORS.packsLeftToday, ["address"], [a]), shopIface.encodeFunctionData("packsLeftToday", [ethers.getAddress(a.toLowerCase())]));
   }
-  // the per-buyer views: (address, n) and (address)
+  // the per-buyer view: (address, n)
   for (const a of [ALICE, ALICE.toLowerCase(), "0x" + BOB.slice(2).toUpperCase(), SHOP]) {
     const checksummed = ethers.getAddress(a.toLowerCase());
     for (const n of [0, 1, 16, 17, "16", 16n, 2n ** 256n - 1n]) {
       assert.equal(encodeCall(SELECTORS.recentPacks, ["address", "uint256"], [a, n]), shopIface.encodeFunctionData("recentPacks", [checksummed, n]), `recentPacks(${a}, ${n})`);
     }
-    assert.equal(encodeCall(SELECTORS.packCountOf, ["address"], [a]), shopIface.encodeFunctionData("packCountOf", [checksummed]));
   }
   // other static types, against ethers' own coder
   assert.equal(encodeArgs(["uint256", "address", "bool", "uint16", "uint8"], [7n, BOB, true, 65535, 255]),
     coder.encode(["uint256", "address", "bool", "uint16", "uint8"], [7n, BOB, true, 65535, 255]).slice(2));
   assert.equal(encodeBool(false), coder.encode(["bool"], [false]).slice(2));
   assert.equal(encodeUint(0), "0".repeat(64));
-  assert.equal(addressTopic(BOB), ethers.zeroPadValue(BOB, 32).toLowerCase());
-  assert.equal(uintTopic(255), ethers.zeroPadValue("0xff", 32));
 });
 
 test("encoders refuse what does not fit or is not what it claims", () => {

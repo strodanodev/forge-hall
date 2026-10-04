@@ -5,24 +5,20 @@ import * as THREE from "three";
 
 // Rapture has no rarity: Kind is the only tier. The pack's rarity ladder (odds, frame colour, flip FX) follows it.
 export const KIND_TIER = { Mortal: "common", King: "rare", Demigod: "epic", God: "legendary", Titan: "legendary" };
-export const RARITY = {
-  common: { label: "COMMON", css: "#c9d2dc", glow: 0xbcd0ff, fx: 0.5 },
-  rare: { label: "RARE", css: "#46a6ff", glow: 0x3f9dff, fx: 0.8 },
-  epic: { label: "EPIC", css: "#b76bff", glow: 0xa455ff, fx: 1.1 },
-  legendary: { label: "LEGENDARY", css: "#ffbf3f", glow: 0xffae2a, fx: 1.7 },
-};
-export { RANK } from "./tiers.js";
-import { RANK } from "./tiers.js";
-const WEIGHTS = { common: 50, rare: 28, epic: 15, legendary: 7 };   // per slot; the last slot guarantees epic+
+import { RANK, RARITY } from "./tiers.js";
+export { RANK, RARITY };
+// Per-slot Kind odds, mirroring the PackShop's draw (packshop/README.md: a Kind by weight, uniform within it, duplicates
+// allowed): a free preview must pull the way a bought pack does. A live shop's own weights (shop.info.weights, in this
+// order) replace these defaults.
+export const KIND_ORDER = ["Mortal", "King", "Demigod", "Titan", "God"];
+export const KIND_ODDS = { Mortal: 30, King: 25, Demigod: 20, Titan: 15, God: 10 };
 // neon = element (Art Direction); gold stays divinity-only, so it never colours an element
 export const ELEMENT = { Water: "#22E4FF", Lava: "#FF2E88", Earth: "#3DFFA2", Metal: "#B9A7FF" };
 export const PACK_SIZE = 5;
-// GILDED (mockup, not on chain yet): a rare cosmetic variant any Kind can roll, independent of tier. It is a FINISH
-// (gold filigree corners, gold-leaf flecks, a moving shimmer in the pack), never the gold frame, which stays the
-// legendary signal. Rolled per pull here, standing in for a roll at mint. ?gilded=all forces it, ?gilded=0 disables.
-export const GILD_ODDS = 0.03;
-const GILD_MODE = new URLSearchParams(globalThis.location?.search ?? "").get("gilded");
-const rollGilded = () => GILD_MODE === "all" ? true : GILD_MODE === "0" ? false : Math.random() < GILD_ODDS;
+// GILDED: a look-dev mockup of a cosmetic finish (gold filigree corners, gold-leaf flecks, a moving shimmer) that does
+// not exist on chain yet. It is never rolled in a pull, so the preview shows nothing a bought pack cannot have;
+// ?gilded=all forces it for look-dev. The gold FRAME stays the legendary signal either way.
+const GILDED = new URLSearchParams(globalThis.location?.search ?? "").get("gilded") === "all";
 
 /** Load the snapshot and shape each card for the pack (rarity/title/side are what the sequence and NPC read). */
 export async function loadCollection(url = "./assets/rapture/cards.json") {
@@ -43,23 +39,21 @@ export async function loadCollection(url = "./assets/rapture/cards.json") {
   return { ...snap.collection, cards, range };
 }
 
-export function rollPack(collection) {
-  const byRarity = (r) => collection.cards.filter((c) => c.rarity === r);
-  const pickTier = () => {
-    let x = Math.random() * 100;
-    for (const [r, w] of Object.entries(WEIGHTS)) if ((x -= w) < 0) return r;
-    return "common";
+/** Five cards drawn the way the shop draws them: a Kind by weight, then any card of that Kind, duplicates allowed. */
+export function rollPack(collection, weights = null) {
+  const odds = Array.isArray(weights) && weights.length === KIND_ORDER.length
+    ? Object.fromEntries(KIND_ORDER.map((k, i) => [k, Number(weights[i]) || 0])) : KIND_ODDS;
+  const pools = Object.fromEntries(KIND_ORDER.map((k) => [k, collection.cards.filter((c) => c.kind === k)]));
+  const kinds = KIND_ORDER.filter((k) => odds[k] > 0 && pools[k].length);
+  const total = kinds.reduce((n, k) => n + odds[k], 0);
+  const pickKind = () => {
+    let x = Math.random() * total;
+    for (const k of kinds) if ((x -= odds[k]) < 0) return k;
+    return kinds[kinds.length - 1];
   };
-  const cards = [];
-  for (let i = 0; i < PACK_SIZE; i++) {
-    let r = pickTier();
-    if (i === PACK_SIZE - 1 && cards.every((c) => RANK[c.rarity] < 2) && RANK[r] < 2) r = "epic"; // Demigod or better
-    const opts = byRarity(r).filter((c) => !cards.includes(c));
-    cards.push(opts[Math.floor(Math.random() * opts.length)]);
-  }
-  // crescendo: best card flips last (a gilded card outranks its plain twin of the same tier)
-  return cards.map((c) => ({ ...c, gilded: rollGilded() }))
-    .sort((a, b) => RANK[a.rarity] - RANK[b.rarity] || a.gilded - b.gilded);
+  const cards = Array.from({ length: PACK_SIZE }, () => { const p = pools[pickKind()]; return p[Math.floor(Math.random() * p.length)]; });
+  // crescendo: best card flips last
+  return cards.map((c) => ({ ...c, gilded: GILDED })).sort((a, b) => RANK[a.rarity] - RANK[b.rarity]);
 }
 
 // ------------------------------------------------------------------ card face

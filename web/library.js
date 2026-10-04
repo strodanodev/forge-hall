@@ -14,8 +14,7 @@ import { drawFace, ELEMENT, KIND_TIER, RARITY } from "./rapture.js";
 import { createHoldings, demoTokens, serialOf } from "./holdings.js";
 import { ELEMENTS, KINDS, SORTS, buildRows, filterRows, progress, serialLabel, sortRows } from "./librarymodel.js";
 
-const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-const short = (a) => `${a.slice(0, 6)}…${a.slice(-4)}`;
+import { esc, shortAddress as short, REDUCED_MOTION as reduced } from "./util.js";
 const sameAddr = (a, b) => !!a && !!b && String(a).toLowerCase() === String(b).toLowerCase();
 
 const params = new URLSearchParams(location.search);
@@ -448,7 +447,6 @@ export function mountLibrary({ sets: setList, shop, pack, say = () => {} }) {
   for (const ev of ["pointerdown", "wheel", "touchstart"]) root.addEventListener(ev, (e) => e.stopPropagation(), { passive: true });
 
   // a little tilt on the full-size card
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   el.stage.addEventListener("pointermove", (e) => {
     if (reduced || e.pointerType === "touch") return;
     const b = el.stage.getBoundingClientRect();

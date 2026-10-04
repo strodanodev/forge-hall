@@ -48,7 +48,7 @@ function fromDeployment(file, local) {
     explorer: live ? LIVE.explorer : null, setId: dep.setId, ...(local || !live ? { local: true } : {}) };
 }
 const PLATES = opt("--plates", null);           // a folder of the Studio's plate PNGs (<sha256>.png), e.g. <studio>/out/assets
-const PAINTINGS = opt("--paintings", "C:/Users/strodano/Documents/YGGAI ELIZA/AGENT 22 GODS/game/GODSgame/assets/cards/art/rapture");
+const PAINTINGS = opt("--paintings", null);     // a folder of rapture-<slug>.webp (the Studio's pack art) when --plates is not given
 const AVATARS = !args.includes("--no-avatars");
 
 // ---------------------------------------------------------------- chain (read-only eth_call)
@@ -190,7 +190,8 @@ if (!tokens.length) throw new Error("no tokens found");
 
 fs.mkdirSync(path.join(OUT, "art"), { recursive: true });
 if (AVATARS) fs.mkdirSync(path.join(OUT, "avatars"), { recursive: true });
-const { keccak_256 } = await import("./.tools/keccak.mjs");
+const { keccak_256 } = await import("@noble/hashes/sha3");   // a root dependency (api/_lib/address.js uses it too)
+const { bytesToHex } = await import("@noble/hashes/utils");
 
 const cards = await pool(tokens, 6, async ({ id, j }) => {
   const r = j.rapture, attr = Object.fromEntries(j.attributes.map((a) => [a.trait_type, a.value]));
@@ -209,6 +210,7 @@ const cards = await pool(tokens, 6, async ({ id, j }) => {
     cropPainting(plate, path.join(OUT, "art", `${slug}.webp`));
   } else {
     // painting (Studio pack art, same slug the game importer uses)
+    if (!PAINTINGS) throw new Error("pass --plates <studio>/out/assets (the plate crops) or --paintings <folder of rapture-<slug>.webp>");
     const src = path.join(PAINTINGS, `rapture-${slug}.webp`);
     if (!fs.existsSync(src)) throw new Error(`${j.name}: no painting at ${src}`);
     fs.copyFileSync(src, path.join(OUT, "art", `${slug}.webp`));
@@ -216,7 +218,7 @@ const cards = await pool(tokens, 6, async ({ id, j }) => {
 
   // soul: bytes must hash to the committed keccak256
   const soulBytes = await ipfs(sibling(j.image, j.soul.file));
-  if ("0x" + keccak_256(soulBytes) !== j.soul.keccak256) throw new Error(`${j.name}: SOUL.md does not match its keccak256`);
+  if ("0x" + bytesToHex(keccak_256(soulBytes)) !== j.soul.keccak256) throw new Error(`${j.name}: SOUL.md does not match its keccak256`);
 
   let avatar = null;
   if (AVATARS) {

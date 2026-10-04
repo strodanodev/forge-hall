@@ -1,7 +1,7 @@
 // auth.js against a mock fetch (the /api/auth/* contract) and a mock wallet.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { signIn, me, signOut, apiAvailable, ApiUnavailable, AuthError } from "../auth.js";
+import { signIn, me, signOut, ApiUnavailable, AuthError } from "../auth.js";
 import { createWallet, WalletError } from "../wallet.js";
 import { ethers, ALICE, createMockProvider, memoryStorage, providerError } from "./helpers.mjs";
 
@@ -161,17 +161,10 @@ test("signOut(): 204 is done, already signed out is done, failures are reported"
   assert.equal(await signOut({ fetch: f }), true);
   assert.equal(f.calls[0].init.method, "POST");
   assert.equal(f.calls[0].init.credentials, "same-origin");
+  assert.equal(f.calls[0].init.headers["content-type"], "application/json", "every POST carries the JSON content type the API requires, logout too");
   assert.equal(await signOut({ fetch: api({ "POST /api/auth/logout": json(200, { ok: true }) }) }), true);
   assert.equal(await signOut({ fetch: api({ "POST /api/auth/logout": json(401, { error: "Not signed in" }) }) }), true);
   await assert.rejects(signOut({ fetch: api({ "POST /api/auth/logout": json(500, { error: "boom" }) }) }), (e) => e instanceof AuthError && e.message === "boom");
-});
-
-test("apiAvailable(): false only when the API is missing", async () => {
-  assert.equal(await apiAvailable({ fetch: api({ "GET /api/auth/me": json(200, { address: A }) }) }), true);
-  assert.equal(await apiAvailable({ fetch: api({ "GET /api/auth/me": json(401, { error: "no" }) }) }), true);
-  assert.equal(await apiAvailable({ fetch: api({}) }), false, "404");
-  assert.equal(await apiAvailable({ fetch: async () => { throw new TypeError("offline"); } }), false);
-  assert.equal(await apiAvailable({ fetch: api({ "GET /api/auth/me": json(500, { error: "db down" }) }) }), true, "there, but failing");
 });
 
 test("base prefixes every path; the global fetch is the default", async () => {

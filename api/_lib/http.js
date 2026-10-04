@@ -52,15 +52,13 @@ export function getRequestInfo(req) {
 // request claims (x-forwarded-host / host). If ALLOWED_HOSTS is set, only those
 // hosts may start or finish a sign-in: that pins the domain to something the
 // operator chose, whatever headers a client or an odd proxy passes along.
-let warnedNoAllowList = false;
-
+// On Vercel (VERCEL=1 in every environment, preview included) a deployment is
+// reachable at hosts nobody chose, so there the variable is required: without
+// it sign-in is off, with a clear error, instead of open to any host.
 export function assertHostAllowed(info) {
   const allowed = getAllowedHosts();
   if (allowed === null) {
-    if (!warnedNoAllowList && process.env.VERCEL_ENV === 'production') {
-      warnedNoAllowList = true;
-      console.warn('[api] ALLOWED_HOSTS is not set: sign-in accepts any host. Set it to your production domain(s).');
-    }
+    if (process.env.VERCEL) throw new HttpError(503, 'sign-in is not configured: set ALLOWED_HOSTS for this environment');
     return;
   }
   if (!allowed.includes(info.host)) throw new HttpError(403, 'host not allowed');
@@ -93,7 +91,8 @@ export async function readJsonBody(req, { maxBytes = MAX_BODY_BYTES, allowEmpty 
   const declared = Number(req.headers['content-length']);
   if (Number.isFinite(declared) && declared > maxBytes) throw new HttpError(413, 'request body too large');
 
-  // Vercel only parses req.body when it is accessed, so the raw stream is still ours.
+  // On Vercel the platform has already buffered the body and re-attached it as a stream; the dev server
+  // hands us the raw socket stream. The cap below holds either way.
   // destroyOnReturn:false: bailing out of the loop must not destroy the socket,
   // otherwise the client would see a reset instead of our 413.
   const source = typeof req.iterator === 'function' ? req.iterator({ destroyOnReturn: false }) : req;

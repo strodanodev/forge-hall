@@ -6,8 +6,7 @@ import { LITEFORGE } from "./wallet.js";
 import { formatZkltc } from "./packshop.js";
 import * as auth from "./auth.js";
 
-const short = (a) => `${a.slice(0, 6)}…${a.slice(-4)}`;
-const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+import { esc, shortAddress as short } from "./util.js";
 const MOBILE = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 /**
