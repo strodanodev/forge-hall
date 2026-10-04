@@ -18,6 +18,7 @@ import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { SMAAPass } from "three/addons/postprocessing/SMAAPass.js";
 import { Particles, textures, sprite, rand, viewportScale } from "./fx.js";
 import { BEATS, EASE, lerp, Tweens, markup, emblemLayout, nestLoops, badgeOutlines, spaceAlong } from "./titlecore.js";
+import { oracleNeeded, openOracle } from "./oracle.js";
 
 const Q = new URLSearchParams(location.search);
 const SEEN = "forge.title.seen", SOUND = "forge.title.sound";
@@ -404,6 +405,7 @@ class TitleScreen {
     this.E = { light: 0, mold: 0, fill: FILL_EMPTY, cool: 0, heat: 0, layout: this.seen ? 1 : 0, cam: 1, dim: 1, kindle: 0, sweep: -1 };
     this.ptr = { x: 0, y: 0 }; this.spin = 0; this.shake = 0;
     this.beat = -1; this.typing = false; this.hold = 0;
+    this.passed = !oracleNeeded(); // the Oracle (terms + trial) opens once the title card lands, until it is passed
     this.sound = new Sound();
     this.abort = new AbortController();
 
@@ -581,7 +583,7 @@ class TitleScreen {
     const r = this.root;
     const track = (e) => { this.ptr.x = (e.clientX / innerWidth) * 2 - 1; this.ptr.y = -((e.clientY / innerHeight) * 2 - 1); };
     r.addEventListener("pointerdown", (e) => {
-      if (e.target.closest("button")) return;
+      if (e.target.closest("button, .oracle")) return; // the Oracle's rings and links are not strikes
       track(e);
       this.down = { x: e.clientX, lx: e.clientX, drag: false };
     }, opt);
@@ -626,7 +628,7 @@ class TitleScreen {
   /** a click, tap, Space or Enter: always a hammer strike; it also moves the story along */
   act(x, y) {
     this.sound.wake();
-    if (this.phase === "entering" || this.phase === "done") return;
+    if (this.phase === "entering" || this.phase === "done" || this.oracleOpen) return;
     if (this.phase === "title" && this.ready) return this.enter();
     this.strike(x, y, 1);
     this.root.classList.remove("hint");
@@ -749,10 +751,25 @@ class TitleScreen {
     });
     this.after(land + 0.5, () => this.sweep());
     this.after(land + 0.6, () => this.syncPrompt());
+    this.after(land + 1.4, () => this.gate());
     this.after(28, () => { if (this.phase === "title" && !this.ready) { this.ready = true; this.$(".t-prompt span").textContent = "Enter the forge"; this.syncPrompt(); } });
   }
 
-  syncPrompt() { this.root.classList.toggle("can-enter", this.phase === "title" && this.ready); }
+  syncPrompt() { this.root.classList.toggle("can-enter", this.phase === "title" && this.ready && this.passed); }
+
+  /** The Oracle (oracle.js): the covenant (terms of use) and the Trial of the Heavens, once per covenant, over the title
+   *  card. Passing it is the way in: it enters the forge straight away if the hall has loaded. */
+  gate() {
+    if (this.passed || this.oracleOpen || this.phase !== "title") return;
+    this.oracleOpen = true;
+    this.root.classList.add("oracle-on");
+    openOracle(this.root, { chime: () => this.sound.chime(), boom: () => this.sound.boom() }).then(() => {
+      this.oracleOpen = false;
+      this.passed = true;
+      this.root.classList.remove("oracle-on");
+      if (this.ready) this.enter(); else this.syncPrompt();
+    });
+  }
 
   onReady() {
     this.ready = true; this.progress = 1;
@@ -776,6 +793,7 @@ class TitleScreen {
 
   enter() {
     if (this.phase !== "title") return;
+    if (!this.passed) return this.gate();
     this.phase = "entering";
     this.root.dataset.phase = "entering";
     store.set(SEEN, "1");

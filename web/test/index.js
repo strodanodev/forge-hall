@@ -10,3 +10,4 @@ import "./shopflow.test.mjs";
 import "./holdings.test.mjs";
 import "./library.test.mjs";
 import "./title.test.mjs";
+import "./oracle.test.mjs";

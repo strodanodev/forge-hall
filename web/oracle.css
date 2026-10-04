@@ -1,0 +1,127 @@
+/* FORGE — the Oracle (oracle.js): the covenant + Trial of the Heavens, over the title card after the prologue. */
+#title .oracle { inset: 0; z-index: 30; display: grid; place-items: center; padding: 16px; cursor: default;
+                 -webkit-user-select: text; user-select: text; touch-action: auto;
+                 background: radial-gradient(ellipse 80% 70% at 50% 45%, rgba(10, 8, 22, .72), rgba(3, 2, 8, .94) 75%);
+                 opacity: 0; transition: opacity .7s ease; }
+#title .oracle.on { opacity: 1; }
+#title .oracle.leaving { opacity: 0; transition: opacity .6s ease; }
+#title.oracle-on .t-prompt, #title.oracle-on .t-load, #title.oracle-on .t-replay { opacity: 0 !important; pointer-events: none; }
+.oracle .or-sky { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* ---- the card: night glass, gold edge, a Greek key along the top */
+.oracle .or-card { position: relative; width: min(520px, 100%); max-height: calc(100dvh - 32px); overflow: auto; overscroll-behavior: contain;
+                   box-sizing: border-box; padding: 34px clamp(18px, 4vw, 34px) 26px; border-radius: 18px; text-align: center; color: #f3e6cf;
+                   background: linear-gradient(180deg, rgba(28, 22, 40, .9), rgba(10, 8, 16, .94));
+                   border: 1px solid rgba(255, 214, 140, .45);
+                   box-shadow: 0 0 0 3px rgba(40, 24, 8, .6), 0 0 0 4px rgba(255, 214, 140, .18), 0 30px 80px rgba(0, 0, 0, .7),
+                               0 0 120px rgba(255, 170, 60, .12), inset 0 1px 0 rgba(255, 236, 190, .18);
+                   transform: translateY(14px) scale(.97); transition: transform .8s cubic-bezier(.2, .9, .25, 1); scrollbar-width: thin; }
+.oracle.on .or-card { transform: none; }
+.oracle .or-meander { position: absolute; left: 18px; right: 18px; top: 12px; height: 10px; opacity: .75;
+                      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10' viewBox='0 0 20 10'%3E%3Cpath d='M0 9.5h3.5v-9h9v6h-5v-3h2' fill='none' stroke='%23e8b25a' stroke-width='1.1'/%3E%3Cpath d='M12.5 9.5h7.5' fill='none' stroke='%23e8b25a' stroke-width='1.1'/%3E%3C/svg%3E") repeat-x left center / 20px 10px; }
+.oracle .or-kicker { margin: 6px 0 4px; font: 700 11px/1.2 "Cinzel", Georgia, serif; letter-spacing: .42em; text-transform: uppercase; color: #c9a86c; }
+.oracle h1 { margin: 0 0 14px; font: 900 clamp(22px, 4.4vw, 30px)/1.15 "Cinzel", Georgia, serif; letter-spacing: .06em;
+             background: linear-gradient(180deg, #fff3cf, #f0b14a 60%, #b8742a); -webkit-background-clip: text; background-clip: text; color: transparent;
+             filter: drop-shadow(0 2px 10px rgba(255, 170, 60, .25)); }
+.oracle a { color: #ffd37a; }
+
+/* ---- step 1: the covenant */
+.oracle .or-terms { list-style: none; counter-reset: c; margin: 0 0 12px; padding: 0; text-align: left; display: grid; gap: 9px; }
+.oracle .or-terms li { counter-increment: c; position: relative; padding: 10px 12px 10px 46px; border-radius: 10px;
+                       background: rgba(255, 255, 255, .035); border: 1px solid rgba(255, 214, 140, .14);
+                       font: 500 15.5px/1.45 "Alegreya", Georgia, serif; color: #eadcc0; }
+.oracle .or-terms li b { color: #ffe2a3; }
+.oracle .or-terms li::before { content: counter(c, upper-roman); position: absolute; left: 10px; top: 10px; width: 26px; height: 26px; border-radius: 50%;
+                               display: grid; place-items: center; font: 700 11px/1 "Cinzel", Georgia, serif; color: #2a1606;
+                               background: radial-gradient(circle at 35% 30%, #fff1c4, #e8b25a 55%, #9a5f1c); box-shadow: 0 0 10px rgba(255, 180, 70, .35); }
+.oracle .or-full { margin: 4px 0 18px; font: 500 14px "Alegreya", Georgia, serif; }
+
+/* ---- buttons, the same molten gold as the hall's (#title-scoped: title.css styles every #title button as a ghost pill) */
+#title .oracle .or-btn { font: 900 15px "Cinzel", Georgia, serif; letter-spacing: .14em; text-transform: uppercase; color: #2a1606; cursor: pointer;
+                  padding: 13px 28px; border-radius: 999px; border: 1px solid #ffe3a3;
+                  background: linear-gradient(180deg, #ffe7a8, #f0b14a 55%, #c9791f);
+                  box-shadow: 0 0 0 3px rgba(40, 20, 6, .55), 0 0 26px rgba(255, 170, 60, .45), inset 0 1px 0 #fff6d8;
+                  transition: transform .15s, box-shadow .2s, filter .2s, opacity .3s; }
+#title .oracle .or-btn:hover:not(:disabled) { transform: translateY(-2px) scale(1.03); box-shadow: 0 0 0 3px rgba(40, 20, 6, .55), 0 0 44px rgba(255, 190, 90, .8), inset 0 1px 0 #fff6d8; }
+#title .oracle .or-btn:focus-visible { outline: 2px solid #fff1c4; outline-offset: 4px; }
+#title .oracle .or-btn:disabled { filter: grayscale(.8) brightness(.55); cursor: not-allowed; box-shadow: 0 0 0 3px rgba(40, 20, 6, .55); }
+.oracle.solved .or-enter { animation: or-beckon 2.2s ease-in-out infinite; }
+@keyframes or-beckon { 50% { box-shadow: 0 0 0 3px rgba(40, 20, 6, .55), 0 0 56px rgba(255, 190, 90, .95), inset 0 1px 0 #fff6d8; } }
+
+/* ---- step 2: the trial */
+.oracle .or-trial { animation: or-in .7s cubic-bezier(.2, .9, .25, 1) both; }
+@keyframes or-in { from { opacity: 0; transform: translateY(10px); filter: blur(6px); } }
+.oracle .or-ask { margin: -6px 0 10px; font: italic 500 15.5px/1.4 "Alegreya", Georgia, serif; color: #cdbfa6; }
+.oracle .or-god { white-space: nowrap; }
+.oracle .or-want { list-style: none; margin: 0 auto 6px; padding: 0; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.oracle .or-want li { display: flex; align-items: center; gap: 7px; padding: 5px 12px 5px 6px; border-radius: 999px;
+                      border: 1px solid rgba(255, 214, 140, .28); background: rgba(255, 255, 255, .04);
+                      font: 600 12.5px/1 "Alegreya", Georgia, serif; color: #cdbfa6; transition: all .4s; }
+.oracle .or-want i, .oracle .glyph { font-style: normal; font-family: "Noto Sans Symbols", "Segoe UI Symbol", "Apple Symbols", "DejaVu Sans", sans-serif; }
+.oracle .or-want i { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; font-size: 16px; color: #ffe2a3;
+                     background: rgba(255, 190, 90, .1); border: 1px solid rgba(255, 214, 140, .3); }
+.oracle .or-want i.greek, .oracle .glyph.greek { font-family: "Alegreya", Georgia, "Times New Roman", serif; font-weight: 700; }
+.oracle .or-want li.ok { color: #fff3cf; border-color: rgba(255, 214, 140, .8); background: rgba(255, 180, 70, .14); box-shadow: 0 0 18px rgba(255, 180, 70, .3); }
+.oracle .or-want li.ok i { background: radial-gradient(circle at 35% 30%, #fff1c4, #e8b25a 55%, #9a5f1c); color: #2a1606; }
+
+.oracle .or-astro { width: min(340px, 78vw, 46dvh); aspect-ratio: 1; margin: 6px auto 4px; }
+.oracle .or-svg { width: 100%; height: 100%; display: block; overflow: visible; touch-action: none; -webkit-user-select: none; user-select: none; }
+.oracle .bezel-out { fill: #0d0a14; stroke: url(#or-gold); stroke-width: 5; }
+.oracle .bezel { fill: none; stroke: rgba(255, 214, 140, .4); stroke-width: 1; }
+.oracle .tk { stroke: rgba(255, 214, 140, .45); stroke-width: 1; }
+.oracle .tk.long { stroke: #e8b25a; stroke-width: 1.6; }
+.oracle .gate-window { fill: rgba(255, 200, 110, .07); stroke: rgba(255, 214, 140, .55); stroke-width: 1; stroke-dasharray: 3 3; }
+.oracle .gate-beam { fill: url(#or-beam); opacity: 0; pointer-events: none; transition: opacity .6s; }
+.oracle .gate-star { fill: #ffe7a8; stroke: #7a4a14; stroke-width: 1; pointer-events: none; animation: or-twinkle 2.6s ease-in-out infinite; transform-origin: 200px 13px; transform-box: view-box; }
+@keyframes or-twinkle { 50% { transform: scale(1.18) rotate(18deg); } }
+
+.oracle .ring { cursor: grab; outline: none; transform-origin: 200px 200px; transform-box: view-box;
+                transition: transform .55s cubic-bezier(.25, 1.35, .45, 1); }
+.oracle .ring.dragging { transition: none; cursor: grabbing; }
+.oracle .ring .band { fill: url(#or-band); stroke: rgba(255, 214, 140, .5); stroke-width: 1.2; transition: stroke .4s, filter .4s; }
+.oracle .ring .div { stroke: rgba(255, 214, 140, .22); stroke-width: 1; }
+.oracle .ring:focus-visible .band { stroke: #fff1c4; stroke-width: 2.4; }
+.oracle .ring.grab .band { stroke: rgba(255, 230, 170, .85); }
+.oracle .glyph { fill: #d8c9ac; font-size: 21px; transition: fill .4s, filter .4s; pointer-events: auto; }
+.oracle .ring-letters .glyph { font-size: 19px; }
+.oracle .ring-planets .glyph { font-size: 22px; }
+.oracle .slot { cursor: pointer; }
+.oracle .slot:hover .glyph { fill: #fff3cf; }
+.oracle .ring.locked .band { stroke: #ffd37a; stroke-width: 2; filter: drop-shadow(0 0 6px rgba(255, 190, 90, .7)); }
+.oracle .slot.lit .glyph { fill: #fff6dc; filter: drop-shadow(0 0 5px #ffb347) drop-shadow(0 0 12px rgba(255, 150, 50, .7)); }
+.oracle .slot.pulse .glyph { animation: or-pulse .9s ease-out; transform-box: fill-box; transform-origin: center; }
+@keyframes or-pulse { 0% { transform: scale(1); } 30% { transform: scale(1.55); } 100% { transform: scale(1); } }
+
+/* the sun at the centre: slow rays, a flare when the heavens align */
+.oracle .core-rays { stroke: #e8b25a; stroke-width: 2; stroke-linecap: round; opacity: .75;
+                     transform-origin: 200px 200px; transform-box: view-box; animation: or-spin 40s linear infinite; }
+.oracle .core-disc { fill: url(#or-core); filter: drop-shadow(0 0 10px rgba(255, 160, 60, .55)); }
+.oracle .core-ring { fill: none; stroke: #fff1c4; stroke-width: 1.4; opacity: .6; }
+.oracle .shock { fill: none; stroke: #fff1c4; stroke-width: 3; opacity: 0; transform-origin: 200px 200px; transform-box: view-box; }
+@keyframes or-spin { to { transform: rotate(360deg); } }
+
+.oracle.solved .gate-beam { opacity: 1; animation: or-beam 1.6s ease-in-out infinite; }
+@keyframes or-beam { 50% { opacity: .55; } }
+.oracle.solved .core-rays { animation-duration: 6s; stroke: #fff1c4; opacity: 1; filter: drop-shadow(0 0 6px #ffb347); }
+.oracle.solved .core-disc { animation: or-flare 1.2s ease-out; }
+@keyframes or-flare { 0% { filter: drop-shadow(0 0 10px rgba(255, 160, 60, .55)); } 25% { filter: drop-shadow(0 0 40px #fff1c4) brightness(1.8); } }
+.oracle.solved .shock { animation: or-shock 1.4s cubic-bezier(.2, .8, .3, 1) both; }
+@keyframes or-shock { 0% { opacity: .95; transform: scale(.35); stroke-width: 6; } 100% { opacity: 0; transform: scale(2.9); stroke-width: .5; } }
+.oracle.solved .ring .band { stroke: #ffd37a; }
+.oracle.solved .or-svg { animation: or-rise 1.2s ease-out; }
+@keyframes or-rise { 30% { filter: drop-shadow(0 0 30px rgba(255, 190, 90, .55)); } }
+
+.oracle .or-help { margin: 6px 0 4px; font: 500 13px/1.4 "Alegreya", Georgia, serif; color: #8d7f68; }
+.oracle .or-verdict { min-height: 1.5em; margin: 2px 0 12px; font: 700 15px/1.4 "Cinzel", Georgia, serif; letter-spacing: .05em; color: #ffe2a3;
+                      text-shadow: 0 0 14px rgba(255, 170, 60, .6); }
+.oracle.solved .or-help { opacity: 0; }
+
+@media (max-width: 520px), (max-height: 700px) {
+  .oracle .or-card { padding-top: 28px; }
+  .oracle .or-terms li { font-size: 14.5px; padding: 8px 10px 8px 42px; }
+  #title .oracle .or-btn { font-size: 14px; padding: 12px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oracle .ring { transition-duration: .01s; }
+  .oracle .core-rays, .oracle .gate-star, .oracle.solved .or-enter, .oracle.solved .gate-beam { animation: none; }
+}

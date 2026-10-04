@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Oracle preview</title>
+<!-- Dev preview of the Oracle (oracle.js) without the title screen: ?step=covenant | trial | partial | solved.
+     Serve web/ and open /test/oracle_preview.html (headless Chrome screenshots use it too). Not deployed (/web/test/). -->
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700&family=Cinzel:wght@700;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../title.css" />
+<style>html, body { margin: 0; height: 100%; background: #050407; }</style>
+</head>
+<body>
+<div id="title" data-phase="title"></div>
+<script type="module">
+import { openOracle } from "../oracle.js";
+const step = new URLSearchParams(location.search).get("step") || "covenant";
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+openOracle(document.getElementById("title")).then(() => { document.body.dataset.done = "1"; });
+await wait(400);
+if (step !== "covenant") { document.querySelector(".or-accept").click(); await wait(900); }
+// click each wanted sigil (the shortcut a player can use too) for the first n rings
+const n = { partial: 2, solved: 3 }[step] ?? 0;
+for (let i = 0; i < n; i++) {
+  const want = document.querySelector(`.or-want li[data-ring="${i}"] i`).textContent.trim();
+  const slot = [...document.querySelectorAll(".ring")[i].querySelectorAll(".slot")].find((s) => s.textContent.trim() === want);
+  const t = slot.querySelector("text"), r = t.getBoundingClientRect();
+  const o = { clientX: r.x + r.width / 2, clientY: r.y + r.height / 2, pointerId: 7, bubbles: true };
+  t.dispatchEvent(new PointerEvent("pointerdown", o));
+  t.dispatchEvent(new PointerEvent("pointerup", o));
+  await wait(700);
+}
+document.body.dataset.staged = step;
+</script>
+</body>
+</html>

@@ -132,9 +132,9 @@
                   box-shadow: 0 8px 26px rgba(0, 0, 0, .5); }
   #chain-status[hidden] { display: none; }
   #chain-status.error { color: #ffd9c2; border-color: rgba(255, 140, 90, .6); background: rgba(40, 16, 8, .82); pointer-events: auto; }
-  #about-link { position: fixed; right: 12px; bottom: 5px; z-index: 3; font: 11px/1 ui-sans-serif, system-ui, sans-serif; color: rgba(243, 230, 207, .55);
-                text-decoration: none; letter-spacing: .02em; }
-  #about-link:hover { color: #fff; text-decoration: underline; }
+  #legal-links { position: fixed; right: 12px; bottom: 5px; z-index: 3; display: flex; gap: 14px; font: 11px/1 ui-sans-serif, system-ui, sans-serif; }
+  #legal-links a { color: rgba(243, 230, 207, .55); text-decoration: none; letter-spacing: .02em; }
+  #legal-links a:hover { color: #fff; text-decoration: underline; }
   .cp-net.own { color: #9fffc0; border-color: rgba(120, 230, 160, .5); background: rgba(60, 200, 110, .12); }
   @media (max-width: 520px) { #wallet { top: 48px; } .w-bal { display: none; } #chain-status { bottom: calc(max(20px, env(safe-area-inset-bottom)) + 108px); font-size: 14px; } }
 
@@ -213,7 +213,7 @@
 <div id="flash"></div>
 <div id="npc"></div>
 <div id="card-panel" hidden></div>
-<a id="about-link" href="./about.html" target="_blank" rel="noopener">About &amp; what this app asks your wallet</a>
+<nav id="legal-links"><a href="./terms.html" target="_blank" rel="noopener">Terms</a><a id="about-link" href="./about.html" target="_blank" rel="noopener">About &amp; what this app asks your wallet</a></nav>
 <div id="wallet" hidden></div>
 <div id="chain-status" hidden role="status" aria-live="polite"></div>
 <div id="pack-ui">

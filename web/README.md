@@ -341,3 +341,21 @@ and open `/?shop=local`. See `packshop/README.md`. In a pane where `requestAnima
   `scene.environment`, three r170 ignores per-material `envMapIntensity` (it uses `scene.environmentIntensity`), so the
   emblem materials carry their own `envMap`. UnrealBloom already halves internally; halving its size again turned thin
   chrome glints into square blocks.
+
+## The Oracle: terms + Trial of the Heavens (`oracle.js`, `oraclecore.js`, `oracle.css`, `terms.html`)
+
+After the prologue, once the title card has landed, a popup over the title (`#title .oracle`) asks a new player to swear to
+the **covenant** (the four terms of use, linking `terms.html` and the whitepaper) and then pass the **Trial of the Heavens**:
+an astrolabe with three rings (planets, zodiac, Greek capitals). The Oracle names a god (Zeus: ♃ Jupiter · ♐ Sagittarius · Ζ)
+and the player turns each ring until that sigil rests under the golden star: drag a ring, click/tap a sigil to bring it
+there, or Tab to a ring and use the arrow keys. Rings glow and spark as they lock; solving flares the sun, drops a beam
+from the star and bursts the starfield; **Enter the Forge** then enters the hall directly.
+
+- **Once per covenant.** Passing stores `forge.covenant` = `COVENANT` (oraclecore.js) in localStorage. Bump `COVENANT` when
+  the terms change and everyone swears again. `?oracle=1` always shows it. It only runs inside the title, so `?debug` /
+  `?title=0` skip it.
+- **title.js hooks** (all small): `this.passed = !oracleNeeded()`; `gate()` opens it at `land + 1.4 s` in `toTitle()`;
+  `syncPrompt()` and `enter()` require `passed`; `act()` ignores input while it is open; pointer-downs on `.oracle` are not strikes.
+- **Not real bot protection**: a themed gate and a clear moment to accept the terms; a scripted client can solve it.
+- Puzzle logic is pure and tested (`web/test/oracle.test.mjs`: always solvable, never starts within one turn of solved).
+  Look-dev without the title: serve `web/` and open `/test/oracle_preview.html?step=covenant|trial|partial|solved`.

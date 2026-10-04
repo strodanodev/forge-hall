@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The FORGE: terms of use</title>
+<meta name="description" content="Terms of use for the FORGE: a testnet, open-source, decentralized NFT Agent minting platform for ERC-6699 agent characters and games. Use at your own risk." />
+<link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+<style>
+  :root { --ink: #f3e6cf; --dim: #b9a88c; --gold: #f0b14a; --bg: #0b0a09; --panel: #15120e; --line: rgba(255, 220, 160, .22); }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 ui-sans-serif, system-ui, "Segoe UI", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font: 700 28px/1.2 Georgia, "Times New Roman", serif; letter-spacing: .02em; margin: 0 0 6px; }
+  h2 { font: 700 14px/1.3 ui-sans-serif, system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px; }
+  p { color: #e9dcc2; margin: 0 0 10px; }
+  .lede { color: var(--dim); margin: 0 0 26px; }
+  a { color: #ffd37a; }
+  ol { list-style: none; counter-reset: term; padding: 0; margin: 0; display: grid; gap: 14px; }
+  ol > li { counter-increment: term; position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px 14px 58px; }
+  ol > li::before { content: counter(term); position: absolute; left: 18px; top: 14px; width: 26px; height: 26px; border-radius: 50%;
+                    display: grid; place-items: center; font: 700 14px/1 Georgia, serif; color: #2a1606; background: linear-gradient(180deg, #ffe7a8, #c9791f); }
+  ol > li p:last-child { margin-bottom: 0; }
+  .meta { margin-top: 28px; color: var(--dim); font-size: 14px; }
+  .back { display: inline-block; margin-bottom: 18px; color: var(--dim); text-decoration: none; font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="./">← Back to the FORGE</a>
+  <h1>Terms of use</h1>
+  <p class="lede">By using the FORGE (this site, its pack shop and the smart contracts it talks to) you agree to the terms below.</p>
+
+  <ol>
+    <li>
+      <h2>This is a testnet product</h2>
+      <p>The FORGE runs on the <b>LitVM Liteforge test network</b> (chain 4441). zkLTC on that network is test currency, and the
+        cards minted here are test tokens: they are not meant to carry monetary value.</p>
+      <p>The network, the contracts and the tokens can be reset, redeployed or retired at any time, without notice.</p>
+    </li>
+    <li>
+      <h2>Use at your own risk</h2>
+      <p>The site and its contracts are experimental and provided as they are, without any warranty. They may contain bugs.</p>
+      <p>You are responsible for your wallet, your keys and every transaction you approve. Transactions on a blockchain cannot be
+        reversed, and nobody here can recover lost keys or tokens. Read what your wallet asks you to sign
+        (<a href="./about.html">every request this app can make</a>) before you approve it.</p>
+    </li>
+    <li>
+      <h2>Open source and decentralized</h2>
+      <p>The FORGE is an open-source, decentralized <b>"NFT Agent" minting platform</b> for <b>ERC-6699</b> agent characters and games.
+        Cards are minted straight into your own wallet; the platform never takes custody of them.</p>
+      <p>Read the design in the <a href="https://litvm.games/whitepaper" rel="noopener" target="_blank">LitVM Games whitepaper</a>.</p>
+    </li>
+    <li>
+      <h2>For education and research</h2>
+      <p>The FORGE exists for educational and resource purposes: to stretch the boundaries of cryptography and decentralized
+        networks, for the betterment of humanity.</p>
+      <p>Nothing on this site is financial or investment advice, and nothing here is offered as an investment.</p>
+    </li>
+  </ol>
+
+  <p class="meta">Last updated 5 October 2026. See also: <a href="./about.html">About the FORGE &amp; what it asks your wallet to do</a>.</p>
+</main>
+</body>
+</html>
