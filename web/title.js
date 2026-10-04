@@ -901,6 +901,7 @@ class TitleScreen {
     if (this.timers.length) {
       const due = this.timers.filter((x) => x.at <= t);
       if (due.length) { this.timers = this.timers.filter((x) => x.at > t); for (const x of due) x.fn(); }
+      if (this.phase === "done") return; // a timer just finished the title: its context is released, draw nothing more
     }
     this.tw.update(dt);
 
@@ -993,7 +994,15 @@ class TitleScreen {
     this.souls.update(dt, t, g.position, s, vs);
     this.sound.crackle(t, E.light * 0.5 + E.kindle);
 
-    if (!this.glLost) this.composer.render();
+    // The context can be gone before its "webglcontextlost" event arrives, and three then throws on the next draw. A throw
+    // here would also end the animation loop (three re-requests the frame after the callback), freezing the title.
+    if (!this.glLost && !this.renderer.getContext().isContextLost()) {
+      try { this.composer.render(); } catch (e) {
+        this.glLost = true;
+        this.root.classList.remove("gl-on");
+        console.warn("[title] rendering stopped; the title carries on without 3D", e);
+      }
+    }
   }
 }
 
