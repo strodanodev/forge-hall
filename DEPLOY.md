@@ -211,10 +211,43 @@ turns every `.js` file it sees under `api/` (except names starting with `_`) int
 | `GET /api/auth/me` | `{"address","createdAt","displayName"}`, or 401 when signed out. |
 | `POST /api/auth/logout` | 204; ends the session. |
 | `GET /api/health` | `{"ok":true,"db":true\|false}`. |
+| `GET /api/rapture/holder?address=0x…` | Public, any origin: does the wallet hold any RAPTURE NFT? See the next section. |
 
 Notes for the browser client: every POST needs the header `content-type: application/json`
 (logout too; the body may be empty or `{}`), and `/verify` must receive the exact `message`
-string that `/nonce` returned. Cross-origin requests are refused on purpose.
+string that `/nonce` returned. Cross-origin requests to `/api/auth/*` are refused on purpose.
+
+## RAPTURE holder check (partners, quest platforms, CTA campaigns)
+
+`GET /api/rapture/holder?address=0x…` answers whether a wallet holds at least one RAPTURE NFT: `balanceOf(wallet) > 0` on
+RaptureCards (`0x138F1A2E48111aFD0Af865F421F05Fd1B0A72721`, Liteforge, chain 4441). Every Rapture set lives in that one
+contract, so ARC 1 and any later ARC count. Public and read-only: no key, no cookie, CORS open to every origin, and everything
+it answers is public on chain. The chain is read live on every call (no cache), so a player who has just opened a pack passes
+at once. Code: `api/rapture/holder.js`, `api/_lib/rapture.js`; tests: `api/test/rapture.test.js`.
+
+```
+GET https://forge.litvm.games/api/rapture/holder?address=0x869790b388299fa1e73b8ad3f188d1f10d4087b5
+
+{"address":"0x869790B388299FA1E73B8Ad3f188d1f10d4087b5","holder":true,"balance":65,
+ "collection":{"name":"Rapture Cards","symbol":"RAPTURE","contract":"0x138F1A2E48111aFD0Af865F421F05Fd1B0A72721","chainId":4441,"network":"LitVM Liteforge"},
+ "data":{"result":true},"result":{"isValid":true}}
+```
+
+Any letter case is accepted; the answer carries the EIP-55 address. 400 = not a wallet address. 503 + `Retry-After: 5` = the
+chain could not be read (two tries of 2 s against the public RPC), never reported as `holder:false`.
+
+`data.result` and `result.isValid` repeat `holder` in the shapes quest platforms read with no setup:
+
+| Platform | Setup |
+| --- | --- |
+| Galxe (REST credential) | GET `https://forge.litvm.games/api/rapture/holder?address=$address`, expression `function(resp) { return resp.holder ? 1 : 0 }`. Answers well inside Galxe's 5 s limit (~0.5 s measured) |
+| QuestN, SoQuest (Port3) | the URL above; they read `data.result` |
+| TaskOn | the URL above; it reads `result.isValid` |
+| Anything else | read `holder` (boolean) or `balance` (number) |
+
+Zealy-style "status code means pass/fail" APIs are not supported: a non-holder is a 200 with `holder:false`.
+A campaign can drive traffic: add a Vercel Firewall rate-limit rule for `/api/rapture/*` (per IP, e.g. 60 requests/minute)
+before launch.
 
 Hardening worth doing in the Vercel dashboard: a Firewall rate-limit rule for `/api/auth/*`
 (nonces are cheap to request, and expired ones are purged automatically).

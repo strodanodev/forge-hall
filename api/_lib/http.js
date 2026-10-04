@@ -174,16 +174,46 @@ function sendError(res, err) {
   sendJson(res, 500, { error: 'server error' });
 }
 
-// endpoint({ methods }, fn) -> handler(req, res) for `export default`.
+// ---------------------------------------------------------------------------
+// CORS, for public read-only endpoints only
+// ---------------------------------------------------------------------------
+
+// endpoint({ cors: true }) opens an endpoint to every origin: partners' sites and quest platforms
+// (Galxe's dashboard, for one) call it from their own pages. That is safe only because such an
+// endpoint reads no cookie and answers nothing private; the wildcard origin also means browsers
+// never send credentials with it. The cookie endpoints never set these headers.
+function setCorsOrigin(res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+}
+
+function sendPreflight(res, allow) {
+  res.setHeader('Access-Control-Allow-Methods', allow.join(', '));
+  // Listed, not "*": a wildcard does not cover Authorization, which some platforms always send.
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Max-Age', '86400');
+  sendNoContent(res);
+}
+
+// endpoint({ methods, cors }, fn) -> handler(req, res) for `export default`.
 // - 405 (+ Allow) for other methods
 // - POST: JSON content-type (415) and same-origin (403) checks, then fn(req, res, info)
 //   where info = { host, hostname, proto, origin, isLocal }
+// - cors: true -> any origin may read it and OPTIONS preflights are answered.
+//   Only for public endpoints that read no cookie. POSTs stay same-origin either way.
 // - HttpError -> JSON error response, anything else -> generic 500
-export function endpoint({ methods }, fn) {
+export function endpoint({ methods, cors = false }, fn) {
+  const allow = cors ? [...methods, 'OPTIONS'] : methods;
   return async function handler(req, res) {
     try {
+      if (cors) {
+        setCorsOrigin(res); // first, so error responses are readable cross-origin too
+        if (req.method === 'OPTIONS') {
+          sendPreflight(res, allow);
+          return;
+        }
+      }
       if (!methods.includes(req.method)) {
-        throw new HttpError(405, 'method not allowed', { Allow: methods.join(', ') });
+        throw new HttpError(405, 'method not allowed', { Allow: allow.join(', ') });
       }
       let info;
       if (req.method === 'POST') {
