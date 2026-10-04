@@ -11,6 +11,7 @@ You need: Node 22 or newer, a Vercel account, a Neon account, and the Vercel CLI
 
 | | |
 |---|---|
+| Role | **Staging** (since 2026-10-05): deploy here first, check it, then deploy production (the NPC project below) |
 | Vercel team / project | `notsedanos-projects` / `forge-hall` (project id `prj_m1VLay6GTVYPdynwH961vCdJWPCs`) |
 | Public URL | https://forge-hall.vercel.app (the `forge-hall-notsedanos-projects.vercel.app` alias sits behind Vercel Authentication) |
 | Live shop | PackShop `0x3E39be64A4dE8752E45067d6Bbe4787b4D272B0c` on Liteforge (launched 2026-10-01, config in `web/assets/rapture/packshop.json`) |
@@ -50,14 +51,16 @@ sign-in button. (This first project has no database; the NPC deployment below do
   team, which added `forge.litvm.games` to its own `forge-hall` project (next section); it serves the site over HTTPS (DNS and TLS
   checked).
 
-**Last deployed 2026-10-05** to both projects (forge.litvm.games / forge-hall-theta.vercel.app and forge-hall.vercel.app) from
-git commit `c672202` on `main` (this folder is a git repo since 2026-10-04): live metals over Blender's bake, gilded cards and the
-legendary spotlight, the Open Pack cost line, frame stats hidden in production, the Oracle (terms + trial) and the title-screen
-frame fix. Checked live: new files served, `/test/` not deployed, `/api/health` db:true on the NPC hosts (db:false on the first
-project, which has no database). The NPC deploy used the persistent `newprontera` login in
-`C:/Users/strodano/AppData/Local/vercel-npc` (shared with the Pickle Brawl site: never log it out). Deploy from a clean tree
-(`git status`): the CLI uploads the working folder, not the commit. `/archive/` is in `.vercelignore` (its blends/bakes broke
-the 100 MB file cap).
+**Last deployed 2026-10-05** from git commit `7355794` on `main` (`c672202` plus the RAPTURE holder check): staging first
+(forge-hall.vercel.app), then production (forge.litvm.games / forge-hall-theta.vercel.app). The working folder held another
+session's uncommitted edits, so both deploys ran from a clean checkout of that commit: `git worktree add --detach <dir> 7355794`,
+`npm ci && npm test` there (109/109), then the deploy commands from that folder with `VERCEL_ORG_ID` / `VERCEL_PROJECT_ID` set for
+each project (a worktree has no `.vercel` link), then `git worktree remove <dir>`. Checked live on all three hosts: holder,
+non-holder and 400 answers, the CORS preflight, a cross-origin fetch from a real browser page, POST refused, `/test/` and
+`/api/_lib/*` not served, sign-in still same-origin, `/api/health` db:true on the NPC hosts (db:false on staging, which has no
+database). The NPC deploy used the persistent `newprontera` login in `C:/Users/strodano/AppData/Local/vercel-npc` (shared with
+the Pickle Brawl site: never log it out). Deploy from a clean tree (`git status`) or a worktree as above: the CLI uploads the
+working folder, not the commit. `/archive/` is in `.vercelignore` (its blends/bakes broke the 100 MB file cap).
 
 ## Second deployment: NPC team (2026-10-02)
 
@@ -65,6 +68,7 @@ The same site is also deployed to the **NPC** team, where the production domain 
 
 | | |
 |---|---|
+| Role | **Production** (since 2026-10-05), behind https://forge.litvm.games |
 | Vercel team / project | `npc-31bbd654` (NPC) / `forge-hall` (project id `prj_OY62mbJg5w34HN1e7FFG243fC6m3`, team id `team_LHXkgP0HcJa3J3Mg2Z2diX9l`). A NEW project: the team's other projects (cabinet, picklebrawl, litgaming-website, ...) are unrelated, never deploy into them |
 | Public URL | **https://forge.litvm.games** (production domain, added by the NPC team in the Vercel dashboard 2026-10-02; DNS, TLS and the site checked) and https://forge-hall-theta.vercel.app (the short alias Vercel assigned: `forge-hall.vercel.app` belongs to the first project). `forge-hall-npc-31bbd654.vercel.app` and the per-deployment URLs sit behind Vercel Authentication |
 | Env vars set | `ALLOWED_HOSTS=forge.litvm.games,forge-hall-theta.vercel.app` (Production; **add any new production domain here and redeploy**, or sign-in refuses that host). `DATABASE_URL` and the other `POSTGRES_*`/`PG*` names (Preview + Production) come from the Neon integration, see "Database" below |
