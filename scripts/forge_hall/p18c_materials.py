@@ -172,16 +172,23 @@ def anvils():
     geo = g.n("ShaderNodeNewGeometry")
     nz = g.n("ShaderNodeSeparateXYZ")
     g.l(geo.outputs["Normal"], nz.inputs["Vector"])
-    face = g.smooth(nz.outputs["Z"], 0.86, 0.97)                       # the polished working face
+    # Meshy's metallic channel (ORM blue) separates the iron anvil (~0.5) from its granite base block (0)
+    orm = next(n for n in m.node_tree.nodes if n.type == "TEX_IMAGE" and n.get("feeds") != "Base Color"
+               and not any(lk.to_node.type == "NORMAL_MAP" for lk in n.outputs[0].links))
+    sep = g.n("ShaderNodeSeparateColor")
+    g.l(orm.outputs["Color"], sep.inputs["Color"])
+    metal = g.smooth(sep.outputs["Blue"], 0.3, 0.45)
+    face = g.math("MULTIPLY", g.smooth(nz.outputs["Z"], 0.86, 0.97), metal)  # the polished working face
     edge = g.smooth(geo.outputs["Pointiness"], 0.52, 0.6)              # worn bright edges
     base = g.mix(edge, steel, (0.32, 0.31, 0.3))
     base = g.mix(face, base, (0.6, 0.6, 0.62))
-    g.l(base, b.inputs["Base Color"])
-    b.inputs["Metallic"].default_value = 1.0
+    granite = g.mix(0.6, col.outputs["Color"], (0.0, 0.0, 0.0))         # the block it stands on, darkened by soot
+    g.l(g.mix(metal, granite, base), b.inputs["Base Color"])
+    g.l(metal, b.inputs["Metallic"])
     scratch = g.math("MULTIPLY", g.noise(140.0, 2.0), 0.12)
     r_body = g.math("ADD", 0.42, g.math("MULTIPLY", g.noise(6.0, 8.0), 0.22))
     r_face = g.math("ADD", 0.12, scratch)
-    g.l(g.mix(face, r_body, r_face, kind="FLOAT"), b.inputs["Roughness"])
+    g.l(g.mix(metal, 0.82, g.mix(face, r_body, r_face, kind="FLOAT"), kind="FLOAT"), b.inputs["Roughness"])
 
 
 # ------------------------------------------------------------------ flat FH_* metals

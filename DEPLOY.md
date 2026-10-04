@@ -50,6 +50,10 @@ sign-in button. (This first project has no database; the NPC deployment below do
   team, which added `forge.litvm.games` to its own `forge-hall` project (next section); it serves the site over HTTPS (DNS and TLS
   checked).
 
+**Last deployed 2026-10-04** to both projects (forge.litvm.games / forge-hall-theta.vercel.app and forge-hall.vercel.app): the p18
+hall (THE FORGE plaque, caduceus badge, live metals, night lighting, torches; painted mode removed), the title screen, and the
+folder's uncommitted card/shop edits at the time. `/archive/` is in `.vercelignore` (its blends/bakes broke the 100 MB file cap).
+
 ## Second deployment: NPC team (2026-10-02)
 
 The same site is also deployed to the **NPC** team, where the production domain will be linked.

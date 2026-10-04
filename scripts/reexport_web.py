@@ -2,6 +2,7 @@
 
 run:  blender -b forge_hall_web.blend      --python scripts/reexport_web.py   (after grade_cinematic.py)
 Reloads the BK_*.png atlases into the baked unlit materials and writes web/assets/<name>_raw.glb.
+BK_Live keeps a lit (emissive) fallback material so its normals survive optimisation (see export_web.live_fallback).
 """
 import bpy, os
 
@@ -11,6 +12,23 @@ for img in bpy.data.images:
     if img.filepath and os.path.basename(bpy.path.abspath(img.filepath)).startswith("BK_"):
         img.reload()
         print("reloaded", img.name)
+
+live = bpy.data.objects.get("BK_Live")
+if live:  # bakes made before the fallback became emissive used an unlit Background shader: convert it
+    nt = live.data.materials[0].node_tree
+    bg = next((n for n in nt.nodes if n.type == "BACKGROUND"), None)
+    if bg:
+        tex = next(n for n in nt.nodes if n.type == "TEX_IMAGE")
+        out = next(n for n in nt.nodes if n.type == "OUTPUT_MATERIAL")
+        nt.nodes.remove(bg)
+        b = nt.nodes.new("ShaderNodeBsdfPrincipled")
+        b.inputs["Base Color"].default_value = (0, 0, 0, 1)
+        b.inputs["Roughness"].default_value = 1.0
+        b.inputs["Specular IOR Level"].default_value = 0.0
+        b.inputs["Emission Strength"].default_value = 1.0
+        nt.links.new(tex.outputs[0], b.inputs["Emission Color"])
+        nt.links.new(b.outputs[0], out.inputs[0])
+        print("BK_Live fallback -> emissive")
 
 exp = [o for o in bpy.data.objects if o.name.startswith(("BK_", "FX_", "FXM_")) or o.name == "Cam_Hall"]
 for o in bpy.context.view_layer.objects:

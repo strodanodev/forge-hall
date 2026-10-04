@@ -473,6 +473,19 @@ if "Live" in baked:
     log("baked live PBR maps (base, orm, normal)")
 
 # ---------------------------------------------------------------- 7. unlit materials on baked groups
+def live_fallback(nt, tex, out):
+    """BK_Live's material: black, non-metal, the baked atlas as emission. Looks like the unlit groups until
+    livemetal.js swaps in PBR, and (unlike KHR_materials_unlit) keeps the NORMAL attribute through gltf-transform's
+    prune, which the live lighting needs."""
+    b = nt.nodes.new("ShaderNodeBsdfPrincipled")
+    b.inputs["Base Color"].default_value = (0, 0, 0, 1)
+    b.inputs["Roughness"].default_value = 1.0
+    b.inputs["Specular IOR Level"].default_value = 0.0
+    b.inputs["Emission Strength"].default_value = 1.0
+    nt.links.new(tex.outputs[0], b.inputs["Emission Color"])
+    nt.links.new(b.outputs[0], out.inputs[0])
+
+
 for g, ob in baked.items():
     m = bpy.data.materials.new(f"M_{g}")
     m.use_nodes = True
@@ -483,10 +496,13 @@ for g, ob in baked.items():
     tex.image = bpy.data.images.load(os.path.join(BAKE_DIR, f"BK_{g}.png"))
     uvn = nt.nodes.new("ShaderNodeUVMap")
     uvn.uv_map = "BakeUV"
-    bgs = nt.nodes.new("ShaderNodeBackground")
     nt.links.new(uvn.outputs[0], tex.inputs[0])
-    nt.links.new(tex.outputs[0], bgs.inputs[0])
-    nt.links.new(bgs.outputs[0], out.inputs[0])
+    if g == "Live":
+        live_fallback(nt, tex, out)
+    else:
+        bgs = nt.nodes.new("ShaderNodeBackground")
+        nt.links.new(tex.outputs[0], bgs.inputs[0])
+        nt.links.new(bgs.outputs[0], out.inputs[0])
     ob.data.materials.clear()
     ob.data.materials.append(m)
     for l in [l for l in ob.data.uv_layers if l.name != "BakeUV"]:

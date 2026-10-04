@@ -33,11 +33,23 @@ vec3 forgeAgX(vec3 color) {
 }
 `;
 
-function withAgX(mat) {
+// The probe is one point of view, so on its own it under-lights whatever faces away from mid-hall (the badge tilts up
+// at a night sky). Blender's own baked lighting of these metals (the fallback atlas) carries the scene's real lights:
+// it sets the base look, and the live PBR adds the view-dependent sheen on top. Both terms dim with material.color,
+// which the pack sequence uses to turn the hall down.
+const MIX = { baked: 0.72, live: 0.6 };
+
+function withAgX(mat, baked) {
+  const uniforms = {
+    uForgeExposure: { value: EXPOSURE }, uBaked: { value: baked },
+    uBakedMix: { value: MIX.baked }, uLiveMix: { value: MIX.live },
+  };
+  mat.userData.forge = uniforms; // ?debug tuning: forge live material .userData.forge.uBakedMix.value = ...
   mat.onBeforeCompile = (shader) => {
-    shader.uniforms.uForgeExposure = { value: EXPOSURE };
-    shader.fragmentShader = AGX + shader.fragmentShader.replace(
-      "#include <tonemapping_fragment>", "gl_FragColor.rgb = forgeAgX(gl_FragColor.rgb);");
+    Object.assign(shader.uniforms, uniforms);
+    shader.fragmentShader = AGX + "uniform sampler2D uBaked;\nuniform float uBakedMix, uLiveMix;\n" +
+      shader.fragmentShader.replace("#include <tonemapping_fragment>",
+        "gl_FragColor.rgb = texture2D(uBaked, vMapUv).rgb * diffuse * uBakedMix + forgeAgX(gl_FragColor.rgb) * uLiveMix;");
   };
   mat.customProgramCacheKey = () => "forge-live-agx";
   return mat;
@@ -67,14 +79,15 @@ export async function upgradeLiveMetals(mesh, renderer, base = "./assets/") {
   const envMap = pmrem.fromEquirectangular(hdr).texture;
   pmrem.dispose();
   hdr.dispose();
+  const old = mesh.material;
+  const baked = old.emissiveMap; // the GLB's fallback: Blender's lit bake of these metals, display-referred
+  if (!baked) throw new Error("BK_Live has no baked atlas");
   const mat = withAgX(new THREE.MeshStandardMaterial({
     name: "M_Live", map, envMap,
     aoMap: orm, roughnessMap: orm, metalnessMap: orm, roughness: 1, metalness: 1, // ORM: R occlusion, G rough, B metal
     normalMap, normalScale: new THREE.Vector2(1, -1), // Blender bakes OpenGL tangent space; glTF UVs flip v
-  }));
-  const old = mesh.material;
+  }), baked);
   mesh.material = mat;
-  old.map?.dispose();
   old.dispose();
   return mat;
 }

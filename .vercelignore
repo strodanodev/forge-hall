@@ -19,6 +19,8 @@
 # Other projects and tooling that share this repo (run from your machine, not on Vercel)
 /packshop/
 /scripts/
+# retired builds (the painted/toon hall, 2026-10-02): blends and float bakes, hundreds of MB
+/archive/
 /.claude/
 
 # Tests are not endpoints: Vercel would deploy every api/**/*.js it can see as a function
