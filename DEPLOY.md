@@ -51,16 +51,14 @@ sign-in button. (This first project has no database; the NPC deployment below do
   team, which added `forge.litvm.games` to its own `forge-hall` project (next section); it serves the site over HTTPS (DNS and TLS
   checked).
 
-**Last deployed 2026-10-05** from git commit `7355794` on `main` (`c672202` plus the RAPTURE holder check): staging first
-(forge-hall.vercel.app), then production (forge.litvm.games / forge-hall-theta.vercel.app). The working folder held another
-session's uncommitted edits, so both deploys ran from a clean checkout of that commit: `git worktree add --detach <dir> 7355794`,
-`npm ci && npm test` there (109/109), then the deploy commands from that folder with `VERCEL_ORG_ID` / `VERCEL_PROJECT_ID` set for
-each project (a worktree has no `.vercel` link), then `git worktree remove <dir>`. Checked live on all three hosts: holder,
-non-holder and 400 answers, the CORS preflight, a cross-origin fetch from a real browser page, POST refused, `/test/` and
-`/api/_lib/*` not served, sign-in still same-origin, `/api/health` db:true on the NPC hosts (db:false on staging, which has no
-database). The NPC deploy used the persistent `newprontera` login in `C:/Users/strodano/AppData/Local/vercel-npc` (shared with
-the Pickle Brawl site: never log it out). Deploy from a clean tree (`git status`) or a worktree as above: the CLI uploads the
-working folder, not the commit. `/archive/` is in `.vercelignore` (its blends/bakes broke the 100 MB file cap).
+**Last deployed 2026-10-05** to production (forge.litvm.games / forge-hall-theta.vercel.app) from git commit `faf88c1` on
+`main`: the audit's fixes (three.js vendored, Content-Security-Policy and security headers on every route, sign-out, SIWE
+checks, the wallet-layer bugs, preview odds; see `AUDIT.md`). Deployed from the clean working tree after
+`vercel login --global-config C:\Users\strodano\AppData\Local\vercel-npc` (the stored login had stopped being read in that shell)
+and the deploy command in the next section. Checked live: the headers on every route, `/vendor/three/` and `util.js` served,
+`/test/` not served, the served `index.html` equal to the commit's, `/api/health` db:true, logout accepted. The first project
+(forge-hall.vercel.app) was NOT deployed to and still runs `7355794`: retire it (checklist at the end). Deploy from a clean tree
+(`git status`) or a worktree: the CLI uploads the working folder, not the commit. `/archive/` is in `.vercelignore` (its blends/bakes broke the 100 MB file cap).
 
 ## Second deployment: NPC team (2026-10-02)
 
